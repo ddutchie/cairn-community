@@ -2,8 +2,14 @@
   "kind": "mcp",
   "author": "cairn",
   "version": "1.0.0",
-  "tags": ["search", "web", "research", "answers"],
+  "tags": [
+    "search",
+    "web",
+    "research",
+    "answers"
+  ],
   "blurb": "Search the web and get sourced answers with Tavily's research API.",
+  "category": "Search & Web",
   "brandColor": "#1e40af",
   "homepage": "https://tavily.com",
   "icon": {},

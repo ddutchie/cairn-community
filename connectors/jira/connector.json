@@ -9,6 +9,7 @@
     "project-management"
   ],
   "blurb": "Search, summarize, create, and update Jira issues.",
+  "category": "Project management",
   "brandColor": "#0052cc",
   "homepage": "https://www.atlassian.com/software/jira",
   "icon": {

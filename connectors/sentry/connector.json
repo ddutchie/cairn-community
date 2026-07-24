@@ -9,6 +9,7 @@
     "debugging"
   ],
   "blurb": "Investigate errors, issues, and performance data in Sentry.",
+  "category": "Dev & Code",
   "brandColor": "#362d59",
   "homepage": "https://sentry.io",
   "icon": {

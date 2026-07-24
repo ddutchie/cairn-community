@@ -9,6 +9,7 @@
     "tech"
   ],
   "blurb": "Search Hacker News stories and comments. No API key needed.",
+  "category": "Search & Web",
   "brandColor": "#ff6600",
   "homepage": "https://hn.algolia.com",
   "icon": {

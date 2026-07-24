@@ -4,13 +4,28 @@
   "title": "Cairn Community Connector",
   "description": "One connectors/<id>/connector.json — an installable MCP server or HTTP service. manifest.json is COMPILED from these by scripts/build-manifest.mjs; never hand-edit the manifest.",
   "type": "object",
-  "required": ["kind", "author", "version", "tags", "blurb", "definition"],
+  "required": ["kind", "author", "version", "category", "tags", "blurb", "definition"],
   "additionalProperties": false,
   "properties": {
     "kind": { "type": "string", "enum": ["mcp", "service"] },
     "author": { "type": "string", "description": "GitHub handle/org maintaining this entry." },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "SemVer of THIS entry; bump to push an update to installed users." },
-    "tags": { "type": "array", "items": { "type": "string" } },
+    "category": {
+      "type": "string",
+      "description": "The single category chip this connector groups under in Browse Community.",
+      "enum": [
+        "Project management",
+        "Dev & Code",
+        "Docs & Knowledge",
+        "CRM & Support",
+        "Search & Web",
+        "Finance",
+        "Design",
+        "Automation",
+        "Utilities"
+      ]
+    },
+    "tags": { "type": "array", "items": { "type": "string" }, "description": "Freeform keywords for search only (not shown as chips)." },
     "blurb": { "type": "string", "maxLength": 200, "description": "One-line description for the browse card." },
     "brandColor": { "type": "string", "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$" },
     "homepage": { "type": "string", "format": "uri", "pattern": "^https://" },

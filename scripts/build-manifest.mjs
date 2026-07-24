@@ -64,6 +64,7 @@ function build() {
       id,
       author: c.author,
       version: c.version,
+      category: c.category,
       tags: c.tags,
       blurb: c.blurb,
       brandColor: c.brandColor,

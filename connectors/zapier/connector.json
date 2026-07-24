@@ -12,6 +12,7 @@
     "8000-apps"
   ],
   "blurb": "Gateway to 8,000+ apps — Gmail, Slack, Google Calendar, Outlook and more via your Zapier actions.",
+  "category": "Automation",
   "brandColor": "#ff4f00",
   "homepage": "https://zapier.com/mcp",
   "icon": {

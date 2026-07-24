@@ -9,6 +9,7 @@
     "projects"
   ],
   "blurb": "Inspect Vercel projects, deployments, and logs.",
+  "category": "Dev & Code",
   "brandColor": "#000000",
   "homepage": "https://vercel.com",
   "icon": {

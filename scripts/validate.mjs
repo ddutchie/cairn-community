@@ -28,6 +28,18 @@ const fail = (m) => errors.push(m);
 const PLACEHOLDER = /<API_KEY>|<TOKEN>|<ACCESS_TOKEN>|YOUR_API_KEY/;
 const CREDENTIAL_HINT = /(bearer\s+\S|api[_-]?key|token|secret|authorization)/i;
 
+const CATEGORIES = new Set([
+  "Project management",
+  "Dev & Code",
+  "Docs & Knowledge",
+  "CRM & Support",
+  "Search & Web",
+  "Finance",
+  "Design",
+  "Automation",
+  "Utilities",
+]);
+
 function checkHeaders(where, headers) {
   if (!headers) return;
   for (const [k, v] of Object.entries(headers)) {
@@ -84,6 +96,7 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
 
   if (c.kind !== "mcp" && c.kind !== "service") fail(`${where}: kind must be "mcp" or "service"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
+  if (!CATEGORIES.has(c.category)) fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
   if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
   const def = c.definition || {};
   if (!def.name) fail(`${where}: definition.name required`);

@@ -9,6 +9,7 @@
     "documentation"
   ],
   "blurb": "Search spaces, read pages, and draft documentation in Confluence.",
+  "category": "Docs & Knowledge",
   "brandColor": "#172b4d",
   "homepage": "https://www.atlassian.com/software/confluence",
   "icon": {

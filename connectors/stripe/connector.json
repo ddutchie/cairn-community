@@ -9,6 +9,7 @@
     "invoices"
   ],
   "blurb": "Query customers, payments, invoices, and subscriptions in Stripe.",
+  "category": "Finance",
   "brandColor": "#635bff",
   "homepage": "https://stripe.com",
   "icon": {

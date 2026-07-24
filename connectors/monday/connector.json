@@ -9,6 +9,7 @@
     "tasks"
   ],
   "blurb": "Read boards and items, track work, create items and post updates.",
+  "category": "Project management",
   "brandColor": "#6161ff",
   "homepage": "https://monday.com",
   "icon": {

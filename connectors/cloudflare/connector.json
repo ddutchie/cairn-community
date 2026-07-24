@@ -10,6 +10,7 @@
     "workers"
   ],
   "blurb": "Manage Cloudflare DNS, Workers, and account data.",
+  "category": "Dev & Code",
   "brandColor": "#f38020",
   "homepage": "https://www.cloudflare.com",
   "icon": {

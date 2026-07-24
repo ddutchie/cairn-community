@@ -8,6 +8,7 @@
     "work-management"
   ],
   "blurb": "Read and manage Asana tasks, projects, and portfolios.",
+  "category": "Project management",
   "brandColor": "#f06a6a",
   "homepage": "https://asana.com",
   "icon": {

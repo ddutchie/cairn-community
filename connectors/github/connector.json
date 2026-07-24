@@ -10,6 +10,7 @@
     "git"
   ],
   "blurb": "Work with GitHub issues, pull requests, files, and CI status.",
+  "category": "Dev & Code",
   "brandColor": "#1f2328",
   "homepage": "https://github.com",
   "icon": {

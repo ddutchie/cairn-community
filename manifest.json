@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T14:01:55Z",
+  "updatedAt": "2026-07-24T14:31:47Z",
   "mcpServers": [
     {
       "id": "asana",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Project management",
       "tags": [
         "tasks",
         "project-management",
@@ -29,6 +30,7 @@
       "id": "canva",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Design",
       "tags": [
         "design",
         "graphics",
@@ -52,6 +54,7 @@
       "id": "cloudflare",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Dev & Code",
       "tags": [
         "infrastructure",
         "dns",
@@ -77,6 +80,7 @@
       "id": "confluence",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Docs & Knowledge",
       "tags": [
         "wiki",
         "docs",
@@ -101,6 +105,7 @@
       "id": "github",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Dev & Code",
       "tags": [
         "code",
         "issues",
@@ -126,6 +131,7 @@
       "id": "hubspot",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "CRM & Support",
       "tags": [
         "crm",
         "sales",
@@ -150,6 +156,7 @@
       "id": "intercom",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "CRM & Support",
       "tags": [
         "support",
         "messaging",
@@ -174,6 +181,7 @@
       "id": "jira",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Project management",
       "tags": [
         "issues",
         "tickets",
@@ -198,6 +206,7 @@
       "id": "linear",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Project management",
       "tags": [
         "issues",
         "project-management",
@@ -221,6 +230,7 @@
       "id": "monday",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Project management",
       "tags": [
         "boards",
         "work-management",
@@ -245,6 +255,7 @@
       "id": "notion",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Docs & Knowledge",
       "tags": [
         "notes",
         "docs",
@@ -269,6 +280,7 @@
       "id": "sentry",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Dev & Code",
       "tags": [
         "errors",
         "monitoring",
@@ -293,6 +305,7 @@
       "id": "stripe",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Finance",
       "tags": [
         "payments",
         "billing",
@@ -317,6 +330,7 @@
       "id": "tavily",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Search & Web",
       "tags": [
         "search",
         "web",
@@ -340,6 +354,7 @@
       "id": "vercel",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Dev & Code",
       "tags": [
         "deployments",
         "hosting",
@@ -364,6 +379,7 @@
       "id": "zapier",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Automation",
       "tags": [
         "gateway",
         "email",
@@ -393,6 +409,7 @@
       "id": "brave",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Search & Web",
       "tags": [
         "search",
         "web"
@@ -426,6 +443,7 @@
       "id": "hackernews",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Search & Web",
       "tags": [
         "search",
         "news",
@@ -459,6 +477,7 @@
       "id": "open-meteo-weather",
       "author": "cairn",
       "version": "1.0.0",
+      "category": "Utilities",
       "tags": [
         "weather",
         "forecast"

@@ -7,6 +7,7 @@
     "forecast"
   ],
   "blurb": "Current weather and forecasts by latitude/longitude. No API key needed.",
+  "category": "Utilities",
   "brandColor": "#0ea5e9",
   "homepage": "https://open-meteo.com",
   "icon": {},

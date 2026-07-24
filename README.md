@@ -65,7 +65,8 @@ Create one folder — `connectors/<id>/connector.json`:
   "kind": "mcp",                         // "mcp" | "service"
   "author": "your-github-handle",
   "version": "1.0.0",                    // SemVer of THIS entry; bump to push an update
-  "tags": ["issues", "atlassian"],
+  "category": "Project management",      // ONE of the fixed categories (see below) — the Browse chip
+  "tags": ["issues", "atlassian"],       // freeform keywords for SEARCH only (not shown as chips)
   "blurb": "Search, create, and update Jira issues.",
   "brandColor": "#0052cc",
   "homepage": "https://www.atlassian.com/software/jira",
@@ -112,6 +113,7 @@ CI **rejects** any header that looks like a credential but isn't a placeholder.
 ### Rules
 
 - `baseUrl` / `apiUrl` / `homepage` / `apiKeyUrl` must be **https**.
+- `category` must be one of: **Project management · Dev & Code · Docs & Knowledge · CRM & Support · Search & Web · Finance · Design · Automation · Utilities**. It's the chip a connector groups under in Browse Community. `tags` are freeform and used for **search only** (not shown as chips).
 - `name` must be unique within its kind (case-insensitive).
 - `toolDefinition` (services) must be valid stringified OpenAI tool JSON with a `name`.
 - Bump the entry `version` when you change a `definition` so installed users see an update.
