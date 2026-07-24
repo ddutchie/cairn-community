@@ -73,6 +73,23 @@
         "toolDefinition": { "type": "string", "description": "Stringified OpenAI tool JSON." },
         "responseKeys": { "type": "array", "items": { "type": "string" } },
         "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "authMode": {
+          "type": "string",
+          "enum": ["none", "oauth"],
+          "description": "'none' (default) = static/keychain header secrets. 'oauth' = OAuth 2.1 browser sign-in; Cairn auto-refreshes tokens and injects Authorization: Bearer per request."
+        },
+        "oauth": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "OAuth parameters for authMode:'oauth'. Omit serverUrl to run discovery + dynamic client registration against the apiUrl origin (works for any modern DCR-capable authorization server).",
+          "properties": {
+            "serverUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Authorization-server discovery base (defaults to the apiUrl origin)." },
+            "scope": { "type": "string", "description": "Requested OAuth scope (space-delimited)." },
+            "clientId": { "type": "string", "description": "Preregistered client id for vendors without DCR (Phase C)." },
+            "authorizationUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+            "tokenUrl": { "type": "string", "format": "uri", "pattern": "^https://" }
+          }
+        },
         "enabled": { "type": "boolean" }
       }
     }
