@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T13:29:47Z",
+  "updatedAt": "2026-07-24T14:01:55Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -308,6 +308,29 @@
         "description": "Stripe — customers, payments, invoices, subscriptions.",
         "transport": "http",
         "baseUrl": "https://mcp.stripe.com",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "tavily",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "search",
+        "web",
+        "research",
+        "answers"
+      ],
+      "blurb": "Search the web and get sourced answers with Tavily's research API.",
+      "brandColor": "#1e40af",
+      "homepage": "https://tavily.com",
+      "definition": {
+        "name": "Tavily",
+        "description": "Tavily — web search and research answers built for AI agents.",
+        "transport": "http",
+        "baseUrl": "https://mcp.tavily.com/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
