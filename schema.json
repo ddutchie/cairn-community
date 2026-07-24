@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/ddutchie/cairn-community/main/schema.json",
+  "title": "Cairn Community Registry Manifest",
+  "description": "The catalog of community MCP servers and HTTP services installable from within Cairn. Fetched at runtime; entries mirror Cairn's shipped McpServerConfig / CustomServiceConfig so install is a near-direct copy.",
+  "type": "object",
+  "required": ["version", "updatedAt", "mcpServers", "services"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Manifest format version. Bump only on a breaking schema change.",
+      "minimum": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last manifest change (used for cache freshness)."
+    },
+    "mcpServers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/McpEntry" }
+    },
+    "services": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ServiceEntry" }
+    }
+  },
+  "definitions": {
+    "RegistryMeta": {
+      "type": "object",
+      "required": ["author", "version", "tags", "blurb", "definition"],
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "GitHub handle or org that maintains this entry."
+        },
+        "version": {
+          "type": "string",
+          "description": "SemVer of THIS entry. Bump to trigger an 'update available' badge for installed users.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Search/filter keywords for the Browse Community picker."
+        },
+        "blurb": {
+          "type": "string",
+          "description": "One-line description shown on the catalog card.",
+          "maxLength": 200
+        },
+        "logo": {
+          "type": "string",
+          "description": "Stable logo id the Cairn frontend maps to a bundled SVG (e.g. 'jira'). Empty = UI fallback."
+        },
+        "brandColor": {
+          "type": "string",
+          "description": "Brand colour hex for the card accent.",
+          "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional vendor/product homepage."
+        }
+      }
+    },
+    "McpEntry": {
+      "allOf": [{ "$ref": "#/definitions/RegistryMeta" }],
+      "properties": {
+        "definition": { "$ref": "#/definitions/McpDefinition" }
+      }
+    },
+    "ServiceEntry": {
+      "allOf": [{ "$ref": "#/definitions/RegistryMeta" }],
+      "properties": {
+        "definition": { "$ref": "#/definitions/ServiceDefinition" }
+      }
+    },
+    "McpDefinition": {
+      "type": "object",
+      "description": "Mirrors Cairn's McpServerConfig (install-relevant subset). id/workspaceId/timestamps are assigned locally on install.",
+      "required": ["name", "transport", "baseUrl", "enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "transport": { "type": "string", "enum": ["sse", "http"] },
+        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "headers": {
+          "type": "object",
+          "description": "Static headers. Secret values MUST use a placeholder token (<API_KEY>, <TOKEN>, <ACCESS_TOKEN>, YOUR_API_KEY) — never a real secret.",
+          "additionalProperties": { "type": "string" }
+        },
+        "authMode": { "type": "string", "enum": ["none", "oauth"] },
+        "oauthScope": { "type": "string" },
+        "disabledTools": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "ServiceDefinition": {
+      "type": "object",
+      "description": "Mirrors Cairn's CustomServiceConfig (install-relevant subset).",
+      "required": ["name", "apiUrl", "method", "toolDefinition", "enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "apiUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
+        "headers": {
+          "type": "object",
+          "description": "Secret values MUST use a placeholder token (<API_KEY>, <TOKEN>, <ACCESS_TOKEN>, YOUR_API_KEY).",
+          "additionalProperties": { "type": "string" }
+        },
+        "toolDefinition": {
+          "type": "string",
+          "description": "Stringified OpenAI tool JSON: {\"name\":\"…\",\"description\":\"…\",\"parameters\":{…}}."
+        },
+        "responseKeys": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Keys to keep from the API response (token optimisation)."
+        },
+        "apiKeyUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Where the user can obtain an API key."
+        },
+        "enabled": { "type": "boolean" }
+      }
+    }
+  }
+}

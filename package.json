@@ -1,0 +1,15 @@
+{
+  "name": "cairn-community",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Community registry of MCP servers and HTTP services installable from within Cairn.",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}
