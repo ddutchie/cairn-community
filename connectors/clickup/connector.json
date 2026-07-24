@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Project management",
+  "tags": [
+    "tasks",
+    "project-management",
+    "work-management"
+  ],
+  "blurb": "Read and manage ClickUp tasks, lists, and docs.",
+  "brandColor": "#7b68ee",
+  "homepage": "https://clickup.com",
+  "icon": {
+    "slug": "clickup"
+  },
+  "definition": {
+    "name": "ClickUp",
+    "description": "ClickUp — tasks, lists, and docs.",
+    "transport": "http",
+    "baseUrl": "https://mcp.clickup.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

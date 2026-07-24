@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Utilities",
+  "tags": [
+    "network",
+    "ping",
+    "dns",
+    "devops",
+    "monitoring"
+  ],
+  "blurb": "Run network tests (ping, traceroute, DNS, HTTP) from a global probe network.",
+  "brandColor": "#17d4a7",
+  "homepage": "https://globalping.io",
+  "icon": {},
+  "definition": {
+    "name": "Globalping",
+    "description": "Globalping — ping, traceroute, DNS, HTTP from worldwide probes.",
+    "transport": "http",
+    "baseUrl": "https://mcp.globalping.dev/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

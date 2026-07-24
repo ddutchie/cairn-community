@@ -1,0 +1,28 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Dev & Code",
+  "tags": [
+    "incidents",
+    "on-call",
+    "oncall",
+    "alerting",
+    "devops"
+  ],
+  "blurb": "Read incidents, on-call schedules, and services in PagerDuty.",
+  "brandColor": "#06ac38",
+  "homepage": "https://pagerduty.com",
+  "icon": {
+    "slug": "pagerduty"
+  },
+  "definition": {
+    "name": "PagerDuty",
+    "description": "PagerDuty — incidents, on-call, services.",
+    "transport": "http",
+    "baseUrl": "https://mcp.pagerduty.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

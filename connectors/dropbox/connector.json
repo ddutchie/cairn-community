@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Docs & Knowledge",
+  "tags": [
+    "files",
+    "storage",
+    "documents"
+  ],
+  "blurb": "Search and read files stored in Dropbox.",
+  "brandColor": "#0061ff",
+  "homepage": "https://dropbox.com",
+  "icon": {
+    "slug": "dropbox"
+  },
+  "definition": {
+    "name": "Dropbox",
+    "description": "Dropbox — files, folders, and search.",
+    "transport": "http",
+    "baseUrl": "https://mcp.dropbox.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

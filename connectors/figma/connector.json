@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Design",
+  "tags": [
+    "design",
+    "ui",
+    "prototyping",
+    "graphics"
+  ],
+  "blurb": "Read Figma files, frames, and design context.",
+  "brandColor": "#f24e1e",
+  "homepage": "https://figma.com",
+  "icon": {
+    "slug": "figma"
+  },
+  "definition": {
+    "name": "Figma",
+    "description": "Figma — files, frames, and components.",
+    "transport": "http",
+    "baseUrl": "https://mcp.figma.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

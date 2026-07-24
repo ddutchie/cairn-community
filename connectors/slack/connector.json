@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": [
+    "messaging",
+    "chat",
+    "team",
+    "inbox"
+  ],
+  "blurb": "Send messages, search channels, and read conversations in Slack.",
+  "brandColor": "#611f69",
+  "homepage": "https://slack.com",
+  "icon": {},
+  "definition": {
+    "name": "Slack",
+    "description": "Slack — messages, channels, and search.",
+    "transport": "http",
+    "baseUrl": "https://mcp.slack.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

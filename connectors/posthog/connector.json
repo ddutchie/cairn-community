@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Dev & Code",
+  "tags": [
+    "analytics",
+    "product",
+    "events",
+    "insights"
+  ],
+  "blurb": "Query product analytics, insights, and events in PostHog.",
+  "brandColor": "#f54e00",
+  "homepage": "https://posthog.com",
+  "icon": {
+    "slug": "posthog"
+  },
+  "definition": {
+    "name": "PostHog",
+    "description": "PostHog — analytics, insights, events.",
+    "transport": "http",
+    "baseUrl": "https://mcp.posthog.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

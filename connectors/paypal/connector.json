@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Finance",
+  "tags": [
+    "payments",
+    "invoices",
+    "finance"
+  ],
+  "blurb": "Query invoices, transactions, and payments in PayPal.",
+  "brandColor": "#003087",
+  "homepage": "https://paypal.com",
+  "icon": {
+    "slug": "paypal"
+  },
+  "definition": {
+    "name": "PayPal",
+    "description": "PayPal — invoices, transactions, payments.",
+    "transport": "http",
+    "baseUrl": "https://mcp.paypal.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

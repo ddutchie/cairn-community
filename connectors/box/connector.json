@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Docs & Knowledge",
+  "tags": [
+    "files",
+    "storage",
+    "documents"
+  ],
+  "blurb": "Search and read files and folders in Box.",
+  "brandColor": "#0061d5",
+  "homepage": "https://box.com",
+  "icon": {
+    "slug": "box"
+  },
+  "definition": {
+    "name": "Box",
+    "description": "Box — files, folders, and search.",
+    "transport": "http",
+    "baseUrl": "https://mcp.box.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

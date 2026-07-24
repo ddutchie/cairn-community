@@ -1,0 +1,28 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Design",
+  "tags": [
+    "cms",
+    "web",
+    "design",
+    "no-code",
+    "ecommerce"
+  ],
+  "blurb": "Manage Wix sites, content, and store data.",
+  "brandColor": "#0c6efc",
+  "homepage": "https://wix.com",
+  "icon": {
+    "slug": "wix"
+  },
+  "definition": {
+    "name": "Wix",
+    "description": "Wix — sites, content, store.",
+    "transport": "http",
+    "baseUrl": "https://mcp.wix.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

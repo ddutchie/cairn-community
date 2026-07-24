@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "CRM & Support",
+  "tags": [
+    "crm",
+    "sales",
+    "leads",
+    "contacts"
+  ],
+  "blurb": "Work with leads, contacts, and opportunities in Close CRM.",
+  "brandColor": "#4b7bec",
+  "homepage": "https://close.com",
+  "icon": {},
+  "definition": {
+    "name": "Close",
+    "description": "Close — leads, contacts, opportunities.",
+    "transport": "http",
+    "baseUrl": "https://mcp.close.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

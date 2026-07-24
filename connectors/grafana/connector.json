@@ -1,0 +1,28 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Dev & Code",
+  "tags": [
+    "monitoring",
+    "dashboards",
+    "metrics",
+    "observability",
+    "devops"
+  ],
+  "blurb": "Query dashboards, metrics, and alerts in Grafana.",
+  "brandColor": "#f46800",
+  "homepage": "https://grafana.com",
+  "icon": {
+    "slug": "grafana"
+  },
+  "definition": {
+    "name": "Grafana",
+    "description": "Grafana — dashboards, metrics, alerts.",
+    "transport": "http",
+    "baseUrl": "https://mcp.grafana.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

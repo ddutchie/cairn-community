@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Design",
+  "tags": [
+    "cms",
+    "web",
+    "design",
+    "no-code"
+  ],
+  "blurb": "Manage Webflow sites, collections, and CMS items.",
+  "brandColor": "#146ef5",
+  "homepage": "https://webflow.com",
+  "icon": {
+    "slug": "webflow"
+  },
+  "definition": {
+    "name": "Webflow",
+    "description": "Webflow — sites, collections, CMS.",
+    "transport": "sse",
+    "baseUrl": "https://mcp.webflow.com/sse",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

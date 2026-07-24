@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Finance",
+  "tags": [
+    "payments",
+    "pos",
+    "orders",
+    "finance"
+  ],
+  "blurb": "Work with payments, orders, and customers in Square.",
+  "brandColor": "#3e4348",
+  "homepage": "https://squareup.com",
+  "icon": {
+    "slug": "square"
+  },
+  "definition": {
+    "name": "Square",
+    "description": "Square — payments, orders, customers.",
+    "transport": "http",
+    "baseUrl": "https://mcp.squareup.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

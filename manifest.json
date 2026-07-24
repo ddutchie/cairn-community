@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T14:31:47Z",
+  "updatedAt": "2026-07-24T14:53:25Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -27,6 +27,30 @@
       }
     },
     {
+      "id": "box",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "files",
+        "storage",
+        "documents"
+      ],
+      "blurb": "Search and read files and folders in Box.",
+      "brandColor": "#0061d5",
+      "homepage": "https://box.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M.959 5.523c-.54 0-.959.42-.959.899v7.549a4.59 4.59 0 004.613 4.494 4.717 4.717 0 004.135-2.457c.779 1.438 2.337 2.457 4.074 2.457 2.577 0 4.674-2.037 4.674-4.613.06-2.457-2.037-4.495-4.613-4.495-1.738 0-3.295.959-4.074 2.397-.78-1.438-2.338-2.397-4.135-2.397-1.079 0-2.038.36-2.817.899V6.422a.92.92 0 00-.898-.899zM17.602 9.26a.95.95 0 00-.704.158c-.36.3-.479.899-.18 1.318l2.397 3.116-2.396 3.115c-.3.42-.24.96.18 1.26.419.3 1.016.298 1.316-.122l2.039-2.636 2.096 2.697c.3.36.899.419 1.318.12.36-.3.42-.84.121-1.259l-2.338-3.115 2.338-3.057c.3-.419.298-1.018-.121-1.318-.48-.3-1.019-.24-1.318.18l-2.096 2.576-2.04-2.695c-.149-.18-.373-.3-.612-.338zM4.613 11.154c1.558 0 2.817 1.26 2.817 2.758 0 1.558-1.259 2.756-2.817 2.756-1.558 0-2.816-1.198-2.816-2.756 0-1.498 1.258-2.758 2.816-2.758zm8.27 0c1.558 0 2.816 1.26 2.816 2.758-.06 1.558-1.318 2.756-2.816 2.756-1.558 0-2.817-1.198-2.817-2.756 0-1.498 1.259-2.758 2.817-2.758Z\"/></svg>",
+      "definition": {
+        "name": "Box",
+        "description": "Box — files, folders, and search.",
+        "transport": "http",
+        "baseUrl": "https://mcp.box.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
       "id": "canva",
       "author": "cairn",
       "version": "1.0.0",
@@ -45,6 +69,54 @@
         "description": "Canva — designs, brand assets, and exports.",
         "transport": "http",
         "baseUrl": "https://mcp.canva.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "clickup",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Project management",
+      "tags": [
+        "tasks",
+        "project-management",
+        "work-management"
+      ],
+      "blurb": "Read and manage ClickUp tasks, lists, and docs.",
+      "brandColor": "#7b68ee",
+      "homepage": "https://clickup.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 18.439l3.69-2.828c1.961 2.56 4.044 3.739 6.363 3.739 2.307 0 4.33-1.166 6.203-3.704L22 18.405C19.298 22.065 15.941 24 12.053 24 8.178 24 4.788 22.078 2 18.439zM12.04 6.15l-6.568 5.66-3.036-3.52L12.055 0l9.543 8.296-3.05 3.509z\"/></svg>",
+      "definition": {
+        "name": "ClickUp",
+        "description": "ClickUp — tasks, lists, and docs.",
+        "transport": "http",
+        "baseUrl": "https://mcp.clickup.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "close",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "CRM & Support",
+      "tags": [
+        "crm",
+        "sales",
+        "leads",
+        "contacts"
+      ],
+      "blurb": "Work with leads, contacts, and opportunities in Close CRM.",
+      "brandColor": "#4b7bec",
+      "homepage": "https://close.com",
+      "definition": {
+        "name": "Close",
+        "description": "Close — leads, contacts, opportunities.",
+        "transport": "http",
+        "baseUrl": "https://mcp.close.com/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
@@ -102,6 +174,55 @@
       }
     },
     {
+      "id": "dropbox",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "files",
+        "storage",
+        "documents"
+      ],
+      "blurb": "Search and read files stored in Dropbox.",
+      "brandColor": "#0061ff",
+      "homepage": "https://dropbox.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 1.807L0 5.629l6 3.822 6.001-3.822L6 1.807zM18 1.807l-6 3.822 6 3.822 6-3.822-6-3.822zM0 13.274l6 3.822 6.001-3.822L6 9.452l-6 3.822zM18 9.452l-6 3.822 6 3.822 6-3.822-6-3.822zM6 18.371l6.001 3.822 6-3.822-6-3.822L6 18.371z\"/></svg>",
+      "definition": {
+        "name": "Dropbox",
+        "description": "Dropbox — files, folders, and search.",
+        "transport": "http",
+        "baseUrl": "https://mcp.dropbox.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "figma",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Design",
+      "tags": [
+        "design",
+        "ui",
+        "prototyping",
+        "graphics"
+      ],
+      "blurb": "Read Figma files, frames, and design context.",
+      "brandColor": "#f24e1e",
+      "homepage": "https://figma.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z\"/></svg>",
+      "definition": {
+        "name": "Figma",
+        "description": "Figma — files, frames, and components.",
+        "transport": "http",
+        "baseUrl": "https://mcp.figma.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
       "id": "github",
       "author": "cairn",
       "version": "1.0.0",
@@ -122,6 +243,57 @@
         "description": "GitHub — issues, pull requests, repositories, and Actions.",
         "transport": "http",
         "baseUrl": "https://api.githubcopilot.com/mcp/",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "globalping",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Utilities",
+      "tags": [
+        "network",
+        "ping",
+        "dns",
+        "devops",
+        "monitoring"
+      ],
+      "blurb": "Run network tests (ping, traceroute, DNS, HTTP) from a global probe network.",
+      "brandColor": "#17d4a7",
+      "homepage": "https://globalping.io",
+      "definition": {
+        "name": "Globalping",
+        "description": "Globalping — ping, traceroute, DNS, HTTP from worldwide probes.",
+        "transport": "http",
+        "baseUrl": "https://mcp.globalping.dev/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "grafana",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "monitoring",
+        "dashboards",
+        "metrics",
+        "observability",
+        "devops"
+      ],
+      "blurb": "Query dashboards, metrics, and alerts in Grafana.",
+      "brandColor": "#f46800",
+      "homepage": "https://grafana.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M23.02 10.59a8.578 8.578 0 0 0-.862-3.034 8.911 8.911 0 0 0-1.789-2.445c.337-1.342-.413-2.505-.413-2.505-1.292-.08-2.113.4-2.416.62-.052-.02-.102-.044-.154-.064-.22-.089-.446-.172-.677-.247-.231-.073-.47-.14-.711-.197a9.867 9.867 0 0 0-.875-.161C14.557.753 12.94 0 12.94 0c-1.804 1.145-2.147 2.744-2.147 2.744l-.018.093c-.098.029-.2.057-.298.088-.138.042-.275.094-.413.143-.138.055-.275.107-.41.166a8.869 8.869 0 0 0-1.557.87l-.063-.029c-2.497-.955-4.716.195-4.716.195-.203 2.658.996 4.33 1.235 4.636a11.608 11.608 0 0 0-.607 2.635C1.636 12.677.953 15.014.953 15.014c1.926 2.214 4.171 2.351 4.171 2.351.003-.002.006-.002.006-.005.285.509.615.994.986 1.446.156.19.32.371.488.548-.704 2.009.099 3.68.099 3.68 2.144.08 3.553-.937 3.849-1.173a9.784 9.784 0 0 0 3.164.501h.08l.055-.003.107-.002.103-.005.003.002c1.01 1.44 2.788 1.646 2.788 1.646 1.264-1.332 1.337-2.653 1.337-2.94v-.058c0-.02-.003-.039-.003-.06.265-.187.52-.387.758-.6a7.875 7.875 0 0 0 1.415-1.7c1.43.083 2.437-.885 2.437-.885-.236-1.49-1.085-2.216-1.264-2.354l-.018-.013-.016-.013a.217.217 0 0 1-.031-.02c.008-.092.016-.18.02-.27.011-.162.016-.323.016-.48v-.253l-.005-.098-.008-.135a1.891 1.891 0 0 0-.01-.13c-.003-.042-.008-.083-.013-.125l-.016-.124-.018-.122a6.215 6.215 0 0 0-2.032-3.73 6.015 6.015 0 0 0-3.222-1.46 6.292 6.292 0 0 0-.85-.048l-.107.002h-.063l-.044.003-.104.008a4.777 4.777 0 0 0-3.335 1.695c-.332.4-.592.84-.768 1.297a4.594 4.594 0 0 0-.312 1.817l.003.091c.005.055.007.11.013.164a3.615 3.615 0 0 0 .698 1.82 3.53 3.53 0 0 0 1.827 1.282c.33.098.66.14.971.137.039 0 .078 0 .114-.002l.063-.003c.02 0 .041-.003.062-.003.034-.002.065-.007.099-.01.007 0 .018-.003.028-.003l.031-.005.06-.008a1.18 1.18 0 0 0 .112-.02c.036-.008.072-.013.109-.024a2.634 2.634 0 0 0 .914-.415c.028-.02.056-.041.085-.065a.248.248 0 0 0 .039-.35.244.244 0 0 0-.309-.06l-.078.042c-.09.044-.184.083-.283.116a2.476 2.476 0 0 1-.475.096c-.028.003-.054.006-.083.006l-.083.002c-.026 0-.054 0-.08-.002l-.102-.006h-.012l-.024.006c-.016-.003-.031-.003-.044-.006-.031-.002-.06-.007-.091-.01a2.59 2.59 0 0 1-.724-.213 2.557 2.557 0 0 1-.667-.438 2.52 2.52 0 0 1-.805-1.475 2.306 2.306 0 0 1-.029-.444l.006-.122v-.023l.002-.031c.003-.021.003-.04.005-.06a3.163 3.163 0 0 1 1.352-2.29 3.12 3.12 0 0 1 .937-.43 2.946 2.946 0 0 1 .776-.101h.06l.07.002.045.003h.026l.07.005a4.041 4.041 0 0 1 1.635.49 3.94 3.94 0 0 1 1.602 1.662 3.77 3.77 0 0 1 .397 1.414l.005.076.003.075c.002.026.002.05.002.075 0 .024.003.052 0 .07v.065l-.002.073-.008.174a6.195 6.195 0 0 1-.08.639 5.1 5.1 0 0 1-.267.927 5.31 5.31 0 0 1-.624 1.13 5.052 5.052 0 0 1-3.237 2.014 4.82 4.82 0 0 1-.649.066l-.039.003h-.287a6.607 6.607 0 0 1-1.716-.265 6.776 6.776 0 0 1-3.4-2.274 6.75 6.75 0 0 1-.746-1.15 6.616 6.616 0 0 1-.714-2.596l-.005-.083-.002-.02v-.056l-.003-.073v-.096l-.003-.104v-.07l.003-.163c.008-.22.026-.45.054-.678a8.707 8.707 0 0 1 .28-1.355c.128-.444.286-.872.473-1.277a7.04 7.04 0 0 1 1.456-2.1 5.925 5.925 0 0 1 .953-.763c.169-.111.343-.213.524-.306.089-.05.182-.091.273-.135.047-.02.093-.042.138-.062a7.177 7.177 0 0 1 .714-.267l.145-.045c.049-.015.098-.026.148-.041.098-.029.197-.052.296-.076.049-.013.1-.02.15-.033l.15-.032.151-.028.076-.013.075-.01.153-.024c.057-.01.114-.013.171-.023l.169-.021c.036-.003.073-.008.106-.01l.073-.008.036-.003.042-.002c.057-.003.114-.008.171-.01l.086-.006h.023l.037-.003.145-.007a7.999 7.999 0 0 1 1.708.125 7.917 7.917 0 0 1 2.048.68 8.253 8.253 0 0 1 1.672 1.09l.09.077.089.078c.06.052.114.107.171.159.057.052.112.106.166.16.052.055.107.107.159.164a8.671 8.671 0 0 1 1.41 1.978c.012.026.028.052.04.078l.04.078.075.156c.023.051.05.1.07.153l.065.15a8.848 8.848 0 0 1 .45 1.34.19.19 0 0 0 .201.142.186.186 0 0 0 .172-.184c.01-.246.002-.532-.024-.856z\"/></svg>",
+      "definition": {
+        "name": "Grafana",
+        "description": "Grafana — dashboards, metrics, alerts.",
+        "transport": "http",
+        "baseUrl": "https://mcp.grafana.com/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
@@ -277,6 +449,81 @@
       }
     },
     {
+      "id": "pagerduty",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "incidents",
+        "on-call",
+        "oncall",
+        "alerting",
+        "devops"
+      ],
+      "blurb": "Read incidents, on-call schedules, and services in PagerDuty.",
+      "brandColor": "#06ac38",
+      "homepage": "https://pagerduty.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.965 1.18C15.085.164 13.769 0 10.683 0H3.73v14.55h6.926c2.743 0 4.8-.164 6.61-1.37 1.975-1.303 3.004-3.484 3.004-6.007 0-2.716-1.262-4.896-3.305-5.994zm-5.5 10.326h-4.21V3.113l3.977-.027c3.62-.028 5.43 1.234 5.43 4.128 0 3.113-2.248 4.292-5.197 4.292zM3.73 17.61h3.525V24H3.73Z\"/></svg>",
+      "definition": {
+        "name": "PagerDuty",
+        "description": "PagerDuty — incidents, on-call, services.",
+        "transport": "http",
+        "baseUrl": "https://mcp.pagerduty.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "paypal",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Finance",
+      "tags": [
+        "payments",
+        "invoices",
+        "finance"
+      ],
+      "blurb": "Query invoices, transactions, and payments in PayPal.",
+      "brandColor": "#003087",
+      "homepage": "https://paypal.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.607 4.653H8.941L6.645 19.251H1.82L4.862 0h7.995c3.754 0 6.375 2.294 6.473 5.513-.648-.478-2.105-.86-3.722-.86m6.57 5.546c0 3.41-3.01 6.853-6.958 6.853h-2.493L11.595 24H6.74l1.845-11.538h3.592c4.208 0 7.346-3.634 7.153-6.949a5.24 5.24 0 0 1 2.848 4.686M9.653 5.546h6.408c.907 0 1.942.222 2.363.541-.195 2.741-2.655 5.483-6.441 5.483H8.714Z\"/></svg>",
+      "definition": {
+        "name": "PayPal",
+        "description": "PayPal — invoices, transactions, payments.",
+        "transport": "http",
+        "baseUrl": "https://mcp.paypal.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "posthog",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "analytics",
+        "product",
+        "events",
+        "insights"
+      ],
+      "blurb": "Query product analytics, insights, and events in PostHog.",
+      "brandColor": "#f54e00",
+      "homepage": "https://posthog.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9.854 14.5 5 9.647.854 5.5A.5.5 0 0 0 0 5.854V8.44a.5.5 0 0 0 .146.353L5 13.647l.147.146L9.854 18.5l.146.147v-.049c.065.03.134.049.207.049h2.586a.5.5 0 0 0 .353-.854L9.854 14.5zm0-5-4-4a.487.487 0 0 0-.409-.144.515.515 0 0 0-.356.21.493.493 0 0 0-.089.288V8.44a.5.5 0 0 0 .147.353l9 9a.5.5 0 0 0 .853-.354v-2.585a.5.5 0 0 0-.146-.354l-5-5zm1-4a.5.5 0 0 0-.854.354V8.44a.5.5 0 0 0 .147.353l4 4a.5.5 0 0 0 .853-.354V9.854a.5.5 0 0 0-.146-.354l-4-4zm12.647 11.515a3.863 3.863 0 0 1-2.232-1.1l-4.708-4.707a.5.5 0 0 0-.854.354v6.585a.5.5 0 0 0 .5.5H23.5a.5.5 0 0 0 .5-.5v-.6c0-.276-.225-.497-.499-.532zm-5.394.032a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6zM.854 15.5a.5.5 0 0 0-.854.354v2.293a.5.5 0 0 0 .5.5h2.293c.222 0 .39-.135.462-.309a.493.493 0 0 0-.109-.545L.854 15.501zM5 14.647.854 10.5a.5.5 0 0 0-.854.353v2.586a.5.5 0 0 0 .146.353L4.854 18.5l.146.147h2.793a.5.5 0 0 0 .353-.854L5 14.647z\"/></svg>",
+      "definition": {
+        "name": "PostHog",
+        "description": "PostHog — analytics, insights, events.",
+        "transport": "http",
+        "baseUrl": "https://mcp.posthog.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
       "id": "sentry",
       "author": "cairn",
       "version": "1.0.0",
@@ -296,6 +543,55 @@
         "description": "Sentry — errors, issues, and performance.",
         "transport": "http",
         "baseUrl": "https://mcp.sentry.dev/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "slack",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "messaging",
+        "chat",
+        "team",
+        "inbox"
+      ],
+      "blurb": "Send messages, search channels, and read conversations in Slack.",
+      "brandColor": "#611f69",
+      "homepage": "https://slack.com",
+      "definition": {
+        "name": "Slack",
+        "description": "Slack — messages, channels, and search.",
+        "transport": "http",
+        "baseUrl": "https://mcp.slack.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "square",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Finance",
+      "tags": [
+        "payments",
+        "pos",
+        "orders",
+        "finance"
+      ],
+      "blurb": "Work with payments, orders, and customers in Square.",
+      "brandColor": "#3e4348",
+      "homepage": "https://squareup.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4.01 0A4.01 4.01 0 000 4.01v15.98c0 2.21 1.8 4 4.01 4.01h15.98C22.2 24 24 22.2 24 19.99V4A4.01 4.01 0 0019.99 0H4zm1.62 4.36h12.74c.7 0 1.26.57 1.26 1.27v12.74c0 .7-.56 1.27-1.26 1.27H5.63c-.7 0-1.26-.57-1.26-1.27V5.63a1.27 1.27 0 011.26-1.27zm3.83 4.35a.73.73 0 00-.73.73v5.09c0 .4.32.72.72.72h5.1a.73.73 0 00.73-.72V9.44a.73.73 0 00-.73-.73h-5.1Z\"/></svg>",
+      "definition": {
+        "name": "Square",
+        "description": "Square — payments, orders, customers.",
+        "transport": "http",
+        "baseUrl": "https://mcp.squareup.com/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
@@ -370,6 +666,57 @@
         "description": "Vercel — projects, deployments, and logs.",
         "transport": "http",
         "baseUrl": "https://mcp.vercel.com",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "webflow",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Design",
+      "tags": [
+        "cms",
+        "web",
+        "design",
+        "no-code"
+      ],
+      "blurb": "Manage Webflow sites, collections, and CMS items.",
+      "brandColor": "#146ef5",
+      "homepage": "https://webflow.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"m24 4.515-7.658 14.97H9.149l3.205-6.204h-.144C9.566 16.713 5.621 18.973 0 19.485v-6.118s3.596-.213 5.71-2.435H0V4.515h6.417v5.278l.144-.001 2.622-5.277h4.854v5.244h.144l2.72-5.244H24Z\"/></svg>",
+      "definition": {
+        "name": "Webflow",
+        "description": "Webflow — sites, collections, CMS.",
+        "transport": "sse",
+        "baseUrl": "https://mcp.webflow.com/sse",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "wix",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Design",
+      "tags": [
+        "cms",
+        "web",
+        "design",
+        "no-code",
+        "ecommerce"
+      ],
+      "blurb": "Manage Wix sites, content, and store data.",
+      "brandColor": "#0c6efc",
+      "homepage": "https://wix.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"m0 7.354 2.113 9.292h.801a1.54 1.54 0 0 0 1.506-1.218l1.351-6.34a.171.171 0 0 1 .167-.137c.08 0 .15.058.167.137l1.352 6.34a1.54 1.54 0 0 0 1.506 1.218h.805l2.113-9.292h-.565c-.62 0-1.159.43-1.296 1.035l-1.26 5.545-1.106-5.176a1.76 1.76 0 0 0-2.19-1.324c-.639.176-1.113.716-1.251 1.365l-1.094 5.127-1.26-5.537A1.33 1.33 0 0 0 .563 7.354H0zm13.992 0a.951.951 0 0 0-.951.95v8.342h.635a.952.952 0 0 0 .951-.95V7.353h-.635zm1.778 0 3.158 4.66-3.14 4.632h1.325c.368 0 .712-.181.918-.486l1.756-2.59a.12.12 0 0 1 .197 0l1.754 2.59c.206.305.55.486.918.486h1.326l-3.14-4.632L24 7.354h-1.326c-.368 0-.712.181-.918.486l-1.772 2.617a.12.12 0 0 1-.197 0L18.014 7.84a1.108 1.108 0 0 0-.918-.486H15.77z\"/></svg>",
+      "definition": {
+        "name": "Wix",
+        "description": "Wix — sites, content, store.",
+        "transport": "http",
+        "baseUrl": "https://mcp.wix.com/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
