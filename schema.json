@@ -91,6 +91,11 @@
                 "additionalProperties": { "type": "string", "enum": ["path", "query", "body"] },
                 "description": "Where each argument goes. Args named by a {placeholder} in path are auto 'path'. Unlisted args default to query (GET/DELETE) or body (POST/PUT)."
               },
+              "query": {
+                "type": "object",
+                "additionalProperties": { "type": "string" },
+                "description": "Static query params ALWAYS sent for this operation (e.g. units, format, or a fixed field list). Supplied by the connector so results don't depend on the model passing an optional arg. A model arg of the same name overrides."
+              },
               "responseKeys": { "type": "array", "items": { "type": "string" } }
             }
           }

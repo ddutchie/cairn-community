@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T21:17:59Z",
+  "updatedAt": "2026-07-24T22:07:48Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -854,7 +854,7 @@
     {
       "id": "open-meteo-weather",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Utilities",
       "tags": [
         "weather",
@@ -873,7 +873,10 @@
             "description": "Get current weather for a location by coordinates.",
             "method": "GET",
             "path": "/forecast",
-            "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+            "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates (latitude/longitude).\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+            "query": {
+              "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m"
+            },
             "responseKeys": [
               "latitude",
               "longitude",
