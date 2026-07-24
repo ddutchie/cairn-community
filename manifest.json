@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T01:00:00Z",
+  "updatedAt": "2026-07-24T02:00:00Z",
   "mcpServers": [
     {
       "author": "cairn",
@@ -123,6 +123,132 @@
         "description": "Sentry — errors, issues, and performance.",
         "transport": "http",
         "baseUrl": "https://mcp.sentry.dev/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["tasks", "project-management", "work-management"],
+      "blurb": "Read and manage Asana tasks, projects, and portfolios.",
+      "logo": "asana",
+      "brandColor": "#f06a6a",
+      "homepage": "https://asana.com",
+      "definition": {
+        "name": "Asana",
+        "description": "Asana — tasks, projects, and portfolios.",
+        "transport": "http",
+        "baseUrl": "https://mcp.asana.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["payments", "billing", "finance", "invoices"],
+      "blurb": "Query customers, payments, invoices, and subscriptions in Stripe.",
+      "logo": "stripe",
+      "brandColor": "#635bff",
+      "homepage": "https://stripe.com",
+      "definition": {
+        "name": "Stripe",
+        "description": "Stripe — customers, payments, invoices, subscriptions.",
+        "transport": "http",
+        "baseUrl": "https://mcp.stripe.com",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["crm", "sales", "marketing", "contacts"],
+      "blurb": "Work with HubSpot CRM contacts, companies, deals, and tickets.",
+      "logo": "hubspot",
+      "brandColor": "#ff7a59",
+      "homepage": "https://www.hubspot.com",
+      "definition": {
+        "name": "HubSpot",
+        "description": "HubSpot CRM — contacts, companies, deals, tickets.",
+        "transport": "http",
+        "baseUrl": "https://mcp.hubspot.com/anthropic",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["design", "graphics", "content"],
+      "blurb": "Create and edit designs, and search brand assets in Canva.",
+      "logo": "canva",
+      "brandColor": "#00c4cc",
+      "homepage": "https://www.canva.com",
+      "definition": {
+        "name": "Canva",
+        "description": "Canva — designs, brand assets, and exports.",
+        "transport": "http",
+        "baseUrl": "https://mcp.canva.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["support", "messaging", "customers", "inbox"],
+      "blurb": "Search conversations and help articles in Intercom.",
+      "logo": "intercom",
+      "brandColor": "#1f8ded",
+      "homepage": "https://www.intercom.com",
+      "definition": {
+        "name": "Intercom",
+        "description": "Intercom — conversations, contacts, and help center.",
+        "transport": "http",
+        "baseUrl": "https://mcp.intercom.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["infrastructure", "dns", "cdn", "devops", "workers"],
+      "blurb": "Manage Cloudflare DNS, Workers, and account data.",
+      "logo": "cloudflare",
+      "brandColor": "#f38020",
+      "homepage": "https://www.cloudflare.com",
+      "definition": {
+        "name": "Cloudflare",
+        "description": "Cloudflare — DNS, Workers, and account resources.",
+        "transport": "http",
+        "baseUrl": "https://mcp.cloudflare.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["deployments", "hosting", "devops", "projects"],
+      "blurb": "Inspect Vercel projects, deployments, and logs.",
+      "logo": "vercel",
+      "brandColor": "#000000",
+      "homepage": "https://vercel.com",
+      "definition": {
+        "name": "Vercel",
+        "description": "Vercel — projects, deployments, and logs.",
+        "transport": "http",
+        "baseUrl": "https://mcp.vercel.com",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
