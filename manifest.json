@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T02:00:00Z",
+  "updatedAt": "2026-07-24T02:30:00Z",
   "mcpServers": [
     {
       "author": "cairn",
@@ -249,6 +249,24 @@
         "description": "Vercel — projects, deployments, and logs.",
         "transport": "http",
         "baseUrl": "https://mcp.vercel.com",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["gateway", "email", "gmail", "slack", "calendar", "automation", "8000-apps"],
+      "blurb": "Gateway to 8,000+ apps — Gmail, Slack, Google Calendar, Outlook and more via your Zapier actions.",
+      "logo": "zapier",
+      "brandColor": "#ff4f00",
+      "homepage": "https://zapier.com/mcp",
+      "definition": {
+        "name": "Zapier",
+        "description": "Zapier MCP — a gateway to email (Gmail/Outlook), Slack, Google Calendar, and 8,000+ other apps through the actions you enable in Zapier. Use this to reach services that don't publish their own MCP server.",
+        "transport": "http",
+        "baseUrl": "https://mcp.zapier.com/api/mcp/mcp",
         "authMode": "oauth",
         "oauthScope": "",
         "enabled": true
