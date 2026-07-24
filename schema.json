@@ -62,16 +62,40 @@
     },
     "ServiceDefinition": {
       "type": "object",
-      "required": ["name", "apiUrl", "method", "toolDefinition", "enabled"],
+      "required": ["name", "enabled"],
       "additionalProperties": false,
+      "description": "An HTTP service. Either a legacy single-op (apiUrl + method + toolDefinition) OR a multi-op service (baseUrl + operations[]). Multi-op is preferred: one connector can expose several tools that share a base URL + headers/auth.",
       "properties": {
         "name": { "type": "string" },
         "description": { "type": "string" },
-        "apiUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "apiUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Legacy single-op endpoint. Use baseUrl + operations for multi-op." },
         "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
-        "headers": { "type": "object", "additionalProperties": { "type": "string" } },
-        "toolDefinition": { "type": "string", "description": "Stringified OpenAI tool JSON." },
-        "responseKeys": { "type": "array", "items": { "type": "string" } },
+        "headers": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Shared across all operations. Use <API_KEY> as a placeholder to inject the stored key." },
+        "toolDefinition": { "type": "string", "description": "Legacy single-op stringified OpenAI tool JSON." },
+        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Base URL for multi-op services; each operation's path is appended." },
+        "operations": {
+          "type": "array",
+          "description": "Multi-op definition. Each operation becomes its own namespaced tool (svc__<id>__<opName>).",
+          "items": {
+            "type": "object",
+            "required": ["name", "method", "toolDefinition"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "description": "Un-namespaced tool name, unique within the service." },
+              "description": { "type": "string" },
+              "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
+              "path": { "type": "string", "description": "Appended to baseUrl. {placeholder} segments are filled from arguments, e.g. /repos/{owner}/{repo}/issues/{number}." },
+              "toolDefinition": { "type": "string", "description": "Stringified OpenAI tool JSON for this operation." },
+              "paramLocations": {
+                "type": "object",
+                "additionalProperties": { "type": "string", "enum": ["path", "query", "body"] },
+                "description": "Where each argument goes. Args named by a {placeholder} in path are auto 'path'. Unlisted args default to query (GET/DELETE) or body (POST/PUT)."
+              },
+              "responseKeys": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "responseKeys": { "type": "array", "items": { "type": "string" }, "description": "Default response key allow-list (an operation may override it)." },
         "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
         "authMode": {
           "type": "string",
@@ -81,9 +105,9 @@
         "oauth": {
           "type": "object",
           "additionalProperties": false,
-          "description": "OAuth parameters for authMode:'oauth'. Omit serverUrl to run discovery + dynamic client registration against the apiUrl origin (works for any modern DCR-capable authorization server).",
+          "description": "OAuth parameters for authMode:'oauth'. Omit serverUrl to run discovery + dynamic client registration against the apiUrl/baseUrl origin (works for any modern DCR-capable authorization server).",
           "properties": {
-            "serverUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Authorization-server discovery base (defaults to the apiUrl origin)." },
+            "serverUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Authorization-server discovery base (defaults to the apiUrl/baseUrl origin)." },
             "scope": { "type": "string", "description": "Requested OAuth scope (space-delimited)." },
             "clientId": { "type": "string", "description": "Preregistered client id for vendors without DCR (Phase C)." },
             "authorizationUrl": { "type": "string", "format": "uri", "pattern": "^https://" },

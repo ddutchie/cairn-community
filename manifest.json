@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T15:19:28Z",
+  "updatedAt": "2026-07-24T21:17:59Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -755,7 +755,7 @@
     {
       "id": "brave",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Search & Web",
       "tags": [
         "search",
@@ -768,19 +768,26 @@
       "definition": {
         "name": "Brave Search",
         "description": "Web search via Brave Search API.",
-        "apiUrl": "https://api.search.brave.com/res/v1/web/search",
-        "method": "GET",
+        "baseUrl": "https://api.search.brave.com",
         "headers": {
           "Accept": "application/json",
           "X-Subscription-Token": "<API_KEY>"
         },
-        "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
-        "responseKeys": [
-          "web",
-          "results",
-          "title",
-          "url",
-          "description"
+        "operations": [
+          {
+            "name": "brave_web_search",
+            "description": "Search the web with Brave Search.",
+            "method": "GET",
+            "path": "/res/v1/web/search",
+            "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
+            "responseKeys": [
+              "web",
+              "results",
+              "title",
+              "url",
+              "description"
+            ]
+          }
         ],
         "apiKeyUrl": "https://brave.com/search/api",
         "enabled": true
@@ -789,7 +796,7 @@
     {
       "id": "hackernews",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Search & Web",
       "tags": [
         "search",
@@ -804,18 +811,42 @@
       "definition": {
         "name": "Hacker News Search",
         "description": "Search Hacker News via the Algolia API — no key required.",
-        "apiUrl": "https://hn.algolia.com/api/v1/search",
-        "method": "GET",
-        "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
-        "responseKeys": [
-          "hits",
-          "title",
-          "url",
-          "author",
-          "points",
-          "num_comments",
-          "objectID",
-          "created_at"
+        "baseUrl": "https://hn.algolia.com/api/v1",
+        "operations": [
+          {
+            "name": "search_hackernews",
+            "description": "Search Hacker News stories by relevance.",
+            "method": "GET",
+            "path": "/search",
+            "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories by relevance.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "hits",
+              "title",
+              "url",
+              "author",
+              "points",
+              "num_comments",
+              "objectID",
+              "created_at"
+            ]
+          },
+          {
+            "name": "search_hackernews_by_date",
+            "description": "Search Hacker News stories by most recent first.",
+            "method": "GET",
+            "path": "/search_by_date",
+            "toolDefinition": "{\"name\":\"search_hackernews_by_date\",\"description\":\"Search Hacker News stories, newest first.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "hits",
+              "title",
+              "url",
+              "author",
+              "points",
+              "num_comments",
+              "objectID",
+              "created_at"
+            ]
+          }
         ],
         "enabled": true
       }
@@ -823,7 +854,7 @@
     {
       "id": "open-meteo-weather",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Utilities",
       "tags": [
         "weather",
@@ -835,15 +866,22 @@
       "definition": {
         "name": "Open-Meteo Weather",
         "description": "Free weather forecast API — no key required.",
-        "apiUrl": "https://api.open-meteo.com/v1/forecast",
-        "method": "GET",
-        "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
-        "responseKeys": [
-          "latitude",
-          "longitude",
-          "timezone",
-          "current_units",
-          "current"
+        "baseUrl": "https://api.open-meteo.com/v1",
+        "operations": [
+          {
+            "name": "get_weather",
+            "description": "Get current weather for a location by coordinates.",
+            "method": "GET",
+            "path": "/forecast",
+            "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+            "responseKeys": [
+              "latitude",
+              "longitude",
+              "timezone",
+              "current_units",
+              "current"
+            ]
+          }
         ],
         "enabled": true
       }

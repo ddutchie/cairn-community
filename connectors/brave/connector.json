@@ -1,7 +1,7 @@
 {
   "kind": "service",
   "author": "cairn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tags": [
     "search",
     "web"
@@ -16,19 +16,26 @@
   "definition": {
     "name": "Brave Search",
     "description": "Web search via Brave Search API.",
-    "apiUrl": "https://api.search.brave.com/res/v1/web/search",
-    "method": "GET",
+    "baseUrl": "https://api.search.brave.com",
     "headers": {
       "Accept": "application/json",
       "X-Subscription-Token": "<API_KEY>"
     },
-    "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
-    "responseKeys": [
-      "web",
-      "results",
-      "title",
-      "url",
-      "description"
+    "operations": [
+      {
+        "name": "brave_web_search",
+        "description": "Search the web with Brave Search.",
+        "method": "GET",
+        "path": "/res/v1/web/search",
+        "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
+        "responseKeys": [
+          "web",
+          "results",
+          "title",
+          "url",
+          "description"
+        ]
+      }
     ],
     "apiKeyUrl": "https://brave.com/search/api",
     "enabled": true
