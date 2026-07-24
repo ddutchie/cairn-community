@@ -1,0 +1,27 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["books", "library", "isbn", "authors", "reference", "reading"],
+  "blurb": "Search books and authors from the Open Library catalog. No API key needed.",
+  "category": "Docs & Knowledge",
+  "brandColor": "#811322",
+  "homepage": "https://openlibrary.org/developers/api",
+  "definition": {
+    "name": "Open Library",
+    "description": "Search the Open Library book catalog by title, author, or keyword via the Internet Archive.",
+    "baseUrl": "https://openlibrary.org",
+    "operations": [
+      {
+        "name": "search_books",
+        "description": "Search books by title, author, or general query.",
+        "method": "GET",
+        "path": "/search.json",
+        "toolDefinition": "{\"name\":\"search_books\",\"description\":\"Search the Open Library book catalog.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search terms (title, author, keyword)\"},\"limit\":{\"type\":\"number\",\"description\":\"Max results (default 10)\"}},\"required\":[\"q\"]}}",
+        "query": { "fields": "title,author_name,first_publish_year,isbn,key,edition_count,subject" },
+        "responseKeys": ["numFound", "docs", "title", "author_name", "first_publish_year", "isbn", "key", "edition_count", "subject"]
+      }
+    ],
+    "enabled": true
+  }
+}

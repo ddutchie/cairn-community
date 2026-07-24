@@ -1,0 +1,36 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["wikipedia", "encyclopedia", "reference", "research", "knowledge"],
+  "blurb": "Search Wikipedia and fetch clean article summaries. No API key needed.",
+  "category": "Docs & Knowledge",
+  "brandColor": "#000000",
+  "homepage": "https://www.mediawiki.org/wiki/API:REST_API",
+  "icon": { "slug": "wikipedia" },
+  "definition": {
+    "name": "Wikipedia",
+    "description": "Search Wikipedia and retrieve article summaries via the MediaWiki REST + Action APIs.",
+    "baseUrl": "https://en.wikipedia.org",
+    "operations": [
+      {
+        "name": "search_wikipedia",
+        "description": "Search Wikipedia article titles and snippets by keyword.",
+        "method": "GET",
+        "path": "/w/api.php",
+        "toolDefinition": "{\"name\":\"search_wikipedia\",\"description\":\"Search Wikipedia for articles matching a query.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"srsearch\":{\"type\":\"string\",\"description\":\"Search terms\"},\"srlimit\":{\"type\":\"number\",\"description\":\"Max results (default 10)\"}},\"required\":[\"srsearch\"]}}",
+        "query": { "action": "query", "list": "search", "format": "json", "origin": "*" },
+        "responseKeys": ["query", "search", "title", "snippet", "pageid", "timestamp"]
+      },
+      {
+        "name": "get_wikipedia_summary",
+        "description": "Get the plain-text summary (intro extract + thumbnail) for a Wikipedia article by title.",
+        "method": "GET",
+        "path": "/api/rest_v1/page/summary/{title}",
+        "toolDefinition": "{\"name\":\"get_wikipedia_summary\",\"description\":\"Get the summary of a Wikipedia article by exact title.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\",\"description\":\"Exact article title, e.g. 'Alan Turing'\"}},\"required\":[\"title\"]}}",
+        "responseKeys": ["title", "description", "extract", "content_urls", "desktop", "page", "thumbnail", "source"]
+      }
+    ],
+    "enabled": true
+  }
+}

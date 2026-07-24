@@ -1,0 +1,26 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["dictionary", "definitions", "words", "language", "english"],
+  "blurb": "Look up English word definitions, phonetics, and examples. No API key needed.",
+  "category": "Docs & Knowledge",
+  "brandColor": "#7c3aed",
+  "homepage": "https://dictionaryapi.dev",
+  "definition": {
+    "name": "Dictionary",
+    "description": "Get definitions, parts of speech, phonetics, and usage examples for English words via the Free Dictionary API.",
+    "baseUrl": "https://api.dictionaryapi.dev",
+    "operations": [
+      {
+        "name": "define_word",
+        "description": "Get definitions, phonetics, and examples for an English word.",
+        "method": "GET",
+        "path": "/api/v2/entries/en/{word}",
+        "toolDefinition": "{\"name\":\"define_word\",\"description\":\"Define an English word.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"word\":{\"type\":\"string\",\"description\":\"The word to define, e.g. 'serendipity'\"}},\"required\":[\"word\"]}}",
+        "responseKeys": ["word", "phonetic", "phonetics", "text", "meanings", "partOfSpeech", "definitions", "definition", "example", "synonyms", "antonyms"]
+      }
+    ],
+    "enabled": true
+  }
+}

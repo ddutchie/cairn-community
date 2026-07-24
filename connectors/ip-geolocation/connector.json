@@ -1,0 +1,29 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["ip", "geolocation", "network", "location", "utilities"],
+  "blurb": "Look up geolocation and network info for any IP address. No API key needed.",
+  "category": "Utilities",
+  "brandColor": "#0a66c2",
+  "homepage": "https://ipapi.co",
+  "definition": {
+    "name": "IP Geolocation",
+    "description": "Resolve an IP address to city, region, country, timezone, and ASN via ipapi.co.",
+    "baseUrl": "https://ipapi.co",
+    "headers": {
+      "User-Agent": "cairn-app"
+    },
+    "operations": [
+      {
+        "name": "lookup_ip",
+        "description": "Get geolocation and network details for an IPv4/IPv6 address.",
+        "method": "GET",
+        "path": "/{ip}/json/",
+        "toolDefinition": "{\"name\":\"lookup_ip\",\"description\":\"Geolocate an IP address (city, country, timezone, ASN).\",\"parameters\":{\"type\":\"object\",\"properties\":{\"ip\":{\"type\":\"string\",\"description\":\"IPv4 or IPv6 address, e.g. '8.8.8.8'\"}},\"required\":[\"ip\"]}}",
+        "responseKeys": ["ip", "city", "region", "country_name", "country_code", "postal", "latitude", "longitude", "timezone", "org", "asn"]
+      }
+    ],
+    "enabled": true
+  }
+}

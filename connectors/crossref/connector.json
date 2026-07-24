@@ -1,0 +1,35 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["academic", "papers", "research", "doi", "citations", "science"],
+  "blurb": "Search 150M+ scholarly works (papers, DOIs, citations) via Crossref. No API key needed.",
+  "category": "Docs & Knowledge",
+  "brandColor": "#d8432f",
+  "homepage": "https://www.crossref.org/documentation/retrieve-metadata/rest-api",
+  "definition": {
+    "name": "Crossref Scholarly Search",
+    "description": "Search academic papers and retrieve metadata (title, authors, DOI, journal, year) from the Crossref scholarly index.",
+    "baseUrl": "https://api.crossref.org",
+    "operations": [
+      {
+        "name": "search_papers",
+        "description": "Search scholarly works by keyword, sorted by relevance.",
+        "method": "GET",
+        "path": "/works",
+        "toolDefinition": "{\"name\":\"search_papers\",\"description\":\"Search academic papers via Crossref.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"rows\":{\"type\":\"number\",\"description\":\"Max results (default 10, max 100)\"}},\"required\":[\"query\"]}}",
+        "query": { "select": "DOI,title,author,container-title,published,type,is-referenced-by-count,URL" },
+        "responseKeys": ["message", "items", "DOI", "title", "author", "given", "family", "container-title", "published", "date-parts", "type", "is-referenced-by-count", "URL"]
+      },
+      {
+        "name": "get_paper_by_doi",
+        "description": "Get full metadata for a scholarly work by its DOI.",
+        "method": "GET",
+        "path": "/works/{doi}",
+        "toolDefinition": "{\"name\":\"get_paper_by_doi\",\"description\":\"Get paper metadata by DOI.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"doi\":{\"type\":\"string\",\"description\":\"DOI, e.g. '10.1038/nphys1170'\"}},\"required\":[\"doi\"]}}",
+        "responseKeys": ["message", "DOI", "title", "author", "given", "family", "container-title", "published", "date-parts", "abstract", "type", "is-referenced-by-count", "URL"]
+      }
+    ],
+    "enabled": true
+  }
+}

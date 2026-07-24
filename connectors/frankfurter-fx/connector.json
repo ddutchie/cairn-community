@@ -1,0 +1,34 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["currency", "exchange", "forex", "fx", "money", "finance"],
+  "blurb": "Live and historical currency exchange rates (ECB data). No API key needed.",
+  "category": "Finance",
+  "brandColor": "#16a34a",
+  "homepage": "https://frankfurter.dev",
+  "definition": {
+    "name": "Frankfurter FX",
+    "description": "Convert currencies and fetch reference exchange rates published by the European Central Bank, via the Frankfurter API.",
+    "baseUrl": "https://api.frankfurter.dev",
+    "operations": [
+      {
+        "name": "get_latest_rates",
+        "description": "Get the latest exchange rates for a base currency.",
+        "method": "GET",
+        "path": "/v1/latest",
+        "toolDefinition": "{\"name\":\"get_latest_rates\",\"description\":\"Latest currency exchange rates for a base currency.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"base\":{\"type\":\"string\",\"description\":\"Base currency ISO code, e.g. 'USD' (default EUR)\"},\"symbols\":{\"type\":\"string\",\"description\":\"Comma-separated target codes, e.g. 'GBP,JPY' (optional)\"}},\"required\":[]}}",
+        "responseKeys": ["amount", "base", "date", "rates"]
+      },
+      {
+        "name": "convert_currency",
+        "description": "Get the exchange rate on a specific historical date for a base currency.",
+        "method": "GET",
+        "path": "/v1/{date}",
+        "toolDefinition": "{\"name\":\"convert_currency\",\"description\":\"Historical exchange rates for a base currency on a date.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\",\"description\":\"Date in YYYY-MM-DD\"},\"base\":{\"type\":\"string\",\"description\":\"Base currency ISO code, e.g. 'USD'\"},\"symbols\":{\"type\":\"string\",\"description\":\"Comma-separated target codes (optional)\"}},\"required\":[\"date\"]}}",
+        "responseKeys": ["amount", "base", "date", "rates"]
+      }
+    ],
+    "enabled": true
+  }
+}

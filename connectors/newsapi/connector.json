@@ -1,0 +1,39 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["news", "headlines", "articles", "current-events", "media"],
+  "blurb": "Search news articles and top headlines worldwide via NewsAPI. Requires a free API key.",
+  "category": "Search & Web",
+  "brandColor": "#c4302b",
+  "homepage": "https://newsapi.org/docs",
+  "definition": {
+    "name": "NewsAPI",
+    "description": "Search worldwide news articles and fetch top headlines by country or category via NewsAPI.org.",
+    "baseUrl": "https://newsapi.org",
+    "headers": {
+      "X-Api-Key": "<API_KEY>"
+    },
+    "operations": [
+      {
+        "name": "search_news",
+        "description": "Search all news articles by keyword, newest first.",
+        "method": "GET",
+        "path": "/v2/everything",
+        "toolDefinition": "{\"name\":\"search_news\",\"description\":\"Search news articles by keyword.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search terms\"},\"language\":{\"type\":\"string\",\"description\":\"2-letter language code, e.g. 'en'\"},\"pageSize\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[\"q\"]}}",
+        "query": { "sortBy": "publishedAt" },
+        "responseKeys": ["status", "totalResults", "articles", "source", "name", "author", "title", "description", "url", "publishedAt"]
+      },
+      {
+        "name": "top_headlines",
+        "description": "Get top breaking-news headlines for a country and/or category.",
+        "method": "GET",
+        "path": "/v2/top-headlines",
+        "toolDefinition": "{\"name\":\"top_headlines\",\"description\":\"Get top news headlines.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"country\":{\"type\":\"string\",\"description\":\"2-letter country code, e.g. 'us'\"},\"category\":{\"type\":\"string\",\"enum\":[\"business\",\"entertainment\",\"general\",\"health\",\"science\",\"sports\",\"technology\"],\"description\":\"News category\"},\"pageSize\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[]}}",
+        "responseKeys": ["status", "totalResults", "articles", "source", "name", "author", "title", "description", "url", "publishedAt"]
+      }
+    ],
+    "apiKeyUrl": "https://newsapi.org/register",
+    "enabled": true
+  }
+}

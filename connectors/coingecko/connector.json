@@ -1,0 +1,43 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["crypto", "bitcoin", "ethereum", "prices", "coins", "finance"],
+  "blurb": "Live cryptocurrency prices and market data from CoinGecko. No API key needed.",
+  "category": "Finance",
+  "brandColor": "#8dc63f",
+  "homepage": "https://www.coingecko.com/en/api",
+  "definition": {
+    "name": "CoinGecko",
+    "description": "Get cryptocurrency prices, market data, and trending coins from the CoinGecko public API.",
+    "baseUrl": "https://api.coingecko.com",
+    "operations": [
+      {
+        "name": "get_coin_price",
+        "description": "Get the current price of one or more coins in a target currency.",
+        "method": "GET",
+        "path": "/api/v3/simple/price",
+        "toolDefinition": "{\"name\":\"get_coin_price\",\"description\":\"Current crypto prices by CoinGecko coin id.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"ids\":{\"type\":\"string\",\"description\":\"Comma-separated coin ids, e.g. 'bitcoin,ethereum'\"},\"vs_currencies\":{\"type\":\"string\",\"description\":\"Comma-separated target currencies, e.g. 'usd,eur'\"}},\"required\":[\"ids\",\"vs_currencies\"]}}",
+        "query": { "include_24hr_change": "true", "include_market_cap": "true" },
+        "responseKeys": []
+      },
+      {
+        "name": "search_coins",
+        "description": "Search for coins, exchanges, and categories by name to find their ids.",
+        "method": "GET",
+        "path": "/api/v3/search",
+        "toolDefinition": "{\"name\":\"search_coins\",\"description\":\"Search CoinGecko for a coin id by name.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Coin name or symbol, e.g. 'solana'\"}},\"required\":[\"query\"]}}",
+        "responseKeys": ["coins", "id", "name", "symbol", "market_cap_rank"]
+      },
+      {
+        "name": "get_trending_coins",
+        "description": "Get the top trending coins on CoinGecko in the last 24 hours.",
+        "method": "GET",
+        "path": "/api/v3/search/trending",
+        "toolDefinition": "{\"name\":\"get_trending_coins\",\"description\":\"Get trending coins in the last 24h.\",\"parameters\":{\"type\":\"object\",\"properties\":{},\"required\":[]}}",
+        "responseKeys": ["coins", "item", "id", "name", "symbol", "market_cap_rank", "data", "price"]
+      }
+    ],
+    "enabled": true
+  }
+}

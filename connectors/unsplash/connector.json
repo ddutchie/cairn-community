@@ -1,0 +1,32 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["photos", "images", "stock", "pictures", "unsplash"],
+  "blurb": "Search millions of free high-resolution photos on Unsplash. Requires a free API key.",
+  "category": "Design",
+  "brandColor": "#000000",
+  "homepage": "https://unsplash.com/documentation",
+  "icon": { "slug": "unsplash" },
+  "definition": {
+    "name": "Unsplash",
+    "description": "Search Unsplash's library of free high-resolution photography and get image URLs and attribution.",
+    "baseUrl": "https://api.unsplash.com",
+    "headers": {
+      "Accept-Version": "v1",
+      "Authorization": "Client-ID <API_KEY>"
+    },
+    "operations": [
+      {
+        "name": "search_photos",
+        "description": "Search Unsplash photos by keyword.",
+        "method": "GET",
+        "path": "/search/photos",
+        "toolDefinition": "{\"name\":\"search_photos\",\"description\":\"Search Unsplash for free photos.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms, e.g. 'mountain sunrise'\"},\"per_page\":{\"type\":\"number\",\"description\":\"Results per page (max 30)\"},\"orientation\":{\"type\":\"string\",\"enum\":[\"landscape\",\"portrait\",\"squarish\"],\"description\":\"Photo orientation filter\"}},\"required\":[\"query\"]}}",
+        "responseKeys": ["total", "results", "id", "description", "alt_description", "urls", "regular", "full", "small", "links", "html", "user", "name", "username", "width", "height"]
+      }
+    ],
+    "apiKeyUrl": "https://unsplash.com/oauth/applications",
+    "enabled": true
+  }
+}

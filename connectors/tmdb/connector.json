@@ -1,0 +1,48 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["movies", "tv", "film", "cinema", "entertainment"],
+  "blurb": "Search movies and TV shows and fetch details from The Movie Database. Requires a free API token.",
+  "category": "Search & Web",
+  "brandColor": "#01b4e4",
+  "homepage": "https://developer.themoviedb.org/docs",
+  "icon": { "slug": "themoviedatabase" },
+  "definition": {
+    "name": "The Movie Database (TMDB)",
+    "description": "Search movies and TV shows and retrieve details, ratings, and release dates via TMDB.",
+    "baseUrl": "https://api.themoviedb.org",
+    "headers": {
+      "Accept": "application/json",
+      "Authorization": "Bearer <API_KEY>"
+    },
+    "operations": [
+      {
+        "name": "search_movies",
+        "description": "Search for movies by title.",
+        "method": "GET",
+        "path": "/3/search/movie",
+        "toolDefinition": "{\"name\":\"search_movies\",\"description\":\"Search movies by title on TMDB.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Movie title\"},\"year\":{\"type\":\"number\",\"description\":\"Release year filter (optional)\"}},\"required\":[\"query\"]}}",
+        "responseKeys": ["results", "id", "title", "overview", "release_date", "vote_average", "popularity"]
+      },
+      {
+        "name": "search_tv",
+        "description": "Search for TV shows by name.",
+        "method": "GET",
+        "path": "/3/search/tv",
+        "toolDefinition": "{\"name\":\"search_tv\",\"description\":\"Search TV shows by name on TMDB.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Show name\"}},\"required\":[\"query\"]}}",
+        "responseKeys": ["results", "id", "name", "overview", "first_air_date", "vote_average", "popularity"]
+      },
+      {
+        "name": "get_movie_details",
+        "description": "Get full details for a movie by its TMDB id.",
+        "method": "GET",
+        "path": "/3/movie/{movie_id}",
+        "toolDefinition": "{\"name\":\"get_movie_details\",\"description\":\"Get movie details by TMDB movie id.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"movie_id\":{\"type\":\"number\",\"description\":\"TMDB movie id\"}},\"required\":[\"movie_id\"]}}",
+        "responseKeys": ["id", "title", "overview", "release_date", "runtime", "genres", "name", "vote_average", "tagline", "budget", "revenue", "homepage"]
+      }
+    ],
+    "apiKeyUrl": "https://www.themoviedb.org/settings/api",
+    "enabled": true
+  }
+}

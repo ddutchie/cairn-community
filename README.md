@@ -14,7 +14,7 @@ repo at runtime, so merging a PR here makes a new integration available to every
 | Type | What it is | Example |
 |------|------------|---------|
 | **MCP server** | A remote [Model Context Protocol](https://modelcontextprotocol.io) server the Cairn agent connects to as a client (SSE or streamable-HTTP). | Jira, Linear, Notion, monday.com |
-| **HTTP service** | A single REST endpoint exposed to the agent as one function-calling tool. | a web-search or weather API |
+| **HTTP service** | One or more REST endpoints exposed to the agent as function-calling tools. A single connector can bundle several related operations that share a base URL, headers, and API key. | web search, weather, GitHub public API, currency rates |
 
 Skills (prompt templates) are **not** part of this registry yet — planned for a later release.
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T22:07:48Z",
+  "updatedAt": "2026-07-24T22:24:19Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -794,6 +794,356 @@
       }
     },
     {
+      "id": "coingecko",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Finance",
+      "tags": [
+        "crypto",
+        "bitcoin",
+        "ethereum",
+        "prices",
+        "coins",
+        "finance"
+      ],
+      "blurb": "Live cryptocurrency prices and market data from CoinGecko. No API key needed.",
+      "brandColor": "#8dc63f",
+      "homepage": "https://www.coingecko.com/en/api",
+      "definition": {
+        "name": "CoinGecko",
+        "description": "Get cryptocurrency prices, market data, and trending coins from the CoinGecko public API.",
+        "baseUrl": "https://api.coingecko.com",
+        "operations": [
+          {
+            "name": "get_coin_price",
+            "description": "Get the current price of one or more coins in a target currency.",
+            "method": "GET",
+            "path": "/api/v3/simple/price",
+            "toolDefinition": "{\"name\":\"get_coin_price\",\"description\":\"Current crypto prices by CoinGecko coin id.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"ids\":{\"type\":\"string\",\"description\":\"Comma-separated coin ids, e.g. 'bitcoin,ethereum'\"},\"vs_currencies\":{\"type\":\"string\",\"description\":\"Comma-separated target currencies, e.g. 'usd,eur'\"}},\"required\":[\"ids\",\"vs_currencies\"]}}",
+            "query": {
+              "include_24hr_change": "true",
+              "include_market_cap": "true"
+            },
+            "responseKeys": []
+          },
+          {
+            "name": "search_coins",
+            "description": "Search for coins, exchanges, and categories by name to find their ids.",
+            "method": "GET",
+            "path": "/api/v3/search",
+            "toolDefinition": "{\"name\":\"search_coins\",\"description\":\"Search CoinGecko for a coin id by name.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Coin name or symbol, e.g. 'solana'\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "coins",
+              "id",
+              "name",
+              "symbol",
+              "market_cap_rank"
+            ]
+          },
+          {
+            "name": "get_trending_coins",
+            "description": "Get the top trending coins on CoinGecko in the last 24 hours.",
+            "method": "GET",
+            "path": "/api/v3/search/trending",
+            "toolDefinition": "{\"name\":\"get_trending_coins\",\"description\":\"Get trending coins in the last 24h.\",\"parameters\":{\"type\":\"object\",\"properties\":{},\"required\":[]}}",
+            "responseKeys": [
+              "coins",
+              "item",
+              "id",
+              "name",
+              "symbol",
+              "market_cap_rank",
+              "data",
+              "price"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "crossref",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "academic",
+        "papers",
+        "research",
+        "doi",
+        "citations",
+        "science"
+      ],
+      "blurb": "Search 150M+ scholarly works (papers, DOIs, citations) via Crossref. No API key needed.",
+      "brandColor": "#d8432f",
+      "homepage": "https://www.crossref.org/documentation/retrieve-metadata/rest-api",
+      "definition": {
+        "name": "Crossref Scholarly Search",
+        "description": "Search academic papers and retrieve metadata (title, authors, DOI, journal, year) from the Crossref scholarly index.",
+        "baseUrl": "https://api.crossref.org",
+        "operations": [
+          {
+            "name": "search_papers",
+            "description": "Search scholarly works by keyword, sorted by relevance.",
+            "method": "GET",
+            "path": "/works",
+            "toolDefinition": "{\"name\":\"search_papers\",\"description\":\"Search academic papers via Crossref.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"rows\":{\"type\":\"number\",\"description\":\"Max results (default 10, max 100)\"}},\"required\":[\"query\"]}}",
+            "query": {
+              "select": "DOI,title,author,container-title,published,type,is-referenced-by-count,URL"
+            },
+            "responseKeys": [
+              "message",
+              "items",
+              "DOI",
+              "title",
+              "author",
+              "given",
+              "family",
+              "container-title",
+              "published",
+              "date-parts",
+              "type",
+              "is-referenced-by-count",
+              "URL"
+            ]
+          },
+          {
+            "name": "get_paper_by_doi",
+            "description": "Get full metadata for a scholarly work by its DOI.",
+            "method": "GET",
+            "path": "/works/{doi}",
+            "toolDefinition": "{\"name\":\"get_paper_by_doi\",\"description\":\"Get paper metadata by DOI.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"doi\":{\"type\":\"string\",\"description\":\"DOI, e.g. '10.1038/nphys1170'\"}},\"required\":[\"doi\"]}}",
+            "responseKeys": [
+              "message",
+              "DOI",
+              "title",
+              "author",
+              "given",
+              "family",
+              "container-title",
+              "published",
+              "date-parts",
+              "abstract",
+              "type",
+              "is-referenced-by-count",
+              "URL"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "dictionary",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "dictionary",
+        "definitions",
+        "words",
+        "language",
+        "english"
+      ],
+      "blurb": "Look up English word definitions, phonetics, and examples. No API key needed.",
+      "brandColor": "#7c3aed",
+      "homepage": "https://dictionaryapi.dev",
+      "definition": {
+        "name": "Dictionary",
+        "description": "Get definitions, parts of speech, phonetics, and usage examples for English words via the Free Dictionary API.",
+        "baseUrl": "https://api.dictionaryapi.dev",
+        "operations": [
+          {
+            "name": "define_word",
+            "description": "Get definitions, phonetics, and examples for an English word.",
+            "method": "GET",
+            "path": "/api/v2/entries/en/{word}",
+            "toolDefinition": "{\"name\":\"define_word\",\"description\":\"Define an English word.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"word\":{\"type\":\"string\",\"description\":\"The word to define, e.g. 'serendipity'\"}},\"required\":[\"word\"]}}",
+            "responseKeys": [
+              "word",
+              "phonetic",
+              "phonetics",
+              "text",
+              "meanings",
+              "partOfSpeech",
+              "definitions",
+              "definition",
+              "example",
+              "synonyms",
+              "antonyms"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "frankfurter-fx",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Finance",
+      "tags": [
+        "currency",
+        "exchange",
+        "forex",
+        "fx",
+        "money",
+        "finance"
+      ],
+      "blurb": "Live and historical currency exchange rates (ECB data). No API key needed.",
+      "brandColor": "#16a34a",
+      "homepage": "https://frankfurter.dev",
+      "definition": {
+        "name": "Frankfurter FX",
+        "description": "Convert currencies and fetch reference exchange rates published by the European Central Bank, via the Frankfurter API.",
+        "baseUrl": "https://api.frankfurter.dev",
+        "operations": [
+          {
+            "name": "get_latest_rates",
+            "description": "Get the latest exchange rates for a base currency.",
+            "method": "GET",
+            "path": "/v1/latest",
+            "toolDefinition": "{\"name\":\"get_latest_rates\",\"description\":\"Latest currency exchange rates for a base currency.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"base\":{\"type\":\"string\",\"description\":\"Base currency ISO code, e.g. 'USD' (default EUR)\"},\"symbols\":{\"type\":\"string\",\"description\":\"Comma-separated target codes, e.g. 'GBP,JPY' (optional)\"}},\"required\":[]}}",
+            "responseKeys": [
+              "amount",
+              "base",
+              "date",
+              "rates"
+            ]
+          },
+          {
+            "name": "convert_currency",
+            "description": "Get the exchange rate on a specific historical date for a base currency.",
+            "method": "GET",
+            "path": "/v1/{date}",
+            "toolDefinition": "{\"name\":\"convert_currency\",\"description\":\"Historical exchange rates for a base currency on a date.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\",\"description\":\"Date in YYYY-MM-DD\"},\"base\":{\"type\":\"string\",\"description\":\"Base currency ISO code, e.g. 'USD'\"},\"symbols\":{\"type\":\"string\",\"description\":\"Comma-separated target codes (optional)\"}},\"required\":[\"date\"]}}",
+            "responseKeys": [
+              "amount",
+              "base",
+              "date",
+              "rates"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "github-public",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "github",
+        "git",
+        "repos",
+        "issues",
+        "developer",
+        "code"
+      ],
+      "blurb": "Look up public GitHub repos, issues, and users via the REST API. No key needed for public data.",
+      "brandColor": "#181717",
+      "homepage": "https://docs.github.com/rest",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\"/></svg>",
+      "definition": {
+        "name": "GitHub (public)",
+        "description": "Read public GitHub data — repositories, issues, and user profiles — via the unauthenticated REST API.",
+        "baseUrl": "https://api.github.com",
+        "headers": {
+          "Accept": "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+          "User-Agent": "cairn-app"
+        },
+        "operations": [
+          {
+            "name": "get_repo",
+            "description": "Get metadata for a public repository (stars, description, language, topics, default branch).",
+            "method": "GET",
+            "path": "/repos/{owner}/{repo}",
+            "toolDefinition": "{\"name\":\"get_repo\",\"description\":\"Get metadata for a public GitHub repository.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"owner\":{\"type\":\"string\",\"description\":\"Repository owner or org, e.g. 'facebook'\"},\"repo\":{\"type\":\"string\",\"description\":\"Repository name, e.g. 'react'\"}},\"required\":[\"owner\",\"repo\"]}}",
+            "responseKeys": [
+              "full_name",
+              "description",
+              "html_url",
+              "stargazers_count",
+              "forks_count",
+              "open_issues_count",
+              "language",
+              "topics",
+              "default_branch",
+              "license",
+              "homepage",
+              "updated_at"
+            ]
+          },
+          {
+            "name": "list_repo_issues",
+            "description": "List open issues for a public repository (newest first).",
+            "method": "GET",
+            "path": "/repos/{owner}/{repo}/issues",
+            "toolDefinition": "{\"name\":\"list_repo_issues\",\"description\":\"List issues for a public GitHub repository.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"owner\":{\"type\":\"string\",\"description\":\"Repository owner or org\"},\"repo\":{\"type\":\"string\",\"description\":\"Repository name\"},\"state\":{\"type\":\"string\",\"enum\":[\"open\",\"closed\",\"all\"],\"description\":\"Issue state\"},\"per_page\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[\"owner\",\"repo\"]}}",
+            "query": {
+              "sort": "created",
+              "direction": "desc"
+            },
+            "responseKeys": [
+              "number",
+              "title",
+              "state",
+              "html_url",
+              "user",
+              "login",
+              "labels",
+              "name",
+              "comments",
+              "created_at",
+              "body"
+            ]
+          },
+          {
+            "name": "search_repos",
+            "description": "Search public repositories by keyword, sorted by stars.",
+            "method": "GET",
+            "path": "/search/repositories",
+            "toolDefinition": "{\"name\":\"search_repos\",\"description\":\"Search public GitHub repositories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query, e.g. 'language:rust cli'\"},\"per_page\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[\"q\"]}}",
+            "query": {
+              "sort": "stars",
+              "order": "desc"
+            },
+            "responseKeys": [
+              "total_count",
+              "items",
+              "full_name",
+              "description",
+              "html_url",
+              "stargazers_count",
+              "language"
+            ]
+          },
+          {
+            "name": "get_user",
+            "description": "Get a public GitHub user or organization profile.",
+            "method": "GET",
+            "path": "/users/{username}",
+            "toolDefinition": "{\"name\":\"get_user\",\"description\":\"Get a public GitHub user or org profile.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\",\"description\":\"GitHub login, e.g. 'torvalds'\"}},\"required\":[\"username\"]}}",
+            "responseKeys": [
+              "login",
+              "name",
+              "bio",
+              "company",
+              "blog",
+              "location",
+              "public_repos",
+              "followers",
+              "following",
+              "html_url"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
       "id": "hackernews",
       "author": "cairn",
       "version": "1.1.0",
@@ -852,6 +1202,168 @@
       }
     },
     {
+      "id": "ip-geolocation",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Utilities",
+      "tags": [
+        "ip",
+        "geolocation",
+        "network",
+        "location",
+        "utilities"
+      ],
+      "blurb": "Look up geolocation and network info for any IP address. No API key needed.",
+      "brandColor": "#0a66c2",
+      "homepage": "https://ipapi.co",
+      "definition": {
+        "name": "IP Geolocation",
+        "description": "Resolve an IP address to city, region, country, timezone, and ASN via ipapi.co.",
+        "baseUrl": "https://ipapi.co",
+        "headers": {
+          "User-Agent": "cairn-app"
+        },
+        "operations": [
+          {
+            "name": "lookup_ip",
+            "description": "Get geolocation and network details for an IPv4/IPv6 address.",
+            "method": "GET",
+            "path": "/{ip}/json/",
+            "toolDefinition": "{\"name\":\"lookup_ip\",\"description\":\"Geolocate an IP address (city, country, timezone, ASN).\",\"parameters\":{\"type\":\"object\",\"properties\":{\"ip\":{\"type\":\"string\",\"description\":\"IPv4 or IPv6 address, e.g. '8.8.8.8'\"}},\"required\":[\"ip\"]}}",
+            "responseKeys": [
+              "ip",
+              "city",
+              "region",
+              "country_name",
+              "country_code",
+              "postal",
+              "latitude",
+              "longitude",
+              "timezone",
+              "org",
+              "asn"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "newsapi",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Search & Web",
+      "tags": [
+        "news",
+        "headlines",
+        "articles",
+        "current-events",
+        "media"
+      ],
+      "blurb": "Search news articles and top headlines worldwide via NewsAPI. Requires a free API key.",
+      "brandColor": "#c4302b",
+      "homepage": "https://newsapi.org/docs",
+      "definition": {
+        "name": "NewsAPI",
+        "description": "Search worldwide news articles and fetch top headlines by country or category via NewsAPI.org.",
+        "baseUrl": "https://newsapi.org",
+        "headers": {
+          "X-Api-Key": "<API_KEY>"
+        },
+        "operations": [
+          {
+            "name": "search_news",
+            "description": "Search all news articles by keyword, newest first.",
+            "method": "GET",
+            "path": "/v2/everything",
+            "toolDefinition": "{\"name\":\"search_news\",\"description\":\"Search news articles by keyword.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search terms\"},\"language\":{\"type\":\"string\",\"description\":\"2-letter language code, e.g. 'en'\"},\"pageSize\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[\"q\"]}}",
+            "query": {
+              "sortBy": "publishedAt"
+            },
+            "responseKeys": [
+              "status",
+              "totalResults",
+              "articles",
+              "source",
+              "name",
+              "author",
+              "title",
+              "description",
+              "url",
+              "publishedAt"
+            ]
+          },
+          {
+            "name": "top_headlines",
+            "description": "Get top breaking-news headlines for a country and/or category.",
+            "method": "GET",
+            "path": "/v2/top-headlines",
+            "toolDefinition": "{\"name\":\"top_headlines\",\"description\":\"Get top news headlines.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"country\":{\"type\":\"string\",\"description\":\"2-letter country code, e.g. 'us'\"},\"category\":{\"type\":\"string\",\"enum\":[\"business\",\"entertainment\",\"general\",\"health\",\"science\",\"sports\",\"technology\"],\"description\":\"News category\"},\"pageSize\":{\"type\":\"number\",\"description\":\"Results per page (max 100)\"}},\"required\":[]}}",
+            "responseKeys": [
+              "status",
+              "totalResults",
+              "articles",
+              "source",
+              "name",
+              "author",
+              "title",
+              "description",
+              "url",
+              "publishedAt"
+            ]
+          }
+        ],
+        "apiKeyUrl": "https://newsapi.org/register",
+        "enabled": true
+      }
+    },
+    {
+      "id": "open-library",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "books",
+        "library",
+        "isbn",
+        "authors",
+        "reference",
+        "reading"
+      ],
+      "blurb": "Search books and authors from the Open Library catalog. No API key needed.",
+      "brandColor": "#811322",
+      "homepage": "https://openlibrary.org/developers/api",
+      "definition": {
+        "name": "Open Library",
+        "description": "Search the Open Library book catalog by title, author, or keyword via the Internet Archive.",
+        "baseUrl": "https://openlibrary.org",
+        "operations": [
+          {
+            "name": "search_books",
+            "description": "Search books by title, author, or general query.",
+            "method": "GET",
+            "path": "/search.json",
+            "toolDefinition": "{\"name\":\"search_books\",\"description\":\"Search the Open Library book catalog.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search terms (title, author, keyword)\"},\"limit\":{\"type\":\"number\",\"description\":\"Max results (default 10)\"}},\"required\":[\"q\"]}}",
+            "query": {
+              "fields": "title,author_name,first_publish_year,isbn,key,edition_count,subject"
+            },
+            "responseKeys": [
+              "numFound",
+              "docs",
+              "title",
+              "author_name",
+              "first_publish_year",
+              "isbn",
+              "key",
+              "edition_count",
+              "subject"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
       "id": "open-meteo-weather",
       "author": "cairn",
       "version": "1.2.0",
@@ -883,6 +1395,261 @@
               "timezone",
               "current_units",
               "current"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "public-holidays",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Utilities",
+      "tags": [
+        "holidays",
+        "calendar",
+        "dates",
+        "countries",
+        "utilities"
+      ],
+      "blurb": "Get public holidays for any country and year. No API key needed.",
+      "brandColor": "#e11d48",
+      "homepage": "https://date.nager.at",
+      "definition": {
+        "name": "Public Holidays",
+        "description": "Look up official public holidays for a country and year via the Nager.Date API.",
+        "baseUrl": "https://date.nager.at",
+        "operations": [
+          {
+            "name": "get_public_holidays",
+            "description": "List public holidays for a given year and country code.",
+            "method": "GET",
+            "path": "/api/v3/PublicHolidays/{year}/{countryCode}",
+            "toolDefinition": "{\"name\":\"get_public_holidays\",\"description\":\"Get public holidays for a year and ISO country code.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"year\":{\"type\":\"number\",\"description\":\"Four-digit year, e.g. 2026\"},\"countryCode\":{\"type\":\"string\",\"description\":\"ISO 3166-1 alpha-2 code, e.g. 'US', 'GB', 'ZA'\"}},\"required\":[\"year\",\"countryCode\"]}}",
+            "responseKeys": [
+              "date",
+              "localName",
+              "name",
+              "countryCode",
+              "fixed",
+              "global",
+              "types"
+            ]
+          },
+          {
+            "name": "get_next_public_holidays",
+            "description": "List upcoming public holidays for a country over the next 365 days.",
+            "method": "GET",
+            "path": "/api/v3/NextPublicHolidays/{countryCode}",
+            "toolDefinition": "{\"name\":\"get_next_public_holidays\",\"description\":\"Get upcoming public holidays for an ISO country code.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"countryCode\":{\"type\":\"string\",\"description\":\"ISO 3166-1 alpha-2 code, e.g. 'US'\"}},\"required\":[\"countryCode\"]}}",
+            "responseKeys": [
+              "date",
+              "localName",
+              "name",
+              "countryCode",
+              "types"
+            ]
+          }
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "tmdb",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Search & Web",
+      "tags": [
+        "movies",
+        "tv",
+        "film",
+        "cinema",
+        "entertainment"
+      ],
+      "blurb": "Search movies and TV shows and fetch details from The Movie Database. Requires a free API token.",
+      "brandColor": "#01b4e4",
+      "homepage": "https://developer.themoviedb.org/docs",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6.62 12a2.291 2.291 0 0 1 2.292-2.295h-.013A2.291 2.291 0 0 1 11.189 12a2.291 2.291 0 0 1-2.29 2.291h.013A2.291 2.291 0 0 1 6.62 12zm10.72-4.062h4.266a2.291 2.291 0 0 0 2.29-2.291 2.291 2.291 0 0 0-2.29-2.296H17.34a2.291 2.291 0 0 0-2.291 2.296 2.291 2.291 0 0 0 2.29 2.29zM2.688 20.645h8.285a2.291 2.291 0 0 0 2.291-2.292 2.291 2.291 0 0 0-2.29-2.295H2.687a2.291 2.291 0 0 0-2.291 2.295 2.291 2.291 0 0 0 2.29 2.292zm10.881-6.354h.81l1.894-4.586H15.19l-1.154 3.008h-.013l-1.135-3.008h-1.154zm4.208 0h1.011V9.705h-1.011zm2.878 0h3.235v-.93h-2.223v-.933h1.99v-.934h-1.99v-.855h2.107v-.934h-3.112zM1.31 7.941h1.01V4.247h1.31v-.895H0v.895h1.31zm3.747 0h1.011V5.959h1.958v1.984h1.011v-4.59h-1.01v1.711H6.061V3.351H5.057zm5.348 0h3.242v-.933H11.41v-.934h1.99v-.933h-1.99v-.856h2.107v-.934h-3.112zM.162 14.296h1.005v-3.52h.013l1.167 3.52h.765l1.206-3.52h.013v3.52h1.011v-4.59H3.82L2.755 12.7h-.013L1.686 9.705H.156zm14.534 6.353h1.641a3.188 3.188 0 0 0 .98-.149 2.531 2.531 0 0 0 .824-.437 2.123 2.123 0 0 0 .567-.713 2.193 2.193 0 0 0 .223-.983 2.399 2.399 0 0 0-.218-1.07 1.958 1.958 0 0 0-.586-.716 2.405 2.405 0 0 0-.873-.392 4.349 4.349 0 0 0-1.046-.13h-1.519zm1.013-3.656h.596a2.26 2.26 0 0 1 .606.08 1.514 1.514 0 0 1 .503.244 1.167 1.167 0 0 1 .34.412 1.28 1.28 0 0 1 .13.587 1.546 1.546 0 0 1-.13.658 1.127 1.127 0 0 1-.347.433 1.41 1.41 0 0 1-.518.238 2.797 2.797 0 0 1-.649.07h-.538zm4.686 3.656h1.88a2.997 2.997 0 0 0 .613-.064 1.735 1.735 0 0 0 .554-.214 1.221 1.221 0 0 0 .402-.39 1.105 1.105 0 0 0 .155-.606 1.188 1.188 0 0 0-.071-.415 1.01 1.01 0 0 0-.204-.34 1.087 1.087 0 0 0-.317-.24 1.297 1.297 0 0 0-.413-.13v-.012a1.203 1.203 0 0 0 .575-.366.962.962 0 0 0 .216-.648 1.081 1.081 0 0 0-.149-.603 1.022 1.022 0 0 0-.389-.354 1.673 1.673 0 0 0-.54-.169 4.463 4.463 0 0 0-.6-.041h-1.712zm1.011-3.734h.687a1.4 1.4 0 0 1 .24.022.748.748 0 0 1 .22.075.432.432 0 0 1 .16.147.418.418 0 0 1 .061.236.47.47 0 0 1-.055.233.433.433 0 0 1-.146.156.62.62 0 0 1-.204.084 1.058 1.058 0 0 1-.23.026h-.745zm0 1.835h.765a1.96 1.96 0 0 1 .266.02 1.015 1.015 0 0 1 .26.07.519.519 0 0 1 .204.152.406.406 0 0 1 .08.26.481.481 0 0 1-.06.253.519.519 0 0 1-.16.168.62.62 0 0 1-.217.09 1.155 1.155 0 0 1-.237.027H21.4z\"/></svg>",
+      "definition": {
+        "name": "The Movie Database (TMDB)",
+        "description": "Search movies and TV shows and retrieve details, ratings, and release dates via TMDB.",
+        "baseUrl": "https://api.themoviedb.org",
+        "headers": {
+          "Accept": "application/json",
+          "Authorization": "Bearer <API_KEY>"
+        },
+        "operations": [
+          {
+            "name": "search_movies",
+            "description": "Search for movies by title.",
+            "method": "GET",
+            "path": "/3/search/movie",
+            "toolDefinition": "{\"name\":\"search_movies\",\"description\":\"Search movies by title on TMDB.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Movie title\"},\"year\":{\"type\":\"number\",\"description\":\"Release year filter (optional)\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "results",
+              "id",
+              "title",
+              "overview",
+              "release_date",
+              "vote_average",
+              "popularity"
+            ]
+          },
+          {
+            "name": "search_tv",
+            "description": "Search for TV shows by name.",
+            "method": "GET",
+            "path": "/3/search/tv",
+            "toolDefinition": "{\"name\":\"search_tv\",\"description\":\"Search TV shows by name on TMDB.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Show name\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "results",
+              "id",
+              "name",
+              "overview",
+              "first_air_date",
+              "vote_average",
+              "popularity"
+            ]
+          },
+          {
+            "name": "get_movie_details",
+            "description": "Get full details for a movie by its TMDB id.",
+            "method": "GET",
+            "path": "/3/movie/{movie_id}",
+            "toolDefinition": "{\"name\":\"get_movie_details\",\"description\":\"Get movie details by TMDB movie id.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"movie_id\":{\"type\":\"number\",\"description\":\"TMDB movie id\"}},\"required\":[\"movie_id\"]}}",
+            "responseKeys": [
+              "id",
+              "title",
+              "overview",
+              "release_date",
+              "runtime",
+              "genres",
+              "name",
+              "vote_average",
+              "tagline",
+              "budget",
+              "revenue",
+              "homepage"
+            ]
+          }
+        ],
+        "apiKeyUrl": "https://www.themoviedb.org/settings/api",
+        "enabled": true
+      }
+    },
+    {
+      "id": "unsplash",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Design",
+      "tags": [
+        "photos",
+        "images",
+        "stock",
+        "pictures",
+        "unsplash"
+      ],
+      "blurb": "Search millions of free high-resolution photos on Unsplash. Requires a free API key.",
+      "brandColor": "#000000",
+      "homepage": "https://unsplash.com/documentation",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z\"/></svg>",
+      "definition": {
+        "name": "Unsplash",
+        "description": "Search Unsplash's library of free high-resolution photography and get image URLs and attribution.",
+        "baseUrl": "https://api.unsplash.com",
+        "headers": {
+          "Accept-Version": "v1",
+          "Authorization": "Client-ID <API_KEY>"
+        },
+        "operations": [
+          {
+            "name": "search_photos",
+            "description": "Search Unsplash photos by keyword.",
+            "method": "GET",
+            "path": "/search/photos",
+            "toolDefinition": "{\"name\":\"search_photos\",\"description\":\"Search Unsplash for free photos.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms, e.g. 'mountain sunrise'\"},\"per_page\":{\"type\":\"number\",\"description\":\"Results per page (max 30)\"},\"orientation\":{\"type\":\"string\",\"enum\":[\"landscape\",\"portrait\",\"squarish\"],\"description\":\"Photo orientation filter\"}},\"required\":[\"query\"]}}",
+            "responseKeys": [
+              "total",
+              "results",
+              "id",
+              "description",
+              "alt_description",
+              "urls",
+              "regular",
+              "full",
+              "small",
+              "links",
+              "html",
+              "user",
+              "name",
+              "username",
+              "width",
+              "height"
+            ]
+          }
+        ],
+        "apiKeyUrl": "https://unsplash.com/oauth/applications",
+        "enabled": true
+      }
+    },
+    {
+      "id": "wikipedia",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "wikipedia",
+        "encyclopedia",
+        "reference",
+        "research",
+        "knowledge"
+      ],
+      "blurb": "Search Wikipedia and fetch clean article summaries. No API key needed.",
+      "brandColor": "#000000",
+      "homepage": "https://www.mediawiki.org/wiki/API:REST_API",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.09 13.119c-.936 1.932-2.217 4.548-2.853 5.728-.616 1.074-1.127.931-1.532.029-1.406-3.321-4.293-9.144-5.651-12.409-.251-.601-.441-.987-.619-1.139-.181-.15-.554-.24-1.122-.271C.103 5.033 0 4.982 0 4.898v-.455l.052-.045c.924-.005 5.401 0 5.401 0l.051.045v.434c0 .119-.075.176-.225.176l-.564.031c-.485.029-.727.164-.727.436 0 .135.053.33.166.601 1.082 2.646 4.818 10.521 4.818 10.521l.136.046 2.411-4.81-.482-1.067-1.658-3.264s-.318-.654-.428-.872c-.728-1.443-.712-1.518-1.447-1.617-.207-.023-.313-.05-.313-.149v-.468l.06-.045h4.292l.113.037v.451c0 .105-.076.15-.227.15l-.308.047c-.792.061-.661.381-.136 1.422l1.582 3.252 1.758-3.504c.293-.64.233-.801.111-.947-.07-.084-.305-.22-.812-.24l-.201-.021c-.052 0-.098-.015-.145-.051-.045-.031-.067-.076-.067-.129v-.427l.061-.045c1.247-.008 4.043 0 4.043 0l.059.045v.436c0 .121-.059.178-.193.178-.646.03-.782.095-1.023.439-.12.186-.375.589-.646 1.039l-2.301 4.273-.065.135 2.792 5.712.17.048 4.396-10.438c.154-.422.129-.722-.064-.895-.197-.172-.346-.273-.857-.295l-.42-.016c-.061 0-.105-.014-.152-.045-.043-.029-.072-.075-.072-.119v-.436l.059-.045h4.961l.041.045v.437c0 .119-.074.18-.209.18-.648.03-1.127.18-1.443.421-.314.255-.557.616-.736 1.067 0 0-4.043 9.258-5.426 12.339-.525 1.007-1.053.917-1.503-.031-.571-1.171-1.773-3.786-2.646-5.71l.053-.036z\"/></svg>",
+      "definition": {
+        "name": "Wikipedia",
+        "description": "Search Wikipedia and retrieve article summaries via the MediaWiki REST + Action APIs.",
+        "baseUrl": "https://en.wikipedia.org",
+        "operations": [
+          {
+            "name": "search_wikipedia",
+            "description": "Search Wikipedia article titles and snippets by keyword.",
+            "method": "GET",
+            "path": "/w/api.php",
+            "toolDefinition": "{\"name\":\"search_wikipedia\",\"description\":\"Search Wikipedia for articles matching a query.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"srsearch\":{\"type\":\"string\",\"description\":\"Search terms\"},\"srlimit\":{\"type\":\"number\",\"description\":\"Max results (default 10)\"}},\"required\":[\"srsearch\"]}}",
+            "query": {
+              "action": "query",
+              "list": "search",
+              "format": "json",
+              "origin": "*"
+            },
+            "responseKeys": [
+              "query",
+              "search",
+              "title",
+              "snippet",
+              "pageid",
+              "timestamp"
+            ]
+          },
+          {
+            "name": "get_wikipedia_summary",
+            "description": "Get the plain-text summary (intro extract + thumbnail) for a Wikipedia article by title.",
+            "method": "GET",
+            "path": "/api/rest_v1/page/summary/{title}",
+            "toolDefinition": "{\"name\":\"get_wikipedia_summary\",\"description\":\"Get the summary of a Wikipedia article by exact title.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\",\"description\":\"Exact article title, e.g. 'Alan Turing'\"}},\"required\":[\"title\"]}}",
+            "responseKeys": [
+              "title",
+              "description",
+              "extract",
+              "content_urls",
+              "desktop",
+              "page",
+              "thumbnail",
+              "source"
             ]
           }
         ],

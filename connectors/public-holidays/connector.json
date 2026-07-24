@@ -1,0 +1,34 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": ["holidays", "calendar", "dates", "countries", "utilities"],
+  "blurb": "Get public holidays for any country and year. No API key needed.",
+  "category": "Utilities",
+  "brandColor": "#e11d48",
+  "homepage": "https://date.nager.at",
+  "definition": {
+    "name": "Public Holidays",
+    "description": "Look up official public holidays for a country and year via the Nager.Date API.",
+    "baseUrl": "https://date.nager.at",
+    "operations": [
+      {
+        "name": "get_public_holidays",
+        "description": "List public holidays for a given year and country code.",
+        "method": "GET",
+        "path": "/api/v3/PublicHolidays/{year}/{countryCode}",
+        "toolDefinition": "{\"name\":\"get_public_holidays\",\"description\":\"Get public holidays for a year and ISO country code.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"year\":{\"type\":\"number\",\"description\":\"Four-digit year, e.g. 2026\"},\"countryCode\":{\"type\":\"string\",\"description\":\"ISO 3166-1 alpha-2 code, e.g. 'US', 'GB', 'ZA'\"}},\"required\":[\"year\",\"countryCode\"]}}",
+        "responseKeys": ["date", "localName", "name", "countryCode", "fixed", "global", "types"]
+      },
+      {
+        "name": "get_next_public_holidays",
+        "description": "List upcoming public holidays for a country over the next 365 days.",
+        "method": "GET",
+        "path": "/api/v3/NextPublicHolidays/{countryCode}",
+        "toolDefinition": "{\"name\":\"get_next_public_holidays\",\"description\":\"Get upcoming public holidays for an ISO country code.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"countryCode\":{\"type\":\"string\",\"description\":\"ISO 3166-1 alpha-2 code, e.g. 'US'\"}},\"required\":[\"countryCode\"]}}",
+        "responseKeys": ["date", "localName", "name", "countryCode", "types"]
+      }
+    ],
+    "enabled": true
+  }
+}
