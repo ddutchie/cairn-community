@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T00:00:00Z",
+  "updatedAt": "2026-07-24T01:00:00Z",
   "mcpServers": [
     {
       "author": "cairn",
@@ -91,7 +91,103 @@
         "oauthScope": "",
         "enabled": true
       }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["code", "issues", "pull-requests", "ci", "git"],
+      "blurb": "Work with GitHub issues, pull requests, files, and CI status.",
+      "logo": "github",
+      "brandColor": "#1f2328",
+      "homepage": "https://github.com",
+      "definition": {
+        "name": "GitHub",
+        "description": "GitHub — issues, pull requests, repositories, and Actions.",
+        "transport": "http",
+        "baseUrl": "https://api.githubcopilot.com/mcp/",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["errors", "monitoring", "observability", "debugging"],
+      "blurb": "Investigate errors, issues, and performance data in Sentry.",
+      "logo": "sentry",
+      "brandColor": "#362d59",
+      "homepage": "https://sentry.io",
+      "definition": {
+        "name": "Sentry",
+        "description": "Sentry — errors, issues, and performance.",
+        "transport": "http",
+        "baseUrl": "https://mcp.sentry.dev/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
     }
   ],
-  "services": []
+  "services": [
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["weather", "forecast"],
+      "blurb": "Current weather and forecasts by latitude/longitude. No API key needed.",
+      "logo": "",
+      "brandColor": "#0ea5e9",
+      "homepage": "https://open-meteo.com",
+      "definition": {
+        "name": "Open-Meteo Weather",
+        "description": "Free weather forecast API — no key required.",
+        "apiUrl": "https://api.open-meteo.com/v1/forecast",
+        "method": "GET",
+        "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+        "responseKeys": ["latitude", "longitude", "timezone", "current_units", "current"],
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["search", "news", "hacker-news", "tech"],
+      "blurb": "Search Hacker News stories and comments. No API key needed.",
+      "logo": "hackernews",
+      "brandColor": "#ff6600",
+      "homepage": "https://hn.algolia.com",
+      "definition": {
+        "name": "Hacker News Search",
+        "description": "Search Hacker News via the Algolia API — no key required.",
+        "apiUrl": "https://hn.algolia.com/api/v1/search",
+        "method": "GET",
+        "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
+        "responseKeys": ["hits", "title", "url", "author", "points", "num_comments", "objectID", "created_at"],
+        "enabled": true
+      }
+    },
+    {
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": ["search", "web"],
+      "blurb": "Web search results via the Brave Search API. Requires a free API key.",
+      "logo": "brave",
+      "brandColor": "#fb542b",
+      "homepage": "https://brave.com/search/api",
+      "definition": {
+        "name": "Brave Search",
+        "description": "Web search via Brave Search API.",
+        "apiUrl": "https://api.search.brave.com/res/v1/web/search",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json",
+          "X-Subscription-Token": "<API_KEY>"
+        },
+        "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
+        "responseKeys": ["web", "results", "title", "url", "description"],
+        "apiKeyUrl": "https://brave.com/search/api",
+        "enabled": true
+      }
+    }
+  ]
 }
