@@ -62,7 +62,8 @@
         "homepage": {
           "type": "string",
           "format": "uri",
-          "description": "Optional vendor/product homepage."
+          "pattern": "^https://",
+          "description": "Optional vendor/product homepage (https only — rendered as a link in-app)."
         }
       }
     },
@@ -129,7 +130,8 @@
         "apiKeyUrl": {
           "type": "string",
           "format": "uri",
-          "description": "Where the user can obtain an API key."
+          "pattern": "^https://",
+          "description": "Where the user can obtain an API key (https only — rendered as a link in-app)."
         },
         "enabled": { "type": "boolean" }
       }
