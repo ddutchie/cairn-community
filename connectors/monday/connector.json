@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "boards",
+    "work-management",
+    "project-management",
+    "tasks"
+  ],
+  "blurb": "Read boards and items, track work, create items and post updates.",
+  "brandColor": "#6161ff",
+  "homepage": "https://monday.com",
+  "icon": {
+    "file": "icon.svg"
+  },
+  "definition": {
+    "name": "monday.com",
+    "description": "monday.com — boards, items, and updates.",
+    "transport": "http",
+    "baseUrl": "https://mcp.monday.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

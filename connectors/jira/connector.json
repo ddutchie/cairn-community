@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "issues",
+    "tickets",
+    "atlassian",
+    "project-management"
+  ],
+  "blurb": "Search, summarize, create, and update Jira issues.",
+  "brandColor": "#0052cc",
+  "homepage": "https://www.atlassian.com/software/jira",
+  "icon": {
+    "slug": "jira"
+  },
+  "definition": {
+    "name": "Jira",
+    "description": "Atlassian Jira — issues, projects, and boards.",
+    "transport": "http",
+    "baseUrl": "https://mcp.atlassian.com/v1/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

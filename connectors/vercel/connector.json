@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "deployments",
+    "hosting",
+    "devops",
+    "projects"
+  ],
+  "blurb": "Inspect Vercel projects, deployments, and logs.",
+  "brandColor": "#000000",
+  "homepage": "https://vercel.com",
+  "icon": {
+    "slug": "vercel"
+  },
+  "definition": {
+    "name": "Vercel",
+    "description": "Vercel — projects, deployments, and logs.",
+    "transport": "http",
+    "baseUrl": "https://mcp.vercel.com",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

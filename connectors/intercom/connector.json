@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "support",
+    "messaging",
+    "customers",
+    "inbox"
+  ],
+  "blurb": "Search conversations and help articles in Intercom.",
+  "brandColor": "#1f8ded",
+  "homepage": "https://www.intercom.com",
+  "icon": {
+    "slug": "intercom"
+  },
+  "definition": {
+    "name": "Intercom",
+    "description": "Intercom — conversations, contacts, and help center.",
+    "transport": "http",
+    "baseUrl": "https://mcp.intercom.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

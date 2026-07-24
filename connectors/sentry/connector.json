@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "errors",
+    "monitoring",
+    "observability",
+    "debugging"
+  ],
+  "blurb": "Investigate errors, issues, and performance data in Sentry.",
+  "brandColor": "#362d59",
+  "homepage": "https://sentry.io",
+  "icon": {
+    "slug": "sentry"
+  },
+  "definition": {
+    "name": "Sentry",
+    "description": "Sentry — errors, issues, and performance.",
+    "transport": "http",
+    "baseUrl": "https://mcp.sentry.dev/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

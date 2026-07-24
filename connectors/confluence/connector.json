@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "wiki",
+    "docs",
+    "atlassian",
+    "documentation"
+  ],
+  "blurb": "Search spaces, read pages, and draft documentation in Confluence.",
+  "brandColor": "#172b4d",
+  "homepage": "https://www.atlassian.com/software/confluence",
+  "icon": {
+    "slug": "confluence"
+  },
+  "definition": {
+    "name": "Confluence",
+    "description": "Atlassian Confluence — spaces, pages, and docs.",
+    "transport": "http",
+    "baseUrl": "https://mcp.atlassian.com/v1/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

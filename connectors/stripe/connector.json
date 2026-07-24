@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "payments",
+    "billing",
+    "finance",
+    "invoices"
+  ],
+  "blurb": "Query customers, payments, invoices, and subscriptions in Stripe.",
+  "brandColor": "#635bff",
+  "homepage": "https://stripe.com",
+  "icon": {
+    "slug": "stripe"
+  },
+  "definition": {
+    "name": "Stripe",
+    "description": "Stripe — customers, payments, invoices, subscriptions.",
+    "transport": "http",
+    "baseUrl": "https://mcp.stripe.com",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

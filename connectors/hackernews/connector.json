@@ -1,0 +1,35 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "search",
+    "news",
+    "hacker-news",
+    "tech"
+  ],
+  "blurb": "Search Hacker News stories and comments. No API key needed.",
+  "brandColor": "#ff6600",
+  "homepage": "https://hn.algolia.com",
+  "icon": {
+    "slug": "ycombinator"
+  },
+  "definition": {
+    "name": "Hacker News Search",
+    "description": "Search Hacker News via the Algolia API — no key required.",
+    "apiUrl": "https://hn.algolia.com/api/v1/search",
+    "method": "GET",
+    "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
+    "responseKeys": [
+      "hits",
+      "title",
+      "url",
+      "author",
+      "points",
+      "num_comments",
+      "objectID",
+      "created_at"
+    ],
+    "enabled": true
+  }
+}

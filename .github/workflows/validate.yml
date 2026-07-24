@@ -1,4 +1,4 @@
-name: Validate manifest
+name: Validate registry
 
 on:
   push:
@@ -13,5 +13,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install --no-save ajv ajv-formats
+      # Re-fetch Simple Icons logos referenced by icon.slug so a PR that only
+      # adds a connector folder (no committed logo file) still validates.
+      - run: node scripts/fetch-logos.mjs
+      # Sanitizes icons, validates every connector.json, and fails if
+      # manifest.json is out of date with the connectors/ folders.
       - run: node scripts/validate.mjs

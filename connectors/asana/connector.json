@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "tasks",
+    "project-management",
+    "work-management"
+  ],
+  "blurb": "Read and manage Asana tasks, projects, and portfolios.",
+  "brandColor": "#f06a6a",
+  "homepage": "https://asana.com",
+  "icon": {
+    "slug": "asana"
+  },
+  "definition": {
+    "name": "Asana",
+    "description": "Asana — tasks, projects, and portfolios.",
+    "transport": "http",
+    "baseUrl": "https://mcp.asana.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

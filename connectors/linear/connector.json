@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "issues",
+    "project-management",
+    "engineering"
+  ],
+  "blurb": "Read and manage Linear issues, projects, and cycles.",
+  "brandColor": "#5e6ad2",
+  "homepage": "https://linear.app",
+  "icon": {
+    "slug": "linear"
+  },
+  "definition": {
+    "name": "Linear",
+    "description": "Linear — issues, projects, and cycles.",
+    "transport": "http",
+    "baseUrl": "https://mcp.linear.app/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

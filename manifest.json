@@ -1,141 +1,20 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T02:30:00Z",
+  "updatedAt": "2026-07-24T13:29:47Z",
   "mcpServers": [
     {
+      "id": "asana",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["issues", "tickets", "atlassian", "project-management"],
-      "blurb": "Search, summarize, create, and update Jira issues.",
-      "logo": "jira",
-      "brandColor": "#0052cc",
-      "homepage": "https://www.atlassian.com/software/jira",
-      "definition": {
-        "name": "Jira",
-        "description": "Atlassian Jira — issues, projects, and boards.",
-        "transport": "http",
-        "baseUrl": "https://mcp.atlassian.com/v1/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["wiki", "docs", "atlassian", "documentation"],
-      "blurb": "Search spaces, read pages, and draft documentation in Confluence.",
-      "logo": "confluence",
-      "brandColor": "#172b4d",
-      "homepage": "https://www.atlassian.com/software/confluence",
-      "definition": {
-        "name": "Confluence",
-        "description": "Atlassian Confluence — spaces, pages, and docs.",
-        "transport": "http",
-        "baseUrl": "https://mcp.atlassian.com/v1/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["issues", "project-management", "engineering"],
-      "blurb": "Read and manage Linear issues, projects, and cycles.",
-      "logo": "linear",
-      "brandColor": "#5e6ad2",
-      "homepage": "https://linear.app",
-      "definition": {
-        "name": "Linear",
-        "description": "Linear — issues, projects, and cycles.",
-        "transport": "http",
-        "baseUrl": "https://mcp.linear.app/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["notes", "docs", "wiki", "knowledge-base"],
-      "blurb": "Search and read Notion pages and databases.",
-      "logo": "notion",
-      "brandColor": "#000000",
-      "homepage": "https://www.notion.so",
-      "definition": {
-        "name": "Notion",
-        "description": "Notion — pages, databases, and search.",
-        "transport": "http",
-        "baseUrl": "https://mcp.notion.com/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["boards", "work-management", "project-management", "tasks"],
-      "blurb": "Read boards and items, track work, create items and post updates.",
-      "logo": "monday",
-      "brandColor": "#6161ff",
-      "homepage": "https://monday.com",
-      "definition": {
-        "name": "monday.com",
-        "description": "monday.com — boards, items, and updates.",
-        "transport": "http",
-        "baseUrl": "https://mcp.monday.com/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["code", "issues", "pull-requests", "ci", "git"],
-      "blurb": "Work with GitHub issues, pull requests, files, and CI status.",
-      "logo": "github",
-      "brandColor": "#1f2328",
-      "homepage": "https://github.com",
-      "definition": {
-        "name": "GitHub",
-        "description": "GitHub — issues, pull requests, repositories, and Actions.",
-        "transport": "http",
-        "baseUrl": "https://api.githubcopilot.com/mcp/",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["errors", "monitoring", "observability", "debugging"],
-      "blurb": "Investigate errors, issues, and performance data in Sentry.",
-      "logo": "sentry",
-      "brandColor": "#362d59",
-      "homepage": "https://sentry.io",
-      "definition": {
-        "name": "Sentry",
-        "description": "Sentry — errors, issues, and performance.",
-        "transport": "http",
-        "baseUrl": "https://mcp.sentry.dev/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["tasks", "project-management", "work-management"],
+      "tags": [
+        "tasks",
+        "project-management",
+        "work-management"
+      ],
       "blurb": "Read and manage Asana tasks, projects, and portfolios.",
-      "logo": "asana",
       "brandColor": "#f06a6a",
       "homepage": "https://asana.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M18.78 12.653c-2.882 0-5.22 2.336-5.22 5.22s2.338 5.22 5.22 5.22 5.22-2.34 5.22-5.22-2.336-5.22-5.22-5.22zm-13.56 0c-2.88 0-5.22 2.337-5.22 5.22s2.338 5.22 5.22 5.22 5.22-2.338 5.22-5.22-2.336-5.22-5.22-5.22zm12-6.525c0 2.883-2.337 5.22-5.22 5.22-2.882 0-5.22-2.337-5.22-5.22 0-2.88 2.338-5.22 5.22-5.22 2.883 0 5.22 2.34 5.22 5.22z\"/></svg>",
       "definition": {
         "name": "Asana",
         "description": "Asana — tasks, projects, and portfolios.",
@@ -147,49 +26,18 @@
       }
     },
     {
+      "id": "canva",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["payments", "billing", "finance", "invoices"],
-      "blurb": "Query customers, payments, invoices, and subscriptions in Stripe.",
-      "logo": "stripe",
-      "brandColor": "#635bff",
-      "homepage": "https://stripe.com",
-      "definition": {
-        "name": "Stripe",
-        "description": "Stripe — customers, payments, invoices, subscriptions.",
-        "transport": "http",
-        "baseUrl": "https://mcp.stripe.com",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["crm", "sales", "marketing", "contacts"],
-      "blurb": "Work with HubSpot CRM contacts, companies, deals, and tickets.",
-      "logo": "hubspot",
-      "brandColor": "#ff7a59",
-      "homepage": "https://www.hubspot.com",
-      "definition": {
-        "name": "HubSpot",
-        "description": "HubSpot CRM — contacts, companies, deals, tickets.",
-        "transport": "http",
-        "baseUrl": "https://mcp.hubspot.com/anthropic",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["design", "graphics", "content"],
+      "tags": [
+        "design",
+        "graphics",
+        "content"
+      ],
       "blurb": "Create and edit designs, and search brand assets in Canva.",
-      "logo": "canva",
       "brandColor": "#00c4cc",
       "homepage": "https://www.canva.com",
+      "iconSvg": "<svg fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path stroke-linecap=\"round\" d=\"M15 14.4c-.8 1-2 1.6-3.2 1.6-2 0-3.2-1.6-3.2-3.9 0-3 1.9-5.4 4-5.4 1.1 0 1.9.7 1.9 1.6\"/></svg>",
       "definition": {
         "name": "Canva",
         "description": "Canva — designs, brand assets, and exports.",
@@ -201,31 +49,20 @@
       }
     },
     {
+      "id": "cloudflare",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["support", "messaging", "customers", "inbox"],
-      "blurb": "Search conversations and help articles in Intercom.",
-      "logo": "intercom",
-      "brandColor": "#1f8ded",
-      "homepage": "https://www.intercom.com",
-      "definition": {
-        "name": "Intercom",
-        "description": "Intercom — conversations, contacts, and help center.",
-        "transport": "http",
-        "baseUrl": "https://mcp.intercom.com/mcp",
-        "authMode": "oauth",
-        "oauthScope": "",
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["infrastructure", "dns", "cdn", "devops", "workers"],
+      "tags": [
+        "infrastructure",
+        "dns",
+        "cdn",
+        "devops",
+        "workers"
+      ],
       "blurb": "Manage Cloudflare DNS, Workers, and account data.",
-      "logo": "cloudflare",
       "brandColor": "#f38020",
       "homepage": "https://www.cloudflare.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727\"/></svg>",
       "definition": {
         "name": "Cloudflare",
         "description": "Cloudflare — DNS, Workers, and account resources.",
@@ -237,13 +74,259 @@
       }
     },
     {
+      "id": "confluence",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["deployments", "hosting", "devops", "projects"],
+      "tags": [
+        "wiki",
+        "docs",
+        "atlassian",
+        "documentation"
+      ],
+      "blurb": "Search spaces, read pages, and draft documentation in Confluence.",
+      "brandColor": "#172b4d",
+      "homepage": "https://www.atlassian.com/software/confluence",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M.87 18.257c-.248.382-.53.875-.763 1.245a.764.764 0 0 0 .255 1.04l4.965 3.054a.764.764 0 0 0 1.058-.26c.199-.332.454-.763.733-1.221 1.967-3.247 3.945-2.853 7.508-1.146l4.957 2.337a.764.764 0 0 0 1.028-.382l2.364-5.346a.764.764 0 0 0-.382-1 599.851 599.851 0 0 1-4.965-2.361C10.911 10.97 5.224 11.185.87 18.257zM23.131 5.743c.249-.405.531-.875.764-1.25a.764.764 0 0 0-.256-1.034L18.675.404a.764.764 0 0 0-1.058.26c-.195.335-.451.763-.734 1.225-1.966 3.246-3.945 2.85-7.508 1.146L4.437.694a.764.764 0 0 0-1.027.382L1.046 6.422a.764.764 0 0 0 .382 1c1.039.49 3.105 1.467 4.965 2.361 6.698 3.246 12.392 3.029 16.738-4.04z\"/></svg>",
+      "definition": {
+        "name": "Confluence",
+        "description": "Atlassian Confluence — spaces, pages, and docs.",
+        "transport": "http",
+        "baseUrl": "https://mcp.atlassian.com/v1/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "github",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "code",
+        "issues",
+        "pull-requests",
+        "ci",
+        "git"
+      ],
+      "blurb": "Work with GitHub issues, pull requests, files, and CI status.",
+      "brandColor": "#1f2328",
+      "homepage": "https://github.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12\"/></svg>",
+      "definition": {
+        "name": "GitHub",
+        "description": "GitHub — issues, pull requests, repositories, and Actions.",
+        "transport": "http",
+        "baseUrl": "https://api.githubcopilot.com/mcp/",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "hubspot",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "crm",
+        "sales",
+        "marketing",
+        "contacts"
+      ],
+      "blurb": "Work with HubSpot CRM contacts, companies, deals, and tickets.",
+      "brandColor": "#ff7a59",
+      "homepage": "https://www.hubspot.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M18.164 7.93V5.084a2.198 2.198 0 001.267-1.978v-.067A2.2 2.2 0 0017.238.845h-.067a2.2 2.2 0 00-2.193 2.193v.067a2.196 2.196 0 001.252 1.973l.013.006v2.852a6.22 6.22 0 00-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 104.3 4.656l-.012.006 7.697 5.991a6.176 6.176 0 00-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 00-.58-.095h-.002a2.033 2.033 0 102.033 2.033 1.978 1.978 0 00-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 104.782-11.134l-.036-.005zm-.964 9.378a3.206 3.206 0 113.215-3.207v.002a3.206 3.206 0 01-3.207 3.207z\"/></svg>",
+      "definition": {
+        "name": "HubSpot",
+        "description": "HubSpot CRM — contacts, companies, deals, tickets.",
+        "transport": "http",
+        "baseUrl": "https://mcp.hubspot.com/anthropic",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "intercom",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "support",
+        "messaging",
+        "customers",
+        "inbox"
+      ],
+      "blurb": "Search conversations and help articles in Intercom.",
+      "brandColor": "#1f8ded",
+      "homepage": "https://www.intercom.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M21 0H3C1.343 0 0 1.343 0 3v18c0 1.658 1.343 3 3 3h18c1.658 0 3-1.342 3-3V3c0-1.657-1.342-3-3-3zm-5.801 4.399c0-.44.36-.8.802-.8.44 0 .8.36.8.8v10.688c0 .442-.36.801-.8.801-.443 0-.802-.359-.802-.801V4.399zM11.2 3.994c0-.44.357-.799.8-.799s.8.359.8.799v11.602c0 .44-.357.8-.8.8s-.8-.36-.8-.8V3.994zm-4 .405c0-.44.359-.8.799-.8.443 0 .802.36.802.8v10.688c0 .442-.36.801-.802.801-.44 0-.799-.359-.799-.801V4.399zM3.199 6c0-.442.36-.8.802-.8.44 0 .799.358.799.8v7.195c0 .441-.359.8-.799.8-.443 0-.802-.36-.802-.8V6zM20.52 18.202c-.123.105-3.086 2.593-8.52 2.593-5.433 0-8.397-2.486-8.521-2.593-.335-.288-.375-.792-.086-1.128.285-.334.79-.375 1.125-.09.047.041 2.693 2.211 7.481 2.211 4.848 0 7.456-2.186 7.479-2.207.334-.289.839-.25 1.128.086.289.336.25.84-.086 1.128zm.281-5.007c0 .441-.36.8-.801.8-.441 0-.801-.36-.801-.8V6c0-.442.361-.8.801-.8.441 0 .801.357.801.8v7.195z\"/></svg>",
+      "definition": {
+        "name": "Intercom",
+        "description": "Intercom — conversations, contacts, and help center.",
+        "transport": "http",
+        "baseUrl": "https://mcp.intercom.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "jira",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "issues",
+        "tickets",
+        "atlassian",
+        "project-management"
+      ],
+      "blurb": "Search, summarize, create, and update Jira issues.",
+      "brandColor": "#0052cc",
+      "homepage": "https://www.atlassian.com/software/jira",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z\"/></svg>",
+      "definition": {
+        "name": "Jira",
+        "description": "Atlassian Jira — issues, projects, and boards.",
+        "transport": "http",
+        "baseUrl": "https://mcp.atlassian.com/v1/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "linear",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "issues",
+        "project-management",
+        "engineering"
+      ],
+      "blurb": "Read and manage Linear issues, projects, and cycles.",
+      "brandColor": "#5e6ad2",
+      "homepage": "https://linear.app",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z\"/></svg>",
+      "definition": {
+        "name": "Linear",
+        "description": "Linear — issues, projects, and cycles.",
+        "transport": "http",
+        "baseUrl": "https://mcp.linear.app/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "monday",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "boards",
+        "work-management",
+        "project-management",
+        "tasks"
+      ],
+      "blurb": "Read boards and items, track work, create items and post updates.",
+      "brandColor": "#6161ff",
+      "homepage": "https://monday.com",
+      "iconSvg": "<svg fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"4.5\" cy=\"15\" r=\"2.6\"/><circle cx=\"12\" cy=\"15\" r=\"2.6\" opacity=\"0.7\"/><circle cx=\"19.5\" cy=\"15\" r=\"2.6\" opacity=\"0.45\"/></svg>",
+      "definition": {
+        "name": "monday.com",
+        "description": "monday.com — boards, items, and updates.",
+        "transport": "http",
+        "baseUrl": "https://mcp.monday.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "notion",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "notes",
+        "docs",
+        "wiki",
+        "knowledge-base"
+      ],
+      "blurb": "Search and read Notion pages and databases.",
+      "brandColor": "#000000",
+      "homepage": "https://www.notion.so",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z\"/></svg>",
+      "definition": {
+        "name": "Notion",
+        "description": "Notion — pages, databases, and search.",
+        "transport": "http",
+        "baseUrl": "https://mcp.notion.com/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "sentry",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "errors",
+        "monitoring",
+        "observability",
+        "debugging"
+      ],
+      "blurb": "Investigate errors, issues, and performance data in Sentry.",
+      "brandColor": "#362d59",
+      "homepage": "https://sentry.io",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M13.91 2.505c-.873-1.448-2.972-1.448-3.844 0L6.904 7.92a15.478 15.478 0 0 1 8.53 12.811h-2.221A13.301 13.301 0 0 0 5.784 9.814l-2.926 5.06a7.65 7.65 0 0 1 4.435 5.848H2.194a.365.365 0 0 1-.298-.534l1.413-2.402a5.16 5.16 0 0 0-1.614-.913L.296 19.275a2.182 2.182 0 0 0 .812 2.999 2.24 2.24 0 0 0 1.086.288h6.983a9.322 9.322 0 0 0-3.845-8.318l1.11-1.922a11.47 11.47 0 0 1 4.95 10.24h5.915a17.242 17.242 0 0 0-7.885-15.28l2.244-3.845a.37.37 0 0 1 .504-.13c.255.14 9.75 16.708 9.928 16.9a.365.365 0 0 1-.327.543h-2.287c.029.612.029 1.223 0 1.831h2.297a2.206 2.206 0 0 0 1.922-3.31z\"/></svg>",
+      "definition": {
+        "name": "Sentry",
+        "description": "Sentry — errors, issues, and performance.",
+        "transport": "http",
+        "baseUrl": "https://mcp.sentry.dev/mcp",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "stripe",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "payments",
+        "billing",
+        "finance",
+        "invoices"
+      ],
+      "blurb": "Query customers, payments, invoices, and subscriptions in Stripe.",
+      "brandColor": "#635bff",
+      "homepage": "https://stripe.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z\"/></svg>",
+      "definition": {
+        "name": "Stripe",
+        "description": "Stripe — customers, payments, invoices, subscriptions.",
+        "transport": "http",
+        "baseUrl": "https://mcp.stripe.com",
+        "authMode": "oauth",
+        "oauthScope": "",
+        "enabled": true
+      }
+    },
+    {
+      "id": "vercel",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "deployments",
+        "hosting",
+        "devops",
+        "projects"
+      ],
       "blurb": "Inspect Vercel projects, deployments, and logs.",
-      "logo": "vercel",
       "brandColor": "#000000",
       "homepage": "https://vercel.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"m12 1.608 12 20.784H0Z\"/></svg>",
       "definition": {
         "name": "Vercel",
         "description": "Vercel — projects, deployments, and logs.",
@@ -255,13 +338,22 @@
       }
     },
     {
+      "id": "zapier",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["gateway", "email", "gmail", "slack", "calendar", "automation", "8000-apps"],
+      "tags": [
+        "gateway",
+        "email",
+        "gmail",
+        "slack",
+        "calendar",
+        "automation",
+        "8000-apps"
+      ],
       "blurb": "Gateway to 8,000+ apps — Gmail, Slack, Google Calendar, Outlook and more via your Zapier actions.",
-      "logo": "zapier",
       "brandColor": "#ff4f00",
       "homepage": "https://zapier.com/mcp",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z\"/></svg>",
       "definition": {
         "name": "Zapier",
         "description": "Zapier MCP — a gateway to email (Gmail/Outlook), Slack, Google Calendar, and 8,000+ other apps through the actions you enable in Zapier. Use this to reach services that don't publish their own MCP server.",
@@ -275,49 +367,17 @@
   ],
   "services": [
     {
+      "id": "brave",
       "author": "cairn",
       "version": "1.0.0",
-      "tags": ["weather", "forecast"],
-      "blurb": "Current weather and forecasts by latitude/longitude. No API key needed.",
-      "logo": "",
-      "brandColor": "#0ea5e9",
-      "homepage": "https://open-meteo.com",
-      "definition": {
-        "name": "Open-Meteo Weather",
-        "description": "Free weather forecast API — no key required.",
-        "apiUrl": "https://api.open-meteo.com/v1/forecast",
-        "method": "GET",
-        "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
-        "responseKeys": ["latitude", "longitude", "timezone", "current_units", "current"],
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["search", "news", "hacker-news", "tech"],
-      "blurb": "Search Hacker News stories and comments. No API key needed.",
-      "logo": "hackernews",
-      "brandColor": "#ff6600",
-      "homepage": "https://hn.algolia.com",
-      "definition": {
-        "name": "Hacker News Search",
-        "description": "Search Hacker News via the Algolia API — no key required.",
-        "apiUrl": "https://hn.algolia.com/api/v1/search",
-        "method": "GET",
-        "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
-        "responseKeys": ["hits", "title", "url", "author", "points", "num_comments", "objectID", "created_at"],
-        "enabled": true
-      }
-    },
-    {
-      "author": "cairn",
-      "version": "1.0.0",
-      "tags": ["search", "web"],
+      "tags": [
+        "search",
+        "web"
+      ],
       "blurb": "Web search results via the Brave Search API. Requires a free API key.",
-      "logo": "brave",
       "brandColor": "#fb542b",
       "homepage": "https://brave.com/search/api",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.68 0l2.096 2.38s1.84-.512 2.709.358c.868.87 1.584 1.638 1.584 1.638l-.562 1.381.715 2.047s-2.104 7.98-2.35 8.955c-.486 1.919-.818 2.66-2.198 3.633-1.38.972-3.884 2.66-4.293 2.916-.409.256-.92.692-1.38.692-.46 0-.97-.436-1.38-.692a185.796 185.796 0 01-4.293-2.916c-1.38-.973-1.712-1.714-2.197-3.633-.247-.975-2.351-8.955-2.351-8.955l.715-2.047-.562-1.381s.716-.768 1.585-1.638c.868-.87 2.708-.358 2.708-.358L8.321 0h7.36zm-3.679 14.936c-.14 0-1.038.317-1.758.69-.72.373-1.242.637-1.409.742-.167.104-.065.301.087.409.152.107 2.194 1.69 2.393 1.866.198.175.489.464.687.464.198 0 .49-.29.688-.464.198-.175 2.24-1.759 2.392-1.866.152-.108.254-.305.087-.41-.167-.104-.689-.368-1.41-.741-.72-.373-1.617-.69-1.757-.69zm0-11.278s-.409.001-1.022.206-1.278.46-1.584.46c-.307 0-2.581-.434-2.581-.434S4.119 7.152 4.119 7.849c0 .697.339.881.68 1.243l2.02 2.149c.192.203.59.511.356 1.066-.235.555-.58 1.26-.196 1.977.384.716 1.042 1.194 1.464 1.115.421-.08 1.412-.598 1.776-.834.364-.237 1.518-1.19 1.518-1.554 0-.365-1.193-1.02-1.413-1.168-.22-.15-1.226-.725-1.247-.95-.02-.227-.012-.293.284-.851.297-.559.831-1.304.742-1.8-.089-.495-.95-.753-1.565-.986-.615-.232-1.799-.671-1.947-.74-.148-.068-.11-.133.339-.175.448-.043 1.719-.212 2.292-.052.573.16 1.552.403 1.632.532.079.13.149.134.067.579-.081.445-.5 2.581-.541 2.96-.04.38-.12.63.288.724.409.094 1.097.256 1.333.256s.924-.162 1.333-.256c.408-.093.329-.344.288-.723-.04-.38-.46-2.516-.541-2.961-.082-.445-.012-.45.067-.579.08-.129 1.059-.372 1.632-.532.573-.16 1.845.009 2.292.052.449.042.487.107.339.175-.148.069-1.332.508-1.947.74-.615.233-1.476.49-1.565.986-.09.496.445 1.241.742 1.8.297.558.304.624.284.85-.02.226-1.026.802-1.247.95-.22.15-1.413.804-1.413 1.169 0 .364 1.154 1.317 1.518 1.554.364.236 1.355.755 1.776.834.422.079 1.08-.4 1.464-1.115.384-.716.039-1.422-.195-1.977-.235-.555.163-.863.355-1.066l2.02-2.149c.341-.362.68-.546.68-1.243 0-.697-2.695-3.96-2.695-3.96s-2.274.436-2.58.436c-.307 0-.972-.256-1.585-.461-.613-.205-1.022-.206-1.022-.206z\"/></svg>",
       "definition": {
         "name": "Brave Search",
         "description": "Web search via Brave Search API.",
@@ -328,8 +388,74 @@
           "X-Subscription-Token": "<API_KEY>"
         },
         "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
-        "responseKeys": ["web", "results", "title", "url", "description"],
+        "responseKeys": [
+          "web",
+          "results",
+          "title",
+          "url",
+          "description"
+        ],
         "apiKeyUrl": "https://brave.com/search/api",
+        "enabled": true
+      }
+    },
+    {
+      "id": "hackernews",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "search",
+        "news",
+        "hacker-news",
+        "tech"
+      ],
+      "blurb": "Search Hacker News stories and comments. No API key needed.",
+      "brandColor": "#ff6600",
+      "homepage": "https://hn.algolia.com",
+      "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z\"/></svg>",
+      "definition": {
+        "name": "Hacker News Search",
+        "description": "Search Hacker News via the Algolia API — no key required.",
+        "apiUrl": "https://hn.algolia.com/api/v1/search",
+        "method": "GET",
+        "toolDefinition": "{\"name\":\"search_hackernews\",\"description\":\"Search Hacker News stories.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"Search terms\"},\"tags\":{\"type\":\"string\",\"description\":\"Filter, e.g. 'story' or 'comment'\",\"default\":\"story\"}},\"required\":[\"query\"]}}",
+        "responseKeys": [
+          "hits",
+          "title",
+          "url",
+          "author",
+          "points",
+          "num_comments",
+          "objectID",
+          "created_at"
+        ],
+        "enabled": true
+      }
+    },
+    {
+      "id": "open-meteo-weather",
+      "author": "cairn",
+      "version": "1.0.0",
+      "tags": [
+        "weather",
+        "forecast"
+      ],
+      "blurb": "Current weather and forecasts by latitude/longitude. No API key needed.",
+      "brandColor": "#0ea5e9",
+      "homepage": "https://open-meteo.com",
+      "definition": {
+        "name": "Open-Meteo Weather",
+        "description": "Free weather forecast API — no key required.",
+        "apiUrl": "https://api.open-meteo.com/v1/forecast",
+        "method": "GET",
+        "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+        "responseKeys": [
+          "latitude",
+          "longitude",
+          "timezone",
+          "current_units",
+          "current"
+        ],
         "enabled": true
       }
     }

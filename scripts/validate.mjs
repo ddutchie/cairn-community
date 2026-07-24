@@ -1,65 +1,31 @@
 #!/usr/bin/env node
 /**
- * Validates manifest.json against schema.json, plus a few registry-specific
- * rules the JSON Schema can't express:
- *   - unique tool names (case-insensitive) within each artifact type
+ * Validate the community registry:
+ *   - every connectors/<id>/connector.json parses + has the required fields
  *   - baseUrl / apiUrl must be https
- *   - any secret-looking header value must be a PLACEHOLDER, never a real secret
- *   - toolDefinition must be valid stringified JSON with a `name`
+ *   - secret-looking header values must be a PLACEHOLDER, never a real secret
+ *   - services: toolDefinition is valid stringified JSON with a "name"
+ *   - unique connector names (case-insensitive) within each kind
+ *   - every icon (inline svg / icon.file / icon.slug) passes the SVG allowlist
+ *   - manifest.json is up to date with the folders (drift gate)
  *
- * Run: npm run validate
- * Exits non-zero on any error (used by CI).
+ * Run: npm run validate   (CI gate; exits non-zero on any problem)
  */
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
+import { assertSafeSvg } from "./svg-sanitize.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const manifestPath = path.join(root, "manifest.json");
-const schemaPath = path.join(root, "schema.json");
+const connectorsDir = path.join(root, "connectors");
+const logosDir = path.join(root, "logos");
 
 const errors = [];
-const fail = (msg) => errors.push(msg);
+const fail = (m) => errors.push(m);
 
-// ── load ──────────────────────────────────────────────────────────────────
-let manifest, schema;
-try {
-  manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-} catch (e) {
-  console.error(`✗ manifest.json is not valid JSON: ${e.message}`);
-  process.exit(1);
-}
-try {
-  schema = JSON.parse(fs.readFileSync(schemaPath, "utf8"));
-} catch (e) {
-  console.error(`✗ schema.json is not valid JSON: ${e.message}`);
-  process.exit(1);
-}
-
-// ── JSON Schema validation (via ajv when available) ─────────────────────────
-try {
-  const { default: Ajv } = await import("ajv");
-  const { default: addFormats } = await import("ajv-formats");
-  const ajv = new Ajv({ allErrors: true, strict: false });
-  addFormats(ajv);
-  const validate = ajv.compile(schema);
-  if (!validate(manifest)) {
-    for (const err of validate.errors ?? []) {
-      fail(`schema: ${err.instancePath || "(root)"} ${err.message}`);
-    }
-  }
-} catch {
-  console.warn("⚠ ajv not installed — skipping full JSON-Schema validation (run `npm i` for it). Continuing with structural checks.");
-  if (typeof manifest.version !== "number") fail("version must be a number");
-  if (typeof manifest.updatedAt !== "string") fail("updatedAt must be a string");
-  if (!Array.isArray(manifest.mcpServers)) fail("mcpServers must be an array");
-  if (!Array.isArray(manifest.services)) fail("services must be an array");
-}
-
-// ── registry-specific rules ─────────────────────────────────────────────────
 const PLACEHOLDER = /<API_KEY>|<TOKEN>|<ACCESS_TOKEN>|YOUR_API_KEY/;
-// A header value that looks like it carries a credential but ISN'T a placeholder.
 const CREDENTIAL_HINT = /(bearer\s+\S|api[_-]?key|token|secret|authorization)/i;
 
 function checkHeaders(where, headers) {
@@ -68,52 +34,95 @@ function checkHeaders(where, headers) {
     if (typeof v !== "string") continue;
     const looksSecret = CREDENTIAL_HINT.test(k) || CREDENTIAL_HINT.test(v);
     if (looksSecret && !PLACEHOLDER.test(v)) {
-      // allow non-secret static headers (e.g. "Accept: application/json")
       const benign = /^(application\/|text\/|\*\/\*|gzip|identity|no-cache)/i.test(v.trim());
-      if (!benign) {
-        fail(`${where}: header "${k}" looks like a credential but is not a placeholder — publish "<API_KEY>" etc., never a real secret.`);
-      }
+      if (!benign) fail(`${where}: header "${k}" looks like a credential but is not a placeholder — publish "<API_KEY>" etc., never a real secret.`);
     }
   }
 }
 
-function checkEntry(kind, list) {
-  const names = new Map();
-  (list ?? []).forEach((entry, i) => {
-    const where = `${kind}[${i}] (${entry?.definition?.name ?? "?"})`;
-    const def = entry?.definition;
-    if (!def) return; // schema step already reported
-
-    const nameKey = String(def.name || "").toLowerCase();
-    if (names.has(nameKey)) fail(`${where}: duplicate name "${def.name}" (also ${kind}[${names.get(nameKey)}])`);
-    else names.set(nameKey, i);
-
-    const url = def.baseUrl || def.apiUrl;
-    if (url && !/^https:\/\//.test(url)) fail(`${where}: URL must be https — got "${url}"`);
-
-    checkHeaders(where, def.headers);
-
-    if (kind === "services" && def.toolDefinition) {
-      try {
-        const td = JSON.parse(def.toolDefinition);
-        if (!td.name) fail(`${where}: toolDefinition JSON has no "name"`);
-      } catch (e) {
-        fail(`${where}: toolDefinition is not valid JSON — ${e.message}`);
-      }
+function checkIcon(where, dir, icon) {
+  if (!icon || typeof icon !== "object") return; // no icon → app fallback, fine
+  const kinds = ["svg", "file", "slug"].filter((k) => icon[k]);
+  if (kinds.length > 1) fail(`${where}: icon must use exactly one of svg/file/slug (got ${kinds.join(", ")})`);
+  try {
+    if (icon.svg) {
+      assertSafeSvg(String(icon.svg), `${where} icon.svg`);
+    } else if (icon.file) {
+      const p = path.join(dir, String(icon.file));
+      if (!fs.existsSync(p)) return fail(`${where}: icon.file "${icon.file}" not found`);
+      assertSafeSvg(fs.readFileSync(p, "utf8"), `${where} ${icon.file}`);
+    } else if (icon.slug) {
+      const p = path.join(logosDir, `${icon.slug}.svg`);
+      if (!fs.existsSync(p)) return fail(`${where}: no logo for slug "${icon.slug}" — run: node scripts/fetch-logos.mjs`);
+      assertSafeSvg(fs.readFileSync(p, "utf8"), `${where} logos/${icon.slug}.svg`);
     }
-  });
+  } catch (e) {
+    fail(`${where}: unsafe icon — ${e.message}`);
+  }
 }
 
-checkEntry("mcpServers", manifest.mcpServers);
-checkEntry("services", manifest.services);
-
-// ── report ───────────────────────────────────────────────────────────────
-if (errors.length) {
-  console.error(`\n✗ ${errors.length} problem(s) found:\n`);
-  for (const e of errors) console.error(`  • ${e}`);
+// ── validate every connector folder ────────────────────────────────────────
+if (!fs.existsSync(connectorsDir)) {
+  console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
+const names = { mcp: new Map(), service: new Map() };
+let count = 0;
+for (const id of fs.readdirSync(connectorsDir).sort()) {
+  const dir = path.join(connectorsDir, id);
+  const jsonPath = path.join(dir, "connector.json");
+  if (!fs.existsSync(jsonPath)) continue;
+  const where = `connectors/${id}`;
+  let c;
+  try {
+    c = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  } catch (e) {
+    fail(`${where}/connector.json: invalid JSON — ${e.message}`);
+    continue;
+  }
+  count++;
 
-const mcp = manifest.mcpServers?.length ?? 0;
-const svc = manifest.services?.length ?? 0;
-console.log(`✓ manifest.json is valid — ${mcp} MCP server(s), ${svc} service(s).`);
+  if (c.kind !== "mcp" && c.kind !== "service") fail(`${where}: kind must be "mcp" or "service"`);
+  if (!c.blurb) fail(`${where}: missing blurb`);
+  if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
+  const def = c.definition || {};
+  if (!def.name) fail(`${where}: definition.name required`);
+
+  const nameKey = String(def.name || "").toLowerCase();
+  const bucket = c.kind === "service" ? names.service : names.mcp;
+  if (bucket.has(nameKey)) fail(`${where}: duplicate name "${def.name}" (also ${bucket.get(nameKey)})`);
+  else bucket.set(nameKey, id);
+
+  const url = def.baseUrl || def.apiUrl;
+  if (url && !/^https:\/\//.test(url)) fail(`${where}: URL must be https — got "${url}"`);
+  for (const key of ["homepage"]) {
+    if (c[key] && !/^https:\/\//.test(c[key])) fail(`${where}: ${key} must be https`);
+  }
+  if (def.apiKeyUrl && !/^https:\/\//.test(def.apiKeyUrl)) fail(`${where}: apiKeyUrl must be https`);
+
+  checkHeaders(where, def.headers);
+  checkIcon(where, dir, c.icon);
+
+  if (c.kind === "service" && def.toolDefinition) {
+    try {
+      if (!JSON.parse(def.toolDefinition).name) fail(`${where}: toolDefinition JSON has no "name"`);
+    } catch (e) {
+      fail(`${where}: toolDefinition is not valid JSON — ${e.message}`);
+    }
+  }
+}
+
+// ── drift gate: manifest.json must match the folders ────────────────────────
+try {
+  execFileSync("node", [path.join(root, "scripts", "build-manifest.mjs"), "--check"], { stdio: "pipe" });
+} catch (e) {
+  fail("manifest.json is out of date with connectors/ — run: node scripts/build-manifest.mjs");
+}
+
+// ── report ──────────────────────────────────────────────────────────────
+if (errors.length) {
+  console.error(`\n✗ ${errors.length} problem(s):\n`);
+  for (const e of errors) console.error("  • " + e);
+  process.exit(1);
+}
+console.log(`✓ ${count} connectors valid; manifest.json up to date.`);

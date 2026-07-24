@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "crm",
+    "sales",
+    "marketing",
+    "contacts"
+  ],
+  "blurb": "Work with HubSpot CRM contacts, companies, deals, and tickets.",
+  "brandColor": "#ff7a59",
+  "homepage": "https://www.hubspot.com",
+  "icon": {
+    "slug": "hubspot"
+  },
+  "definition": {
+    "name": "HubSpot",
+    "description": "HubSpot CRM — contacts, companies, deals, tickets.",
+    "transport": "http",
+    "baseUrl": "https://mcp.hubspot.com/anthropic",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

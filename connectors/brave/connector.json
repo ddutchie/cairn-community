@@ -1,0 +1,35 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "search",
+    "web"
+  ],
+  "blurb": "Web search results via the Brave Search API. Requires a free API key.",
+  "brandColor": "#fb542b",
+  "homepage": "https://brave.com/search/api",
+  "icon": {
+    "slug": "brave"
+  },
+  "definition": {
+    "name": "Brave Search",
+    "description": "Web search via Brave Search API.",
+    "apiUrl": "https://api.search.brave.com/res/v1/web/search",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "X-Subscription-Token": "<API_KEY>"
+    },
+    "toolDefinition": "{\"name\":\"brave_web_search\",\"description\":\"Search the web with Brave Search.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"q\":{\"type\":\"string\",\"description\":\"Search query\"},\"count\":{\"type\":\"number\",\"description\":\"Number of results (max 20)\",\"default\":10}},\"required\":[\"q\"]}}",
+    "responseKeys": [
+      "web",
+      "results",
+      "title",
+      "url",
+      "description"
+    ],
+    "apiKeyUrl": "https://brave.com/search/api",
+    "enabled": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "infrastructure",
+    "dns",
+    "cdn",
+    "devops",
+    "workers"
+  ],
+  "blurb": "Manage Cloudflare DNS, Workers, and account data.",
+  "brandColor": "#f38020",
+  "homepage": "https://www.cloudflare.com",
+  "icon": {
+    "slug": "cloudflare"
+  },
+  "definition": {
+    "name": "Cloudflare",
+    "description": "Cloudflare — DNS, Workers, and account resources.",
+    "transport": "http",
+    "baseUrl": "https://mcp.cloudflare.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

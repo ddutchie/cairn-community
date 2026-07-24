@@ -1,0 +1,27 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "code",
+    "issues",
+    "pull-requests",
+    "ci",
+    "git"
+  ],
+  "blurb": "Work with GitHub issues, pull requests, files, and CI status.",
+  "brandColor": "#1f2328",
+  "homepage": "https://github.com",
+  "icon": {
+    "slug": "github"
+  },
+  "definition": {
+    "name": "GitHub",
+    "description": "GitHub — issues, pull requests, repositories, and Actions.",
+    "transport": "http",
+    "baseUrl": "https://api.githubcopilot.com/mcp/",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

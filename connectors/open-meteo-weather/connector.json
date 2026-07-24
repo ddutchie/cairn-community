@@ -1,0 +1,28 @@
+{
+  "kind": "service",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "weather",
+    "forecast"
+  ],
+  "blurb": "Current weather and forecasts by latitude/longitude. No API key needed.",
+  "brandColor": "#0ea5e9",
+  "homepage": "https://open-meteo.com",
+  "icon": {},
+  "definition": {
+    "name": "Open-Meteo Weather",
+    "description": "Free weather forecast API — no key required.",
+    "apiUrl": "https://api.open-meteo.com/v1/forecast",
+    "method": "GET",
+    "toolDefinition": "{\"name\":\"get_weather\",\"description\":\"Get current weather for a location by coordinates.\",\"parameters\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\",\"description\":\"Latitude, e.g. 52.52\"},\"longitude\":{\"type\":\"number\",\"description\":\"Longitude, e.g. 13.41\"},\"current\":{\"type\":\"string\",\"description\":\"Comma-separated fields, e.g. 'temperature_2m,wind_speed_10m'\",\"default\":\"temperature_2m,wind_speed_10m\"}},\"required\":[\"latitude\",\"longitude\"]}}",
+    "responseKeys": [
+      "latitude",
+      "longitude",
+      "timezone",
+      "current_units",
+      "current"
+    ],
+    "enabled": true
+  }
+}

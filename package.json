@@ -5,6 +5,8 @@
   "description": "Community registry of MCP servers and HTTP services installable from within Cairn.",
   "type": "module",
   "scripts": {
+    "fetch-logos": "node scripts/fetch-logos.mjs",
+    "build": "node scripts/build-manifest.mjs",
     "validate": "node scripts/validate.mjs"
   },
   "license": "MIT",

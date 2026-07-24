@@ -1,0 +1,29 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "gateway",
+    "email",
+    "gmail",
+    "slack",
+    "calendar",
+    "automation",
+    "8000-apps"
+  ],
+  "blurb": "Gateway to 8,000+ apps — Gmail, Slack, Google Calendar, Outlook and more via your Zapier actions.",
+  "brandColor": "#ff4f00",
+  "homepage": "https://zapier.com/mcp",
+  "icon": {
+    "slug": "zapier"
+  },
+  "definition": {
+    "name": "Zapier",
+    "description": "Zapier MCP — a gateway to email (Gmail/Outlook), Slack, Google Calendar, and 8,000+ other apps through the actions you enable in Zapier. Use this to reach services that don't publish their own MCP server.",
+    "transport": "http",
+    "baseUrl": "https://mcp.zapier.com/api/mcp/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

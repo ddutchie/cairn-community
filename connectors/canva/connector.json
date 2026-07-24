@@ -1,0 +1,25 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "design",
+    "graphics",
+    "content"
+  ],
+  "blurb": "Create and edit designs, and search brand assets in Canva.",
+  "brandColor": "#00c4cc",
+  "homepage": "https://www.canva.com",
+  "icon": {
+    "file": "icon.svg"
+  },
+  "definition": {
+    "name": "Canva",
+    "description": "Canva — designs, brand assets, and exports.",
+    "transport": "http",
+    "baseUrl": "https://mcp.canva.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}

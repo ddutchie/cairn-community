@@ -1,0 +1,26 @@
+{
+  "kind": "mcp",
+  "author": "cairn",
+  "version": "1.0.0",
+  "tags": [
+    "notes",
+    "docs",
+    "wiki",
+    "knowledge-base"
+  ],
+  "blurb": "Search and read Notion pages and databases.",
+  "brandColor": "#000000",
+  "homepage": "https://www.notion.so",
+  "icon": {
+    "slug": "notion"
+  },
+  "definition": {
+    "name": "Notion",
+    "description": "Notion — pages, databases, and search.",
+    "transport": "http",
+    "baseUrl": "https://mcp.notion.com/mcp",
+    "authMode": "oauth",
+    "oauthScope": "",
+    "enabled": true
+  }
+}
