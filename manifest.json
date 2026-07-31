@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updatedAt": "2026-07-24T22:24:19Z",
+  "version": 2,
+  "updatedAt": "2026-07-31T18:44:10Z",
   "mcpServers": [
     {
       "id": "asana",
@@ -1654,6 +1654,162 @@
           }
         ],
         "enabled": true
+      }
+    }
+  ],
+  "commands": [
+    {
+      "id": "command-commit-msg",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "git",
+        "commit",
+        "conventional-commits",
+        "vcs"
+      ],
+      "blurb": "Write a conventional-commit message for the staged changes.",
+      "definition": {
+        "name": "commit-msg",
+        "description": "Draft a conventional-commit message from staged changes",
+        "scope": "agent",
+        "insertText": "Run `git diff --staged` and write a concise Conventional Commits message for the staged changes. Use an appropriate type (feat, fix, refactor, docs, chore, test), a short imperative subject under 72 characters, and a brief body only if it adds useful context."
+      }
+    },
+    {
+      "id": "command-eli5",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "explain",
+        "simplify",
+        "learning",
+        "eli5"
+      ],
+      "blurb": "Explain a concept simply, as if to a beginner.",
+      "definition": {
+        "name": "eli5",
+        "description": "Explain a concept in simple terms",
+        "scope": "chat",
+        "insertText": "Explain the following concept simply and clearly, as if to a smart beginner. Use a short analogy if it helps, avoid jargon, and keep it under 150 words.\n\nConcept: [topic]"
+      }
+    },
+    {
+      "id": "command-explain-code",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "explain",
+        "code",
+        "documentation",
+        "onboarding"
+      ],
+      "blurb": "Explain what a file or function does, including inputs, outputs, and edge cases.",
+      "definition": {
+        "name": "explain-code",
+        "description": "Explain what a piece of code does",
+        "scope": "agent",
+        "insertText": "Explain what the code in [file or function] does. Cover its purpose, its inputs and outputs, how it's used elsewhere, and any edge cases or gotchas. Read the file first if needed."
+      }
+    },
+    {
+      "id": "command-find-bugs",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Dev & Code",
+      "tags": [
+        "review",
+        "bugs",
+        "code-review",
+        "security",
+        "git"
+      ],
+      "blurb": "Review recent git changes for bugs, edge cases, and security issues.",
+      "definition": {
+        "name": "find-bugs",
+        "description": "Review recent changes for bugs and risks",
+        "scope": "agent",
+        "insertText": "Review the recent changes for problems. Run `git diff` (and `git diff --staged`) and analyse it for bugs, unhandled edge cases, race conditions, and security issues. List findings grouped by severity (High / Medium / Low), each with the file and a suggested fix."
+      }
+    },
+    {
+      "id": "command-plan-feature",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Project management",
+      "tags": [
+        "planning",
+        "breakdown",
+        "tasks",
+        "estimation"
+      ],
+      "blurb": "Break a feature idea into a task checklist with estimates and dependencies.",
+      "definition": {
+        "name": "plan-feature",
+        "description": "Break a feature down into tasks, estimates, and dependencies",
+        "scope": "both",
+        "insertText": "Break the following feature down into an actionable plan. Produce a checklist of concrete tasks, note rough effort estimates (S / M / L), and call out dependencies and open questions.\n\nFeature: [describe the feature]"
+      }
+    },
+    {
+      "id": "command-standup",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "standup",
+        "status",
+        "daily",
+        "summary"
+      ],
+      "blurb": "Generate a daily standup update from recent project activity.",
+      "definition": {
+        "name": "standup",
+        "description": "Summarise recent activity as a standup update",
+        "scope": "chat",
+        "insertText": "Summarise what changed across my projects in the last 24 hours as a standup update. Group it into three short sections: Done, In progress, and Blockers. Keep each bullet concise."
+      }
+    },
+    {
+      "id": "command-tidy-notes",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Docs & Knowledge",
+      "tags": [
+        "notes",
+        "organise",
+        "tags",
+        "links",
+        "knowledge-graph"
+      ],
+      "blurb": "Suggest how to reorganise, tag, and link your notes in this project.",
+      "definition": {
+        "name": "tidy-notes",
+        "description": "Suggest better structure, tags, and links for your notes",
+        "scope": "chat",
+        "insertText": "Review my notes in this project and suggest how to improve their structure. Recommend: notes to merge or split, useful tags to add, and connections (links) worth creating between related notes. Point to specific notes by title."
+      }
+    },
+    {
+      "id": "command-weekly-review",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "review",
+        "weekly",
+        "retrospective",
+        "planning"
+      ],
+      "blurb": "Run a structured weekly review of accomplishments and priorities.",
+      "definition": {
+        "name": "weekly-review",
+        "description": "Structured weekly review of progress and next steps",
+        "scope": "chat",
+        "insertText": "Help me run my weekly review. Using my projects, notes, and task board, produce:\n\n1. Accomplishments — what I completed this week.\n2. In progress — what's still open and its status.\n3. Overdue / at risk — tasks past their due date or stalled.\n4. Priorities for next week — the 3–5 things I should focus on.\n\nBe specific and reference actual tasks and notes where possible."
       }
     }
   ]

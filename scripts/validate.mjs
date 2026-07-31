@@ -78,7 +78,7 @@ if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
-const names = { mcp: new Map(), service: new Map() };
+const names = { mcp: new Map(), service: new Map(), command: new Map() };
 let count = 0;
 for (const id of fs.readdirSync(connectorsDir).sort()) {
   const dir = path.join(connectorsDir, id);
@@ -94,12 +94,33 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
   }
   count++;
 
-  if (c.kind !== "mcp" && c.kind !== "service") fail(`${where}: kind must be "mcp" or "service"`);
+  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command") fail(`${where}: kind must be "mcp", "service", or "command"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
   if (!CATEGORIES.has(c.category)) fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
   if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
   const def = c.definition || {};
   if (!def.name) fail(`${where}: definition.name required`);
+
+  // ── command entries: no URLs / headers / icon; validate the command shape ──
+  if (c.kind === "command") {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(String(def.name || ""))) {
+      fail(`${where}: command name must be lowercase letters, digits, and hyphens (got ${JSON.stringify(def.name)})`);
+    }
+    if (typeof def.insertText !== "string" || def.insertText.trim().length === 0) {
+      fail(`${where}: command definition.insertText must be a non-empty string`);
+    }
+    if (!["chat", "agent", "both"].includes(def.scope)) {
+      fail(`${where}: command definition.scope must be "chat", "agent", or "both" (got ${JSON.stringify(def.scope)})`);
+    }
+    const cmdKey = String(def.name || "").toLowerCase();
+    if (names.command.has(cmdKey)) fail(`${where}: duplicate command name "${def.name}" (also ${names.command.get(cmdKey)})`);
+    else names.command.set(cmdKey, id);
+    for (const key of ["homepage"]) {
+      if (c[key] && !/^https:\/\//.test(c[key])) fail(`${where}: ${key} must be https`);
+    }
+    checkIcon(where, dir, c.icon);
+    continue;
+  }
 
   const nameKey = String(def.name || "").toLowerCase();
   const bucket = c.kind === "service" ? names.service : names.mcp;

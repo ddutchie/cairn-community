@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Docs & Knowledge",
+  "tags": ["explain", "simplify", "learning", "eli5"],
+  "blurb": "Explain a concept simply, as if to a beginner.",
+  "definition": {
+    "name": "eli5",
+    "description": "Explain a concept in simple terms",
+    "scope": "chat",
+    "insertText": "Explain the following concept simply and clearly, as if to a smart beginner. Use a short analogy if it helps, avoid jargon, and keep it under 150 words.\n\nConcept: [topic]"
+  }
+}

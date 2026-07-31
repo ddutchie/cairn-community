@@ -1,6 +1,7 @@
 # Cairn Community Registry
 
-The catalog of community-contributed **MCP servers** and **HTTP services** that
+The catalog of community-contributed **MCP servers**, **HTTP services**, and
+**slash commands** that
 [Cairn](https://github.com/ddutchie/cairn) can browse and install with one click —
 no app update required. Cairn fetches [`manifest.json`](./manifest.json) from this
 repo at runtime, so merging a PR here makes a new integration available to everyone.
@@ -15,8 +16,9 @@ repo at runtime, so merging a PR here makes a new integration available to every
 |------|------------|---------|
 | **MCP server** | A remote [Model Context Protocol](https://modelcontextprotocol.io) server the Cairn agent connects to as a client (SSE or streamable-HTTP). | Jira, Linear, Notion, monday.com |
 | **HTTP service** | One or more REST endpoints exposed to the agent as function-calling tools. A single connector can bundle several related operations that share a base URL, headers, and API key. | web search, weather, GitHub public API, currency rates |
+| **Slash command** | A reusable prompt/text snippet surfaced in Cairn's chat and/or coding-agent input palettes (invoked by typing `/name`). Installed workspace-globally; never executes code — it only inserts text for the user to send. | `/standup`, `/weekly-review`, `/commit-msg`, `/find-bugs` |
 
-Skills (prompt templates) are **not** part of this registry yet — planned for a later release.
+Skills (larger prompt templates) beyond single-line slash commands may follow in a later release.
 
 ## How install works in Cairn
 
@@ -86,6 +88,30 @@ Create one folder — `connectors/<id>/connector.json`:
 An HTTP-service `definition` uses `apiUrl` / `method` / `headers` / `toolDefinition`
 (stringified OpenAI tool JSON) / `responseKeys` / `apiKeyUrl` instead.
 
+A **slash-command** connector (`"kind": "command"`) is the simplest of all — no
+URLs, headers, or auth. Its `definition` is just the command itself:
+
+```jsonc
+{
+  "kind": "command",
+  "author": "your-github-handle",
+  "version": "1.0.0",
+  "category": "Automation",                // still one of the fixed categories (the Browse chip)
+  "tags": ["standup", "status"],           // freeform search keywords
+  "blurb": "Generate a daily standup update from recent project activity.",
+  "definition": {
+    "name": "standup",                     // invoked as /standup — lowercase, digits, hyphens
+    "description": "Summarise recent activity as a standup update",
+    "scope": "chat",                       // "chat" | "agent" | "both" — which input palette(s)
+    "insertText": "Summarise what changed across my projects in the last 24 hours…"
+  }
+}
+```
+
+Commands never run code — Cairn only inserts `insertText` into the input for the
+user to review and send. `insertText` may contain `[placeholder]` hints for the
+user to fill in. Commands don't use `icon`/`brandColor`/`homepage`.
+
 ### Logos
 
 Set `icon` to exactly one of:
@@ -115,6 +141,7 @@ CI **rejects** any header that looks like a credential but isn't a placeholder.
 - `baseUrl` / `apiUrl` / `homepage` / `apiKeyUrl` must be **https**.
 - `category` must be one of: **Project management · Dev & Code · Docs & Knowledge · CRM & Support · Search & Web · Finance · Design · Automation · Utilities**. It's the chip a connector groups under in Browse Community. `tags` are freeform and used for **search only** (not shown as chips).
 - `name` must be unique within its kind (case-insensitive).
+- **Slash commands**: `definition.name` must be lowercase letters, digits, and hyphens (it becomes `/name`), `insertText` must be non-empty, and `scope` must be `chat`, `agent`, or `both`. Command names are unique among commands.
 - `toolDefinition` (services) must be valid stringified OpenAI tool JSON with a `name`.
 - Bump the entry `version` when you change a `definition` so installed users see an update.
 

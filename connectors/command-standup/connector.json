@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["standup", "status", "daily", "summary"],
+  "blurb": "Generate a daily standup update from recent project activity.",
+  "definition": {
+    "name": "standup",
+    "description": "Summarise recent activity as a standup update",
+    "scope": "chat",
+    "insertText": "Summarise what changed across my projects in the last 24 hours as a standup update. Group it into three short sections: Done, In progress, and Blockers. Keep each bullet concise."
+  }
+}

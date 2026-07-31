@@ -7,7 +7,7 @@
   "required": ["kind", "author", "version", "category", "tags", "blurb", "definition"],
   "additionalProperties": false,
   "properties": {
-    "kind": { "type": "string", "enum": ["mcp", "service"] },
+    "kind": { "type": "string", "enum": ["mcp", "service", "command"] },
     "author": { "type": "string", "description": "GitHub handle/org maintaining this entry." },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "SemVer of THIS entry; bump to push an update to installed users." },
     "category": {
@@ -40,10 +40,22 @@
       }
     },
     "definition": {
-      "oneOf": [{ "$ref": "#/definitions/McpDefinition" }, { "$ref": "#/definitions/ServiceDefinition" }]
+      "oneOf": [{ "$ref": "#/definitions/McpDefinition" }, { "$ref": "#/definitions/ServiceDefinition" }, { "$ref": "#/definitions/CommandDefinition" }]
     }
   },
   "definitions": {
+    "CommandDefinition": {
+      "type": "object",
+      "required": ["name", "insertText", "scope"],
+      "additionalProperties": false,
+      "description": "A slash command — a reusable prompt/text snippet surfaced in Cairn's chat and/or coding-agent input palettes. Installed workspace-globally with source:\"community\". Commands never execute code; they only insert `insertText` into the input for the user to send.",
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "The command trigger, invoked as /name. Lowercase, digits and hyphens only." },
+        "description": { "type": "string", "maxLength": 200, "description": "Shown beside the command in the palette and Browse Community." },
+        "insertText": { "type": "string", "minLength": 1, "description": "The text inserted into the input when the command is chosen. Typically a prompt template; may contain [placeholder] hints for the user to fill in." },
+        "scope": { "type": "string", "enum": ["chat", "agent", "both"], "description": "Which input pane(s) the command appears in: the AI chat panel, the coding-agent input, or both." }
+      }
+    },
     "McpDefinition": {
       "type": "object",
       "required": ["name", "transport", "baseUrl", "enabled"],

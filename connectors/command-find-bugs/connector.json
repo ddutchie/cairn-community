@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Dev & Code",
+  "tags": ["review", "bugs", "code-review", "security", "git"],
+  "blurb": "Review recent git changes for bugs, edge cases, and security issues.",
+  "definition": {
+    "name": "find-bugs",
+    "description": "Review recent changes for bugs and risks",
+    "scope": "agent",
+    "insertText": "Review the recent changes for problems. Run `git diff` (and `git diff --staged`) and analyse it for bugs, unhandled edge cases, race conditions, and security issues. List findings grouped by severity (High / Medium / Low), each with the file and a suggested fix."
+  }
+}

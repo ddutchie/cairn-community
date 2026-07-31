@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Dev & Code",
+  "tags": ["explain", "code", "documentation", "onboarding"],
+  "blurb": "Explain what a file or function does, including inputs, outputs, and edge cases.",
+  "definition": {
+    "name": "explain-code",
+    "description": "Explain what a piece of code does",
+    "scope": "agent",
+    "insertText": "Explain what the code in [file or function] does. Cover its purpose, its inputs and outputs, how it's used elsewhere, and any edge cases or gotchas. Read the file first if needed."
+  }
+}

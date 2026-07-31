@@ -52,6 +52,7 @@ function resolveIconSvg(id, dir, icon) {
 function build() {
   const mcpServers = [];
   const services = [];
+  const commands = [];
   const ids = fs.readdirSync(connectorsDir).filter((d) =>
     fs.existsSync(path.join(connectorsDir, d, "connector.json")),
   ).sort();
@@ -72,14 +73,19 @@ function build() {
       ...(iconSvg ? { iconSvg } : {}),
       definition: c.definition,
     };
-    (c.kind === "service" ? services : mcpServers).push(entry);
+    if (c.kind === "service") services.push(entry);
+    else if (c.kind === "command") commands.push(entry);
+    else mcpServers.push(entry);
   }
 
   return {
-    version: 1,
+    // v2 adds the `commands` array (community slash commands). Older Cairn
+    // clients ignore unknown top-level keys, so this is backward-compatible.
+    version: 2,
     updatedAt: new Date().toISOString().replace(/\.\d+Z$/, "Z"),
     mcpServers,
     services,
+    commands,
   };
 }
 
@@ -97,5 +103,5 @@ if (process.argv.includes("--check")) {
   console.log("✓ manifest.json is up to date");
 } else {
   fs.writeFileSync(manifestPath, json, "utf8");
-  console.log(`✓ built manifest.json -- ${built.mcpServers.length} MCP + ${built.services.length} services`);
+  console.log(`✓ built manifest.json -- ${built.mcpServers.length} MCP + ${built.services.length} services + ${built.commands.length} commands`);
 }

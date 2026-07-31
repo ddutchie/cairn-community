@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["review", "weekly", "retrospective", "planning"],
+  "blurb": "Run a structured weekly review of accomplishments and priorities.",
+  "definition": {
+    "name": "weekly-review",
+    "description": "Structured weekly review of progress and next steps",
+    "scope": "chat",
+    "insertText": "Help me run my weekly review. Using my projects, notes, and task board, produce:\n\n1. Accomplishments — what I completed this week.\n2. In progress — what's still open and its status.\n3. Overdue / at risk — tasks past their due date or stalled.\n4. Priorities for next week — the 3–5 things I should focus on.\n\nBe specific and reference actual tasks and notes where possible."
+  }
+}

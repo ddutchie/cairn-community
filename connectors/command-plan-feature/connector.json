@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Project management",
+  "tags": ["planning", "breakdown", "tasks", "estimation"],
+  "blurb": "Break a feature idea into a task checklist with estimates and dependencies.",
+  "definition": {
+    "name": "plan-feature",
+    "description": "Break a feature down into tasks, estimates, and dependencies",
+    "scope": "both",
+    "insertText": "Break the following feature down into an actionable plan. Produce a checklist of concrete tasks, note rough effort estimates (S / M / L), and call out dependencies and open questions.\n\nFeature: [describe the feature]"
+  }
+}

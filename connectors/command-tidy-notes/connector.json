@@ -1,0 +1,14 @@
+{
+  "kind": "command",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Docs & Knowledge",
+  "tags": ["notes", "organise", "tags", "links", "knowledge-graph"],
+  "blurb": "Suggest how to reorganise, tag, and link your notes in this project.",
+  "definition": {
+    "name": "tidy-notes",
+    "description": "Suggest better structure, tags, and links for your notes",
+    "scope": "chat",
+    "insertText": "Review my notes in this project and suggest how to improve their structure. Recommend: notes to merge or split, useful tags to add, and connections (links) worth creating between related notes. Point to specific notes by title."
+  }
+}
