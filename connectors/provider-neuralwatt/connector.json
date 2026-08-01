@@ -5,7 +5,7 @@
   "category": "AI Providers",
   "tags": ["neuralwatt", "inference", "cloud"],
   "blurb": "Neuralwatt — OpenAI-compatible inference endpoint.",
-  "brandColor": "#081a17",
+  "brandColor": "#c0442a",
   "homepage": "https://neuralwatt.com",
   "definition": {
     "name": "Neuralwatt",

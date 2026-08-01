@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T15:41:17Z",
+  "updatedAt": "2026-08-01T15:48:53Z",
   "providers": [
     {
       "id": "provider-anthropic",
@@ -138,7 +138,7 @@
         "cloud"
       ],
       "blurb": "Neuralwatt — OpenAI-compatible inference endpoint.",
-      "brandColor": "#081a17",
+      "brandColor": "#c0442a",
       "homepage": "https://neuralwatt.com",
       "definition": {
         "name": "Neuralwatt",
