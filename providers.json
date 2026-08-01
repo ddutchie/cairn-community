@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T16:16:00Z",
+  "updatedAt": "2026-08-01T16:34:29Z",
   "providers": [
     {
       "id": "provider-anthropic",
@@ -188,6 +188,27 @@
         "baseUrl": "https://openrouter.ai/api/v1",
         "needsApiKey": true,
         "apiKeyUrl": "https://openrouter.ai/keys"
+      }
+    },
+    {
+      "id": "provider-pollinations",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "AI Providers",
+      "tags": [
+        "pollinations",
+        "open",
+        "multimodal",
+        "cloud"
+      ],
+      "blurb": "Pollinations — an open, OpenAI-compatible endpoint for text and multimodal models.",
+      "brandColor": "#00b4d8",
+      "homepage": "https://pollinations.ai",
+      "definition": {
+        "name": "Pollinations",
+        "baseUrl": "https://gen.pollinations.ai/v1",
+        "needsApiKey": true,
+        "apiKeyUrl": "https://enter.pollinations.ai"
       }
     },
     {
