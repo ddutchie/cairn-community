@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["openrouter", "router", "gateway", "cloud"],
+  "blurb": "OpenRouter — one endpoint routing to hundreds of models from many providers.",
+  "brandColor": "#6467f2",
+  "homepage": "https://openrouter.ai",
+  "icon": { "slug": "openrouter" },
+  "definition": {
+    "name": "OpenRouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://openrouter.ai/keys"
+  }
+}

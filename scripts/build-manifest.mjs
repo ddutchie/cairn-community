@@ -23,6 +23,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const connectorsDir = path.join(root, "connectors");
 const logosDir = path.join(root, "logos");
 const manifestPath = path.join(root, "manifest.json");
+const providersPath = path.join(root, "providers.json");
 
 function resolveIconSvg(id, dir, icon) {
   if (!icon || typeof icon !== "object") return undefined;
@@ -53,6 +54,7 @@ function build() {
   const mcpServers = [];
   const services = [];
   const commands = [];
+  const providers = [];
   const ids = fs.readdirSync(connectorsDir).filter((d) =>
     fs.existsSync(path.join(connectorsDir, d, "connector.json")),
   ).sort();
@@ -75,33 +77,57 @@ function build() {
     };
     if (c.kind === "service") services.push(entry);
     else if (c.kind === "command") commands.push(entry);
+    else if (c.kind === "provider") providers.push(entry);
     else mcpServers.push(entry);
   }
 
+  const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
   return {
+    // manifest.json — MCP servers + HTTP services + slash commands.
     // v2 adds the `commands` array (community slash commands). Older Cairn
     // clients ignore unknown top-level keys, so this is backward-compatible.
-    version: 2,
-    updatedAt: new Date().toISOString().replace(/\.\d+Z$/, "Z"),
-    mcpServers,
-    services,
-    commands,
+    manifest: {
+      version: 2,
+      updatedAt: now,
+      mcpServers,
+      services,
+      commands,
+    },
+    // providers.json — AI provider presets. A SEPARATE manifest so the two
+    // catalogs evolve independently (fetched by Cairn's registry:fetchProviders).
+    providers: {
+      version: 1,
+      updatedAt: now,
+      providers,
+    },
   };
 }
 
 const built = build();
-const json = JSON.stringify(built, null, 2) + "\n";
+const manifestJson = JSON.stringify(built.manifest, null, 2) + "\n";
+const providersJson = JSON.stringify(built.providers, null, 2) + "\n";
 
 if (process.argv.includes("--check")) {
-  const current = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, "utf8") : "";
   // Ignore updatedAt drift (timestamp changes every build); compare the rest.
   const strip = (s) => s.replace(/"updatedAt":\s*"[^"]*"/, '"updatedAt":"X"');
-  if (strip(current) !== strip(json)) {
+  let stale = false;
+  const currentManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath, "utf8") : "";
+  if (strip(currentManifest) !== strip(manifestJson)) {
     console.error("✗ manifest.json is out of date -- run: node scripts/build-manifest.mjs");
-    process.exit(1);
+    stale = true;
   }
-  console.log("✓ manifest.json is up to date");
+  const currentProviders = fs.existsSync(providersPath) ? fs.readFileSync(providersPath, "utf8") : "";
+  if (strip(currentProviders) !== strip(providersJson)) {
+    console.error("✗ providers.json is out of date -- run: node scripts/build-manifest.mjs");
+    stale = true;
+  }
+  if (stale) process.exit(1);
+  console.log("✓ manifest.json and providers.json are up to date");
 } else {
-  fs.writeFileSync(manifestPath, json, "utf8");
-  console.log(`✓ built manifest.json -- ${built.mcpServers.length} MCP + ${built.services.length} services + ${built.commands.length} commands`);
+  fs.writeFileSync(manifestPath, manifestJson, "utf8");
+  fs.writeFileSync(providersPath, providersJson, "utf8");
+  console.log(
+    `✓ built manifest.json -- ${built.manifest.mcpServers.length} MCP + ${built.manifest.services.length} services + ${built.manifest.commands.length} commands`,
+  );
+  console.log(`✓ built providers.json -- ${built.providers.providers.length} providers`);
 }

@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["fireworks", "open-models", "inference", "cloud"],
+  "blurb": "Fireworks AI — fast serverless inference for open-source models.",
+  "brandColor": "#5019c5",
+  "homepage": "https://fireworks.ai",
+  "definition": {
+    "name": "Fireworks AI",
+    "baseUrl": "https://api.fireworks.ai/inference/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://fireworks.ai/account/api-keys"
+  }
+}

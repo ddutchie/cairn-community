@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["together", "open-models", "inference", "cloud"],
+  "blurb": "Together AI — fast, affordable inference for open-source models.",
+  "brandColor": "#0f6fff",
+  "homepage": "https://www.together.ai",
+  "definition": {
+    "name": "Together AI",
+    "baseUrl": "https://api.together.xyz/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://api.together.xyz/settings/api-keys"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["openai", "gpt", "cloud"],
+  "blurb": "OpenAI's official API — GPT models via the OpenAI-compatible endpoint.",
+  "brandColor": "#412991",
+  "homepage": "https://platform.openai.com",
+  "definition": {
+    "name": "OpenAI",
+    "baseUrl": "https://api.openai.com/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://platform.openai.com/api-keys"
+  }
+}

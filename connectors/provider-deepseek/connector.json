@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["deepseek", "cloud"],
+  "blurb": "DeepSeek's chat and reasoning models via their OpenAI-compatible endpoint.",
+  "brandColor": "#4d6bfe",
+  "homepage": "https://www.deepseek.com",
+  "icon": { "slug": "deepseek" },
+  "definition": {
+    "name": "DeepSeek",
+    "baseUrl": "https://api.deepseek.com/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://platform.deepseek.com/api_keys"
+  }
+}

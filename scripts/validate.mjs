@@ -38,6 +38,7 @@ const CATEGORIES = new Set([
   "Design",
   "Automation",
   "Utilities",
+  "AI Providers",
 ]);
 
 function checkHeaders(where, headers) {
@@ -78,7 +79,7 @@ if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
-const names = { mcp: new Map(), service: new Map(), command: new Map() };
+const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map() };
 let count = 0;
 for (const id of fs.readdirSync(connectorsDir).sort()) {
   const dir = path.join(connectorsDir, id);
@@ -94,7 +95,7 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
   }
   count++;
 
-  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command") fail(`${where}: kind must be "mcp", "service", or "command"`);
+  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider") fail(`${where}: kind must be "mcp", "service", "command", or "provider"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
   if (!CATEGORIES.has(c.category)) fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
   if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
@@ -115,6 +116,31 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
     const cmdKey = String(def.name || "").toLowerCase();
     if (names.command.has(cmdKey)) fail(`${where}: duplicate command name "${def.name}" (also ${names.command.get(cmdKey)})`);
     else names.command.set(cmdKey, id);
+    for (const key of ["homepage"]) {
+      if (c[key] && !/^https:\/\//.test(c[key])) fail(`${where}: ${key} must be https`);
+    }
+    checkIcon(where, dir, c.icon);
+    continue;
+  }
+
+  // ── provider entries: OpenAI-compatible preset; validate + no headers/tools ──
+  if (c.kind === "provider") {
+    if (typeof def.needsApiKey !== "boolean") {
+      fail(`${where}: provider definition.needsApiKey must be a boolean`);
+    }
+    if (!def.baseUrl || !/^https:\/\//.test(def.baseUrl)) {
+      fail(`${where}: provider definition.baseUrl must be an https URL (got ${JSON.stringify(def.baseUrl)})`);
+    }
+    if (def.apiKeyUrl && !/^https:\/\//.test(def.apiKeyUrl)) fail(`${where}: apiKeyUrl must be https`);
+    if (def.defaultModel !== undefined && typeof def.defaultModel !== "string") {
+      fail(`${where}: provider definition.defaultModel must be a string`);
+    }
+    if (def.models !== undefined && (!Array.isArray(def.models) || def.models.some((m) => typeof m !== "string"))) {
+      fail(`${where}: provider definition.models must be an array of strings`);
+    }
+    const provKey = String(def.name || "").toLowerCase();
+    if (names.provider.has(provKey)) fail(`${where}: duplicate provider name "${def.name}" (also ${names.provider.get(provKey)})`);
+    else names.provider.set(provKey, id);
     for (const key of ["homepage"]) {
       if (c[key] && !/^https:\/\//.test(c[key])) fail(`${where}: ${key} must be https`);
     }
@@ -150,7 +176,7 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
 try {
   execFileSync("node", [path.join(root, "scripts", "build-manifest.mjs"), "--check"], { stdio: "pipe" });
 } catch (e) {
-  fail("manifest.json is out of date with connectors/ — run: node scripts/build-manifest.mjs");
+  fail("manifest.json / providers.json are out of date with connectors/ — run: node scripts/build-manifest.mjs");
 }
 
 // ── report ──────────────────────────────────────────────────────────────

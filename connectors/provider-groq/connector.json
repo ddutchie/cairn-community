@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["groq", "fast", "inference", "cloud"],
+  "blurb": "Groq's ultra-fast LPU inference for open models, OpenAI-compatible.",
+  "brandColor": "#f55036",
+  "homepage": "https://groq.com",
+  "definition": {
+    "name": "Groq",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://console.groq.com/keys"
+  }
+}

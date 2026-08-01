@@ -2,12 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/ddutchie/cairn-community/main/schema.json",
   "title": "Cairn Community Connector",
-  "description": "One connectors/<id>/connector.json — an installable MCP server or HTTP service. manifest.json is COMPILED from these by scripts/build-manifest.mjs; never hand-edit the manifest.",
+  "description": "One connectors/<id>/connector.json — an installable MCP server, HTTP service, slash command, or AI provider preset. manifest.json (MCP + services + commands) and providers.json (AI providers) are COMPILED from these by scripts/build-manifest.mjs; never hand-edit the compiled manifests.",
   "type": "object",
   "required": ["kind", "author", "version", "category", "tags", "blurb", "definition"],
   "additionalProperties": false,
   "properties": {
-    "kind": { "type": "string", "enum": ["mcp", "service", "command"] },
+    "kind": { "type": "string", "enum": ["mcp", "service", "command", "provider"] },
     "author": { "type": "string", "description": "GitHub handle/org maintaining this entry." },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "SemVer of THIS entry; bump to push an update to installed users." },
     "category": {
@@ -22,7 +22,8 @@
         "Finance",
         "Design",
         "Automation",
-        "Utilities"
+        "Utilities",
+        "AI Providers"
       ]
     },
     "tags": { "type": "array", "items": { "type": "string" }, "description": "Freeform keywords for search only (not shown as chips)." },
@@ -40,10 +41,24 @@
       }
     },
     "definition": {
-      "oneOf": [{ "$ref": "#/definitions/McpDefinition" }, { "$ref": "#/definitions/ServiceDefinition" }, { "$ref": "#/definitions/CommandDefinition" }]
+      "oneOf": [{ "$ref": "#/definitions/McpDefinition" }, { "$ref": "#/definitions/ServiceDefinition" }, { "$ref": "#/definitions/CommandDefinition" }, { "$ref": "#/definitions/ProviderDefinition" }]
     }
   },
   "definitions": {
+    "ProviderDefinition": {
+      "type": "object",
+      "required": ["name", "baseUrl", "needsApiKey"],
+      "additionalProperties": false,
+      "description": "An AI provider preset — a one-click OpenAI-compatible endpoint installed into Cairn's shared saved-providers list. Compiled into providers.json (a SEPARATE manifest from manifest.json). The user supplies their own API key at install; it is stored in the OS keychain, never here.",
+      "properties": {
+        "name": { "type": "string", "description": "Display name seeded into the saved provider (e.g. \"OpenAI\", \"OpenRouter\")." },
+        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "OpenAI-compatible chat-completions endpoint root (e.g. https://api.openai.com/v1)." },
+        "defaultModel": { "type": "string", "description": "Optional model id to seed the provider with; omit to let the user pick from the live /models list after install." },
+        "needsApiKey": { "type": "boolean", "description": "Whether this endpoint requires an API key. false = keyless / local endpoint." },
+        "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Where the user can obtain a key — rendered as a \"Get a key\" link in the install prompt." },
+        "models": { "type": "array", "items": { "type": "string" }, "description": "Optional curated model ids offered by the picker before a live /models fetch succeeds." }
+      }
+    },
     "CommandDefinition": {
       "type": "object",
       "required": ["name", "insertText", "scope"],

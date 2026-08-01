@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["anthropic", "claude", "cloud"],
+  "blurb": "Anthropic's Claude models via their OpenAI-compatible endpoint.",
+  "brandColor": "#d97757",
+  "homepage": "https://www.anthropic.com",
+  "icon": { "slug": "anthropic" },
+  "definition": {
+    "name": "Anthropic",
+    "baseUrl": "https://api.anthropic.com/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://console.anthropic.com/settings/keys"
+  }
+}

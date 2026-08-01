@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["google", "gemini", "cloud"],
+  "blurb": "Google's Gemini models via the Generative Language OpenAI-compatible endpoint.",
+  "brandColor": "#886fbf",
+  "homepage": "https://ai.google.dev",
+  "icon": { "slug": "googlegemini" },
+  "definition": {
+    "name": "Gemini",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai/",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://aistudio.google.com/apikey"
+  }
+}

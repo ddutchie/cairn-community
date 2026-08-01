@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["neuralwatt", "inference", "cloud"],
+  "blurb": "Neuralwatt — OpenAI-compatible inference endpoint.",
+  "brandColor": "#081a17",
+  "homepage": "https://neuralwatt.com",
+  "definition": {
+    "name": "Neuralwatt",
+    "baseUrl": "https://api.neuralwatt.com/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://portal.neuralwatt.com/"
+  }
+}

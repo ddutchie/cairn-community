@@ -1,0 +1,16 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["merge", "gateway", "router", "cloud"],
+  "blurb": "Merge Gateway — an OpenAI-compatible surface routing to multiple upstream models.",
+  "brandColor": "#4117f4",
+  "homepage": "https://www.merge.dev",
+  "definition": {
+    "name": "Merge Gateway",
+    "baseUrl": "https://api-gateway.merge.dev/v1/openai",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://www.merge.dev"
+  }
+}
