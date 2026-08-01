@@ -5,8 +5,9 @@
   "category": "AI Providers",
   "tags": ["merge", "gateway", "router", "cloud"],
   "blurb": "Merge Gateway — an OpenAI-compatible surface routing to multiple upstream models.",
-  "brandColor": "#4117f4",
+  "brandColor": "#2b2926",
   "homepage": "https://www.merge.dev",
+  "icon": { "file": "icon.svg" },
   "definition": {
     "name": "Merge Gateway",
     "baseUrl": "https://api-gateway.merge.dev/v1/openai",
