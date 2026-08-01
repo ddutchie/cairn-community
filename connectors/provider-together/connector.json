@@ -9,8 +9,8 @@
   "homepage": "https://www.together.ai",
   "definition": {
     "name": "Together AI",
-    "baseUrl": "https://api.together.xyz/v1",
+    "baseUrl": "https://api.together.ai/v1",
     "needsApiKey": true,
-    "apiKeyUrl": "https://api.together.xyz/settings/api-keys"
+    "apiKeyUrl": "https://api.together.ai/settings/api-keys"
   }
 }
