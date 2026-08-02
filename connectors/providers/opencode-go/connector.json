@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["opencode", "go", "cloud"],
+  "blurb": "OpenCode Go — OpenCode's fast-throughput model gateway endpoint.",
+  "brandColor": "#000000",
+  "homepage": "https://opencode.ai",
+  "icon": { "slug": "opencode" },
+  "definition": {
+    "name": "OpenCode Go",
+    "baseUrl": "https://opencode.ai/zen/go/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://opencode.ai"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "provider",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "AI Providers",
+  "tags": ["opencode", "zen", "cloud"],
+  "blurb": "OpenCode Zen — OpenCode's primary model gateway endpoint.",
+  "brandColor": "#000000",
+  "homepage": "https://opencode.ai",
+  "icon": { "slug": "opencode" },
+  "definition": {
+    "name": "OpenCode Zen",
+    "baseUrl": "https://opencode.ai/zen/v1",
+    "needsApiKey": true,
+    "apiKeyUrl": "https://opencode.ai"
+  }
+}
