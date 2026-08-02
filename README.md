@@ -147,6 +147,32 @@ Provider entries never carry `headers`, `operations`, or `toolDefinition` — Ca
 talks to them as a standard OpenAI-compatible client. The key is never in the
 manifest; the user supplies it at install.
 
+Optionally, `definition.credits` declares a **balance/credit endpoint** so Cairn
+can show the user's remaining credits (in Settings → AI) instead of probing the
+default `{base}/v1/key`:
+
+```json
+"definition": {
+  "name": "Neuralwatt",
+  "baseUrl": "https://api.neuralwatt.com/v1",
+  "needsApiKey": true,
+  "apiKeyUrl": "https://portal.neuralwatt.com/",
+  "credits": {
+    "url": "https://api.neuralwatt.com/v1/quota",
+    "shape": "neuralwatt"
+  }
+}
+```
+
+`credits.url` must be an absolute **https** endpoint; `shape` selects the parser
+and is one of `openrouter` ({ data: { limit, limit_remaining, usage, is_free_tier } }),
+`deepseek` ({ is_available, balance_infos: [{ currency, total_balance, … }] }),
+`openai-grants` ({ total_granted, total_used, total_available }), or `neuralwatt`
+({ balance: { credits_remaining_usd, total_credits_usd, credits_used_usd } }).
+Once added, verify it live before merging with `npm run test:credits` (keys in
+`.env.test`, copied from `.env.test.example`); the script hits every configured
+balance endpoint and fails if one doesn't return a parseable 2xx body.
+
 ### Logos
 
 Set `icon` to exactly one of:

@@ -12,6 +12,10 @@
     "name": "DeepSeek",
     "baseUrl": "https://api.deepseek.com/v1",
     "needsApiKey": true,
-    "apiKeyUrl": "https://platform.deepseek.com/api_keys"
+    "apiKeyUrl": "https://platform.deepseek.com/api_keys",
+    "credits": {
+      "url": "https://api.deepseek.com/user/balance",
+      "shape": "deepseek"
+    }
   }
 }

@@ -50,18 +50,34 @@ function resolveIconSvg(id, dir, icon) {
   return normalizeSvg(raw, label); // sanitize + tint at compile time
 }
 
+function findConnectorDirs(baseDir) {
+  const results = [];
+  if (!fs.existsSync(baseDir)) return results;
+  const entries = fs.readdirSync(baseDir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(baseDir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...findConnectorDirs(fullPath));
+    } else if (entry.isFile() && entry.name === "connector.json") {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
+
 function build() {
   const mcpServers = [];
   const services = [];
   const commands = [];
   const providers = [];
-  const ids = fs.readdirSync(connectorsDir).filter((d) =>
-    fs.existsSync(path.join(connectorsDir, d, "connector.json")),
-  ).sort();
+  const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
+    path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
+  );
 
-  for (const id of ids) {
-    const dir = path.join(connectorsDir, id);
-    const c = JSON.parse(fs.readFileSync(path.join(dir, "connector.json"), "utf8"));
+  for (const jsonPath of jsonPaths) {
+    const dir = path.dirname(jsonPath);
+    const id = path.basename(dir);
+    const c = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
     const iconSvg = resolveIconSvg(id, dir, c.icon);
     const entry = {
       id,

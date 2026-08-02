@@ -56,7 +56,21 @@
         "defaultModel": { "type": "string", "description": "Optional model id to seed the provider with; omit to let the user pick from the live /models list after install." },
         "needsApiKey": { "type": "boolean", "description": "Whether this endpoint requires an API key. false = keyless / local endpoint." },
         "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Where the user can obtain a key — rendered as a \"Get a key\" link in the install prompt." },
-        "models": { "type": "array", "items": { "type": "string" }, "description": "Optional curated model ids offered by the picker before a live /models fetch succeeds." }
+        "models": { "type": "array", "items": { "type": "string" }, "description": "Optional curated model ids offered by the picker before a live /models fetch succeeds." },
+        "credits": {
+          "type": "object",
+          "required": ["url", "shape"],
+          "additionalProperties": false,
+          "description": "Optional credit/balance lookup. When present, Cairn queries this endpoint (instead of the default {base}/v1/key probe) to show remaining credits, and parses the response per `shape`.",
+          "properties": {
+            "url": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Absolute HTTPS endpoint returning the provider's credit/balance info (some providers expose it off the chat base, e.g. DeepSeek at the host root)." },
+            "shape": {
+              "type": "string",
+              "enum": ["openrouter", "deepseek", "openai-grants", "neuralwatt"],
+              "description": "Response-shape parser: \"openrouter\" = { data: { limit, limit_remaining, usage, is_free_tier } }; \"deepseek\" = { is_available, balance_infos: [{ currency, total_balance, ... }] }; \"openai-grants\" = { total_granted, total_used, total_available }; \"neuralwatt\" = { balance: { credits_remaining_usd, total_credits_usd, credits_used_usd } }."
+            }
+          }
+        }
       }
     },
     "CommandDefinition": {

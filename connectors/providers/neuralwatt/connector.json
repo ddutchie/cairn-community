@@ -11,6 +11,10 @@
     "name": "Neuralwatt",
     "baseUrl": "https://api.neuralwatt.com/v1",
     "needsApiKey": true,
-    "apiKeyUrl": "https://portal.neuralwatt.com/"
+    "apiKeyUrl": "https://portal.neuralwatt.com/",
+    "credits": {
+      "url": "https://api.neuralwatt.com/v1/quota",
+      "shape": "neuralwatt"
+    }
   }
 }

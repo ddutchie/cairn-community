@@ -28,11 +28,25 @@ const connectorsDir = path.join(root, "connectors");
 const logosDir = path.join(root, "logos");
 const RAW = "https://raw.githubusercontent.com/simple-icons/simple-icons/master/icons";
 
+function findConnectorDirs(baseDir) {
+  const results = [];
+  if (!fs.existsSync(baseDir)) return results;
+  const entries = fs.readdirSync(baseDir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(baseDir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...findConnectorDirs(fullPath));
+    } else if (entry.isFile() && entry.name === "connector.json") {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
+
 function connectorSlugs() {
   const slugs = new Set();
-  for (const id of fs.readdirSync(connectorsDir)) {
-    const f = path.join(connectorsDir, id, "connector.json");
-    if (!fs.existsSync(f)) continue;
+  const files = findConnectorDirs(connectorsDir);
+  for (const f of files) {
     try {
       const c = JSON.parse(fs.readFileSync(f, "utf8"));
       if (c.icon?.slug) slugs.add(String(c.icon.slug));

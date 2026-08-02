@@ -12,6 +12,10 @@
     "name": "OpenRouter",
     "baseUrl": "https://openrouter.ai/api/v1",
     "needsApiKey": true,
-    "apiKeyUrl": "https://openrouter.ai/keys"
+    "apiKeyUrl": "https://openrouter.ai/keys",
+    "credits": {
+      "url": "https://openrouter.ai/api/v1/key",
+      "shape": "openrouter"
+    }
   }
 }

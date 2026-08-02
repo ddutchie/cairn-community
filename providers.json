@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-01T16:50:01Z",
+  "updatedAt": "2026-08-02T14:08:48Z",
   "providers": [
     {
-      "id": "provider-anthropic",
+      "id": "anthropic",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -24,7 +24,7 @@
       }
     },
     {
-      "id": "provider-deepseek",
+      "id": "deepseek",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -40,11 +40,15 @@
         "name": "DeepSeek",
         "baseUrl": "https://api.deepseek.com/v1",
         "needsApiKey": true,
-        "apiKeyUrl": "https://platform.deepseek.com/api_keys"
+        "apiKeyUrl": "https://platform.deepseek.com/api_keys",
+        "credits": {
+          "url": "https://api.deepseek.com/user/balance",
+          "shape": "deepseek"
+        }
       }
     },
     {
-      "id": "provider-fireworks",
+      "id": "fireworks",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -65,7 +69,7 @@
       }
     },
     {
-      "id": "provider-gemini",
+      "id": "gemini",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -86,7 +90,7 @@
       }
     },
     {
-      "id": "provider-groq",
+      "id": "groq",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -107,7 +111,7 @@
       }
     },
     {
-      "id": "provider-merge",
+      "id": "merge",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -129,7 +133,7 @@
       }
     },
     {
-      "id": "provider-neuralwatt",
+      "id": "neuralwatt",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -145,11 +149,15 @@
         "name": "Neuralwatt",
         "baseUrl": "https://api.neuralwatt.com/v1",
         "needsApiKey": true,
-        "apiKeyUrl": "https://portal.neuralwatt.com/"
+        "apiKeyUrl": "https://portal.neuralwatt.com/",
+        "credits": {
+          "url": "https://api.neuralwatt.com/v1/quota",
+          "shape": "neuralwatt"
+        }
       }
     },
     {
-      "id": "provider-openai",
+      "id": "openai",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -169,7 +177,7 @@
       }
     },
     {
-      "id": "provider-openrouter",
+      "id": "openrouter",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",
@@ -187,11 +195,15 @@
         "name": "OpenRouter",
         "baseUrl": "https://openrouter.ai/api/v1",
         "needsApiKey": true,
-        "apiKeyUrl": "https://openrouter.ai/keys"
+        "apiKeyUrl": "https://openrouter.ai/keys",
+        "credits": {
+          "url": "https://openrouter.ai/api/v1/key",
+          "shape": "openrouter"
+        }
       }
     },
     {
-      "id": "provider-pollinations",
+      "id": "pollinations",
       "author": "cairn",
       "version": "1.1.0",
       "category": "AI Providers",
@@ -213,7 +225,7 @@
       }
     },
     {
-      "id": "provider-together",
+      "id": "together",
       "author": "cairn",
       "version": "1.0.0",
       "category": "AI Providers",

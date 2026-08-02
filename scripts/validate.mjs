@@ -74,6 +74,21 @@ function checkIcon(where, dir, icon) {
   }
 }
 
+function findConnectorDirs(baseDir) {
+  const results = [];
+  if (!fs.existsSync(baseDir)) return results;
+  const entries = fs.readdirSync(baseDir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(baseDir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...findConnectorDirs(fullPath));
+    } else if (entry.isFile() && entry.name === "connector.json") {
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
+
 // ── validate every connector folder ────────────────────────────────────────
 if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
@@ -81,16 +96,19 @@ if (!fs.existsSync(connectorsDir)) {
 }
 const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map() };
 let count = 0;
-for (const id of fs.readdirSync(connectorsDir).sort()) {
-  const dir = path.join(connectorsDir, id);
-  const jsonPath = path.join(dir, "connector.json");
-  if (!fs.existsSync(jsonPath)) continue;
-  const where = `connectors/${id}`;
+const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
+  path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
+);
+for (const jsonPath of jsonPaths) {
+  const dir = path.dirname(jsonPath);
+  const id = path.basename(dir);
+  const relPath = path.relative(root, jsonPath);
+  const where = relPath;
   let c;
   try {
     c = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
   } catch (e) {
-    fail(`${where}/connector.json: invalid JSON — ${e.message}`);
+    fail(`${where}: invalid JSON — ${e.message}`);
     continue;
   }
   count++;
@@ -137,6 +155,19 @@ for (const id of fs.readdirSync(connectorsDir).sort()) {
     }
     if (def.models !== undefined && (!Array.isArray(def.models) || def.models.some((m) => typeof m !== "string"))) {
       fail(`${where}: provider definition.models must be an array of strings`);
+    }
+    if (def.credits !== undefined) {
+      const c = def.credits;
+      if (typeof c !== "object" || c === null) {
+        fail(`${where}: provider definition.credits must be an object`);
+      } else {
+        if (!c.url || !/^https:\/\//.test(c.url)) fail(`${where}: credits.url must be an https URL (got ${JSON.stringify(c.url)})`);
+        const SHAPES = ["openrouter", "deepseek", "openai-grants", "neuralwatt", "merge"];
+        if (!SHAPES.includes(c.shape)) fail(`${where}: credits.shape must be one of ${SHAPES.join(" | ")} (got ${JSON.stringify(c.shape)})`);
+        for (const key of Object.keys(c)) {
+          if (key !== "url" && key !== "shape") fail(`${where}: credits has unknown property "${key}"`);
+        }
+      }
     }
     const provKey = String(def.name || "").toLowerCase();
     if (names.provider.has(provKey)) fail(`${where}: duplicate provider name "${def.name}" (also ${names.provider.get(provKey)})`);
