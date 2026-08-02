@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-02T16:17:09Z",
+  "updatedAt": "2026-08-02T16:18:08Z",
   "providers": [
     {
       "id": "anthropic",
@@ -186,7 +186,7 @@
         "go",
         "cloud"
       ],
-      "blurb": "OpenCode Go — OpenCode's fast-throughput model gateway endpoint.",
+      "blurb": "OpenCode Go — Flat $10/month subscription providing a curated set of open-source models with generous usage caps.",
       "brandColor": "#000000",
       "homepage": "https://opencode.ai",
       "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M22 24H2V0h20zM17 4.8H7v14.4h10z\"/></svg>",
@@ -207,7 +207,7 @@
         "zen",
         "cloud"
       ],
-      "blurb": "OpenCode Zen — OpenCode's primary model gateway endpoint.",
+      "blurb": "OpenCode Zen — Pay-as-you-go marketplace for premium models (OpenAI, Anthropic, etc.) with no monthly commitment.",
       "brandColor": "#000000",
       "homepage": "https://opencode.ai",
       "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M22 24H2V0h20zM17 4.8H7v14.4h10z\"/></svg>",

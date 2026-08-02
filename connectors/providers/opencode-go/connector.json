@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "category": "AI Providers",
   "tags": ["opencode", "go", "cloud"],
-  "blurb": "OpenCode Go — OpenCode's fast-throughput model gateway endpoint.",
+  "blurb": "OpenCode Go — Flat $10/month subscription providing a curated set of open-source models with generous usage caps.",
   "brandColor": "#000000",
   "homepage": "https://opencode.ai",
   "icon": { "slug": "opencode" },

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "category": "AI Providers",
   "tags": ["opencode", "zen", "cloud"],
-  "blurb": "OpenCode Zen — OpenCode's primary model gateway endpoint.",
+  "blurb": "OpenCode Zen — Pay-as-you-go marketplace for premium models (OpenAI, Anthropic, etc.) with no monthly commitment.",
   "brandColor": "#000000",
   "homepage": "https://opencode.ai",
   "icon": { "slug": "opencode" },
