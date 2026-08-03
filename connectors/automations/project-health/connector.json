@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["health", "project", "dashboard", "metrics"],
+  "blurb": "A project health snapshot: open work, completion, and risk.",
+  "brandColor": "#6366f1",
+  "definition": {
+    "name": "Project health",
+    "description": "Writes a project health note with completion, open work, and risks.",
+    "instructions": "Assess the project's health: completion rate (done vs total cards), open tasks by priority, any overdue or blocked work, and recent activity. Write (or update) a note titled 'Project health' with sections: Health (Good / At risk / Needs attention), Completion, Open work, Blocked & overdue, and Suggested focus.",
+    "schedule": { "kind": "every", "expr": "every 1 week" },
+    "approvalMode": "auto"
+  }
+}

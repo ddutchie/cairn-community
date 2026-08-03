@@ -2,14 +2,38 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/ddutchie/cairn-community/main/schema.json",
   "title": "Cairn Community Connector",
-  "description": "One connectors/<id>/connector.json — an installable MCP server, HTTP service, slash command, or AI provider preset. manifest.json (MCP + services + commands) and providers.json (AI providers) are COMPILED from these by scripts/build-manifest.mjs; never hand-edit the compiled manifests.",
+  "description": "One connectors/<id>/connector.json \u2014 an installable MCP server, HTTP service, slash command, or AI provider preset. manifest.json (MCP + services + commands) and providers.json (AI providers) are COMPILED from these by scripts/build-manifest.mjs; never hand-edit the compiled manifests.",
   "type": "object",
-  "required": ["kind", "author", "version", "category", "tags", "blurb", "definition"],
+  "required": [
+    "kind",
+    "author",
+    "version",
+    "category",
+    "tags",
+    "blurb",
+    "definition"
+  ],
   "additionalProperties": false,
   "properties": {
-    "kind": { "type": "string", "enum": ["mcp", "service", "command", "provider"] },
-    "author": { "type": "string", "description": "GitHub handle/org maintaining this entry." },
-    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "SemVer of THIS entry; bump to push an update to installed users." },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "automation",
+        "command",
+        "mcp",
+        "provider",
+        "service"
+      ]
+    },
+    "author": {
+      "type": "string",
+      "description": "GitHub handle/org maintaining this entry."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer of THIS entry; bump to push an update to installed users."
+    },
     "category": {
       "type": "string",
       "description": "The single category chip this connector groups under in Browse Community.",
@@ -26,47 +50,128 @@
         "AI Providers"
       ]
     },
-    "tags": { "type": "array", "items": { "type": "string" }, "description": "Freeform keywords for search only (not shown as chips)." },
-    "blurb": { "type": "string", "maxLength": 200, "description": "One-line description for the browse card." },
-    "brandColor": { "type": "string", "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$" },
-    "homepage": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Freeform keywords for search only (not shown as chips)."
+    },
+    "blurb": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "One-line description for the browse card."
+    },
+    "brandColor": {
+      "type": "string",
+      "pattern": "^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
     "icon": {
       "type": "object",
-      "description": "Connector logo. Use exactly ONE of: slug (a simpleicons.org slug — fetched + sanitized by CI), svg (inline SVG string), or file (a .svg next to connector.json). Omit for the app's generic fallback.",
+      "description": "Connector logo. Use exactly ONE of: slug (a simpleicons.org slug \u2014 fetched + sanitized by CI), svg (inline SVG string), or file (a .svg next to connector.json). Omit for the app's generic fallback.",
       "additionalProperties": false,
       "properties": {
-        "slug": { "type": "string", "description": "simpleicons.org slug, e.g. \"jira\" (CC0)." },
-        "svg": { "type": "string", "description": "Inline SVG markup (allowlist-sanitized at build)." },
-        "file": { "type": "string", "description": "Relative .svg filename beside connector.json." }
+        "slug": {
+          "type": "string",
+          "description": "simpleicons.org slug, e.g. \"jira\" (CC0)."
+        },
+        "svg": {
+          "type": "string",
+          "description": "Inline SVG markup (allowlist-sanitized at build)."
+        },
+        "file": {
+          "type": "string",
+          "description": "Relative .svg filename beside connector.json."
+        }
       }
     },
     "definition": {
-      "oneOf": [{ "$ref": "#/definitions/McpDefinition" }, { "$ref": "#/definitions/ServiceDefinition" }, { "$ref": "#/definitions/CommandDefinition" }, { "$ref": "#/definitions/ProviderDefinition" }]
+      "oneOf": [
+        {
+          "$ref": "#/definitions/McpDefinition"
+        },
+        {
+          "$ref": "#/definitions/ServiceDefinition"
+        },
+        {
+          "$ref": "#/definitions/CommandDefinition"
+        },
+        {
+          "$ref": "#/definitions/ProviderDefinition"
+        }
+      ]
     }
   },
   "definitions": {
     "ProviderDefinition": {
       "type": "object",
-      "required": ["name", "baseUrl", "needsApiKey"],
+      "required": [
+        "name",
+        "baseUrl",
+        "needsApiKey"
+      ],
       "additionalProperties": false,
-      "description": "An AI provider preset — a one-click OpenAI-compatible endpoint installed into Cairn's shared saved-providers list. Compiled into providers.json (a SEPARATE manifest from manifest.json). The user supplies their own API key at install; it is stored in the OS keychain, never here.",
+      "description": "An AI provider preset \u2014 a one-click OpenAI-compatible endpoint installed into Cairn's shared saved-providers list. Compiled into providers.json (a SEPARATE manifest from manifest.json). The user supplies their own API key at install; it is stored in the OS keychain, never here.",
       "properties": {
-        "name": { "type": "string", "description": "Display name seeded into the saved provider (e.g. \"OpenAI\", \"OpenRouter\")." },
-        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "OpenAI-compatible chat-completions endpoint root (e.g. https://api.openai.com/v1)." },
-        "defaultModel": { "type": "string", "description": "Optional model id to seed the provider with; omit to let the user pick from the live /models list after install." },
-        "needsApiKey": { "type": "boolean", "description": "Whether this endpoint requires an API key. false = keyless / local endpoint." },
-        "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Where the user can obtain a key — rendered as a \"Get a key\" link in the install prompt." },
-        "models": { "type": "array", "items": { "type": "string" }, "description": "Optional curated model ids offered by the picker before a live /models fetch succeeds." },
+        "name": {
+          "type": "string",
+          "description": "Display name seeded into the saved provider (e.g. \"OpenAI\", \"OpenRouter\")."
+        },
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "OpenAI-compatible chat-completions endpoint root (e.g. https://api.openai.com/v1)."
+        },
+        "defaultModel": {
+          "type": "string",
+          "description": "Optional model id to seed the provider with; omit to let the user pick from the live /models list after install."
+        },
+        "needsApiKey": {
+          "type": "boolean",
+          "description": "Whether this endpoint requires an API key. false = keyless / local endpoint."
+        },
+        "apiKeyUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "Where the user can obtain a key \u2014 rendered as a \"Get a key\" link in the install prompt."
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional curated model ids offered by the picker before a live /models fetch succeeds."
+        },
         "credits": {
           "type": "object",
-          "required": ["url", "shape"],
+          "required": [
+            "url",
+            "shape"
+          ],
           "additionalProperties": false,
           "description": "Optional credit/balance lookup. When present, Cairn queries this endpoint (instead of the default {base}/v1/key probe) to show remaining credits, and parses the response per `shape`.",
           "properties": {
-            "url": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Absolute HTTPS endpoint returning the provider's credit/balance info (some providers expose it off the chat base, e.g. DeepSeek at the host root)." },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "description": "Absolute HTTPS endpoint returning the provider's credit/balance info (some providers expose it off the chat base, e.g. DeepSeek at the host root)."
+            },
             "shape": {
               "type": "string",
-              "enum": ["openrouter", "deepseek", "openai-grants", "neuralwatt"],
+              "enum": [
+                "openrouter",
+                "deepseek",
+                "openai-grants",
+                "neuralwatt"
+              ],
               "description": "Response-shape parser: \"openrouter\" = { data: { limit, limit_remaining, usage, is_free_tier } }; \"deepseek\" = { is_available, balance_infos: [{ currency, total_balance, ... }] }; \"openai-grants\" = { total_granted, total_used, total_available }; \"neuralwatt\" = { balance: { credits_remaining_usd, total_credits_usd, credits_used_usd } }."
             }
           }
@@ -75,77 +180,224 @@
     },
     "CommandDefinition": {
       "type": "object",
-      "required": ["name", "insertText", "scope"],
+      "required": [
+        "name",
+        "insertText",
+        "scope"
+      ],
       "additionalProperties": false,
-      "description": "A slash command — a reusable prompt/text snippet surfaced in Cairn's chat and/or coding-agent input palettes. Installed workspace-globally with source:\"community\". Commands never execute code; they only insert `insertText` into the input for the user to send.",
+      "description": "A slash command \u2014 a reusable prompt/text snippet surfaced in Cairn's chat and/or coding-agent input palettes. Installed workspace-globally with source:\"community\". Commands never execute code; they only insert `insertText` into the input for the user to send.",
       "properties": {
-        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "The command trigger, invoked as /name. Lowercase, digits and hyphens only." },
-        "description": { "type": "string", "maxLength": 200, "description": "Shown beside the command in the palette and Browse Community." },
-        "insertText": { "type": "string", "minLength": 1, "description": "The text inserted into the input when the command is chosen. Typically a prompt template; may contain [placeholder] hints for the user to fill in." },
-        "scope": { "type": "string", "enum": ["chat", "agent", "both"], "description": "Which input pane(s) the command appears in: the AI chat panel, the coding-agent input, or both." }
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "The command trigger, invoked as /name. Lowercase, digits and hyphens only."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Shown beside the command in the palette and Browse Community."
+        },
+        "insertText": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The text inserted into the input when the command is chosen. Typically a prompt template; may contain [placeholder] hints for the user to fill in."
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "chat",
+            "agent",
+            "both"
+          ],
+          "description": "Which input pane(s) the command appears in: the AI chat panel, the coding-agent input, or both."
+        }
       }
     },
     "McpDefinition": {
       "type": "object",
-      "required": ["name", "transport", "baseUrl", "enabled"],
+      "required": [
+        "name",
+        "transport",
+        "baseUrl",
+        "enabled"
+      ],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string" },
-        "description": { "type": "string" },
-        "transport": { "type": "string", "enum": ["sse", "http"] },
-        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-        "headers": { "type": "object", "additionalProperties": { "type": "string" } },
-        "authMode": { "type": "string", "enum": ["none", "oauth"] },
-        "oauthScope": { "type": "string" },
-        "disabledTools": { "type": "array", "items": { "type": "string" } },
-        "enabled": { "type": "boolean" }
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "transport": {
+          "type": "string",
+          "enum": [
+            "sse",
+            "http"
+          ]
+        },
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "authMode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "oauth"
+          ]
+        },
+        "oauthScope": {
+          "type": "string"
+        },
+        "disabledTools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enabled": {
+          "type": "boolean"
+        }
       }
     },
     "ServiceDefinition": {
       "type": "object",
-      "required": ["name", "enabled"],
+      "required": [
+        "name",
+        "enabled"
+      ],
       "additionalProperties": false,
       "description": "An HTTP service. Either a legacy single-op (apiUrl + method + toolDefinition) OR a multi-op service (baseUrl + operations[]). Multi-op is preferred: one connector can expose several tools that share a base URL + headers/auth.",
       "properties": {
-        "name": { "type": "string" },
-        "description": { "type": "string" },
-        "apiUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Legacy single-op endpoint. Use baseUrl + operations for multi-op." },
-        "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
-        "headers": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Shared across all operations. Use <API_KEY> as a placeholder to inject the stored key." },
-        "toolDefinition": { "type": "string", "description": "Legacy single-op stringified OpenAI tool JSON." },
-        "baseUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Base URL for multi-op services; each operation's path is appended." },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "apiUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "Legacy single-op endpoint. Use baseUrl + operations for multi-op."
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Shared across all operations. Use <API_KEY> as a placeholder to inject the stored key."
+        },
+        "toolDefinition": {
+          "type": "string",
+          "description": "Legacy single-op stringified OpenAI tool JSON."
+        },
+        "baseUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "Base URL for multi-op services; each operation's path is appended."
+        },
         "operations": {
           "type": "array",
           "description": "Multi-op definition. Each operation becomes its own namespaced tool (svc__<id>__<opName>).",
           "items": {
             "type": "object",
-            "required": ["name", "method", "toolDefinition"],
+            "required": [
+              "name",
+              "method",
+              "toolDefinition"
+            ],
             "additionalProperties": false,
             "properties": {
-              "name": { "type": "string", "description": "Un-namespaced tool name, unique within the service." },
-              "description": { "type": "string" },
-              "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE"] },
-              "path": { "type": "string", "description": "Appended to baseUrl. {placeholder} segments are filled from arguments, e.g. /repos/{owner}/{repo}/issues/{number}." },
-              "toolDefinition": { "type": "string", "description": "Stringified OpenAI tool JSON for this operation." },
+              "name": {
+                "type": "string",
+                "description": "Un-namespaced tool name, unique within the service."
+              },
+              "description": {
+                "type": "string"
+              },
+              "method": {
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "DELETE"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "description": "Appended to baseUrl. {placeholder} segments are filled from arguments, e.g. /repos/{owner}/{repo}/issues/{number}."
+              },
+              "toolDefinition": {
+                "type": "string",
+                "description": "Stringified OpenAI tool JSON for this operation."
+              },
               "paramLocations": {
                 "type": "object",
-                "additionalProperties": { "type": "string", "enum": ["path", "query", "body"] },
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "path",
+                    "query",
+                    "body"
+                  ]
+                },
                 "description": "Where each argument goes. Args named by a {placeholder} in path are auto 'path'. Unlisted args default to query (GET/DELETE) or body (POST/PUT)."
               },
               "query": {
                 "type": "object",
-                "additionalProperties": { "type": "string" },
+                "additionalProperties": {
+                  "type": "string"
+                },
                 "description": "Static query params ALWAYS sent for this operation (e.g. units, format, or a fixed field list). Supplied by the connector so results don't depend on the model passing an optional arg. A model arg of the same name overrides."
               },
-              "responseKeys": { "type": "array", "items": { "type": "string" } }
+              "responseKeys": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
-        "responseKeys": { "type": "array", "items": { "type": "string" }, "description": "Default response key allow-list (an operation may override it)." },
-        "apiKeyUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "responseKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Default response key allow-list (an operation may override it)."
+        },
+        "apiKeyUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
         "authMode": {
           "type": "string",
-          "enum": ["none", "oauth"],
+          "enum": [
+            "none",
+            "oauth"
+          ],
           "description": "'none' (default) = static/keychain header secrets. 'oauth' = OAuth 2.1 browser sign-in; Cairn auto-refreshes tokens and injects Authorization: Bearer per request."
         },
         "oauth": {
@@ -153,15 +405,95 @@
           "additionalProperties": false,
           "description": "OAuth parameters for authMode:'oauth'. Omit serverUrl to run discovery + dynamic client registration against the apiUrl/baseUrl origin (works for any modern DCR-capable authorization server).",
           "properties": {
-            "serverUrl": { "type": "string", "format": "uri", "pattern": "^https://", "description": "Authorization-server discovery base (defaults to the apiUrl/baseUrl origin)." },
-            "scope": { "type": "string", "description": "Requested OAuth scope (space-delimited)." },
-            "clientId": { "type": "string", "description": "Preregistered client id for vendors without DCR (Phase C)." },
-            "authorizationUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
-            "tokenUrl": { "type": "string", "format": "uri", "pattern": "^https://" }
+            "serverUrl": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://",
+              "description": "Authorization-server discovery base (defaults to the apiUrl/baseUrl origin)."
+            },
+            "scope": {
+              "type": "string",
+              "description": "Requested OAuth scope (space-delimited)."
+            },
+            "clientId": {
+              "type": "string",
+              "description": "Preregistered client id for vendors without DCR (Phase C)."
+            },
+            "authorizationUrl": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://"
+            },
+            "tokenUrl": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://"
+            }
           }
         },
-        "enabled": { "type": "boolean" }
+        "enabled": {
+          "type": "boolean"
+        }
       }
+    },
+    "automationDefinition": {
+      "type": "object",
+      "description": "Automation recipe: instructions + schedule the agent runs on. Installed by pre-filling the New Automation form (user can tweak schedule/approval before saving).",
+      "required": [
+        "name",
+        "instructions",
+        "schedule"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name prefilled into the automation."
+        },
+        "description": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "string",
+          "description": "Prompt replayed on every run \u2014 only data tools (notes/tasks/tags/boards), no shell."
+        },
+        "schedule": {
+          "type": "object",
+          "required": [
+            "kind",
+            "expr"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "cron",
+                "every",
+                "once"
+              ]
+            },
+            "expr": {
+              "type": "string",
+              "description": "cron (5-field) | 'every N minutes/hours/days/weeks' | ISO datetime"
+            },
+            "timezone": {
+              "type": "string"
+            }
+          }
+        },
+        "approvalMode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "ask"
+          ],
+          "description": "auto = writes run freely; ask = park writes behind the approval inbox."
+        },
+        "maxRuns": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

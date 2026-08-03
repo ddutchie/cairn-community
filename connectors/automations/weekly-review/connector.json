@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["review", "weekly", "planning", "notes"],
+  "blurb": "Summarise the week's completed work and draft a review note.",
+  "brandColor": "#8b5cf6",
+  "definition": {
+    "name": "Weekly review",
+    "description": "Pulls this week's Done cards and recent notes, then drafts a review note.",
+    "instructions": "Look at the project's board activity for this week. Summarise what was completed (Done cards), what's still open, and any patterns worth noting. Then write a concise review note titled 'Weekly review — <date>' with sections: Completed, In progress, Blocked, and Next week. Keep it tight and factual.",
+    "schedule": { "kind": "cron", "expr": "0 9 * * 1" },
+    "approvalMode": "auto"
+  }
+}

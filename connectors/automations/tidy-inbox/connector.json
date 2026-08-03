@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["inbox", "organise", "tags", "capture"],
+  "blurb": "Organise recent captures: tag, link, and tidy notes.",
+  "brandColor": "#10b981",
+  "definition": {
+    "name": "Tidy inbox",
+    "description": "Tags recent untagged notes and surfaces suggested connections.",
+    "instructions": "Scan the most recent notes that have no tags. For each, infer a sensible tag from the content (create the tag if needed) and apply it. If two or more notes clearly relate to each other, note the suggested link. Finish with a short summary note 'Tidy inbox — <date>' listing what was tagged and any connections found. Do not delete anything.",
+    "schedule": { "kind": "every", "expr": "every 24 hours" },
+    "approvalMode": "auto"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["morning", "brief", "overdue", "due", "tasks"],
+  "blurb": "A morning brief of what's overdue and due today.",
+  "brandColor": "#f59e0b",
+  "definition": {
+    "name": "Morning brief",
+    "description": "Writes a short daily note of overdue tasks and tasks due today.",
+    "instructions": "Find overdue tasks and tasks due today in the project. Write a brief note titled 'Morning brief — <date>' listing: Overdue (soonest first, with priority), Due today, and a one-line suggested focus for the day. If nothing is overdue or due, say so in one line.",
+    "schedule": { "kind": "cron", "expr": "0 9 * * *" },
+    "approvalMode": "auto"
+  }
+}

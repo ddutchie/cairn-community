@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-03T20:21:11Z",
+  "automations": [
+    {
+      "id": "morning-brief",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "morning",
+        "brief",
+        "overdue",
+        "due",
+        "tasks"
+      ],
+      "blurb": "A morning brief of what's overdue and due today.",
+      "brandColor": "#f59e0b",
+      "definition": {
+        "name": "Morning brief",
+        "description": "Writes a short daily note of overdue tasks and tasks due today.",
+        "instructions": "Find overdue tasks and tasks due today in the project. Write a brief note titled 'Morning brief — <date>' listing: Overdue (soonest first, with priority), Due today, and a one-line suggested focus for the day. If nothing is overdue or due, say so in one line.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 9 * * *"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "project-health",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "health",
+        "project",
+        "dashboard",
+        "metrics"
+      ],
+      "blurb": "A project health snapshot: open work, completion, and risk.",
+      "brandColor": "#6366f1",
+      "definition": {
+        "name": "Project health",
+        "description": "Writes a project health note with completion, open work, and risks.",
+        "instructions": "Assess the project's health: completion rate (done vs total cards), open tasks by priority, any overdue or blocked work, and recent activity. Write (or update) a note titled 'Project health' with sections: Health (Good / At risk / Needs attention), Completion, Open work, Blocked & overdue, and Suggested focus.",
+        "schedule": {
+          "kind": "every",
+          "expr": "every 1 week"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "tidy-inbox",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "inbox",
+        "organise",
+        "tags",
+        "capture"
+      ],
+      "blurb": "Organise recent captures: tag, link, and tidy notes.",
+      "brandColor": "#10b981",
+      "definition": {
+        "name": "Tidy inbox",
+        "description": "Tags recent untagged notes and surfaces suggested connections.",
+        "instructions": "Scan the most recent notes that have no tags. For each, infer a sensible tag from the content (create the tag if needed) and apply it. If two or more notes clearly relate to each other, note the suggested link. Finish with a short summary note 'Tidy inbox — <date>' listing what was tagged and any connections found. Do not delete anything.",
+        "schedule": {
+          "kind": "every",
+          "expr": "every 24 hours"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "weekly-review",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "review",
+        "weekly",
+        "planning",
+        "notes"
+      ],
+      "blurb": "Summarise the week's completed work and draft a review note.",
+      "brandColor": "#8b5cf6",
+      "definition": {
+        "name": "Weekly review",
+        "description": "Pulls this week's Done cards and recent notes, then drafts a review note.",
+        "instructions": "Look at the project's board activity for this week. Summarise what was completed (Done cards), what's still open, and any patterns worth noting. Then write a concise review note titled 'Weekly review — <date>' with sections: Completed, In progress, Blocked, and Next week. Keep it tight and factual.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 9 * * 1"
+        },
+        "approvalMode": "auto"
+      }
+    }
+  ]
+}

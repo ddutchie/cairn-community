@@ -24,6 +24,7 @@ const connectorsDir = path.join(root, "connectors");
 const logosDir = path.join(root, "logos");
 const manifestPath = path.join(root, "manifest.json");
 const providersPath = path.join(root, "providers.json");
+const automationsPath = path.join(root, "automations.json");
 
 function resolveIconSvg(id, dir, icon) {
   if (!icon || typeof icon !== "object") return undefined;
@@ -70,6 +71,7 @@ function build() {
   const services = [];
   const commands = [];
   const providers = [];
+  const automations = [];
   const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
     path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
   );
@@ -94,6 +96,7 @@ function build() {
     if (c.kind === "service") services.push(entry);
     else if (c.kind === "command") commands.push(entry);
     else if (c.kind === "provider") providers.push(entry);
+    else if (c.kind === "automation") automations.push(entry);
     else mcpServers.push(entry);
   }
 
@@ -116,12 +119,20 @@ function build() {
       updatedAt: now,
       providers,
     },
+    // automations.json — scheduled automation recipes. Also a SEPARATE manifest
+    // so this catalog can evolve independently of connectors/commands/providers.
+    automations: {
+      version: 1,
+      updatedAt: now,
+      automations,
+    },
   };
 }
 
 const built = build();
 const manifestJson = JSON.stringify(built.manifest, null, 2) + "\n";
 const providersJson = JSON.stringify(built.providers, null, 2) + "\n";
+const automationsJson = JSON.stringify(built.automations, null, 2) + "\n";
 
 if (process.argv.includes("--check")) {
   // Ignore updatedAt drift (timestamp changes every build); compare the rest.
@@ -137,13 +148,20 @@ if (process.argv.includes("--check")) {
     console.error("✗ providers.json is out of date -- run: node scripts/build-manifest.mjs");
     stale = true;
   }
+  const currentAutomations = fs.existsSync(automationsPath) ? fs.readFileSync(automationsPath, "utf8") : "";
+  if (strip(currentAutomations) !== strip(automationsJson)) {
+    console.error("✗ automations.json is out of date -- run: node scripts/build-manifest.mjs");
+    stale = true;
+  }
   if (stale) process.exit(1);
-  console.log("✓ manifest.json and providers.json are up to date");
+  console.log("✓ manifest.json, providers.json and automations.json are up to date");
 } else {
   fs.writeFileSync(manifestPath, manifestJson, "utf8");
   fs.writeFileSync(providersPath, providersJson, "utf8");
+  fs.writeFileSync(automationsPath, automationsJson, "utf8");
   console.log(
     `✓ built manifest.json -- ${built.manifest.mcpServers.length} MCP + ${built.manifest.services.length} services + ${built.manifest.commands.length} commands`,
   );
   console.log(`✓ built providers.json -- ${built.providers.providers.length} providers`);
+  console.log(`✓ built automations.json -- ${built.automations.automations.length} automations`);
 }

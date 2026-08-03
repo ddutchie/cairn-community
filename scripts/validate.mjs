@@ -94,7 +94,7 @@ if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
-const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map() };
+const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map(), automation: new Map() };
 let count = 0;
 const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
   path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
@@ -113,7 +113,7 @@ for (const jsonPath of jsonPaths) {
   }
   count++;
 
-  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider") fail(`${where}: kind must be "mcp", "service", "command", or "provider"`);
+  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider" && c.kind !== "automation") fail(`${where}: kind must be "mcp", "service", "command", "provider", or "automation"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
   if (!CATEGORIES.has(c.category)) fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
   if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
@@ -141,9 +141,43 @@ for (const jsonPath of jsonPaths) {
     continue;
   }
 
+  // ── automation entries: scheduled recipe; validate shape + schedule ──
+  if (c.kind === "automation") {
+    if (typeof def.name !== "string" || def.name.trim().length === 0) {
+      fail(`${where}: automation definition.name must be a non-empty string`);
+    }
+    if (typeof def.instructions !== "string" || def.instructions.trim().length < 10) {
+      fail(`${where}: automation definition.instructions must be a non-empty string (10+ chars)`);
+    }
+    const sched = def.schedule;
+    if (!sched || typeof sched !== "object") {
+      fail(`${where}: automation definition.schedule is required`);
+    } else {
+      if (!["cron", "every", "once"].includes(sched.kind)) {
+        fail(`${where}: automation schedule.kind must be "cron", "every", or "once" (got ${JSON.stringify(sched.kind)})`);
+      }
+      if (typeof sched.expr !== "string" || sched.expr.trim().length === 0) {
+        fail(`${where}: automation schedule.expr must be a non-empty string`);
+      }
+      if (sched.timezone !== undefined && typeof sched.timezone !== "string") {
+        fail(`${where}: automation schedule.timezone must be a string`);
+      }
+    }
+    if (def.approvalMode !== undefined && !["auto", "ask"].includes(def.approvalMode)) {
+      fail(`${where}: automation definition.approvalMode must be "auto" or "ask" (got ${JSON.stringify(def.approvalMode)})`);
+    }
+    if (def.maxRuns !== undefined && (typeof def.maxRuns !== "number" || def.maxRuns < 1)) {
+      fail(`${where}: automation definition.maxRuns must be a positive number`);
+    }
+    const autoKey = String(def.name || "").toLowerCase();
+    if (names.automation.has(autoKey)) fail(`${where}: duplicate automation name "${def.name}" (also ${names.automation.get(autoKey)})`);
+    else names.automation.set(autoKey, id);
+    checkIcon(where, dir, c.icon);
+    continue;
+  }
+
   // ── provider entries: OpenAI-compatible preset; validate + no headers/tools ──
-  if (c.kind === "provider") {
-    if (typeof def.needsApiKey !== "boolean") {
+  if (c.kind === "provider") {    if (typeof def.needsApiKey !== "boolean") {
       fail(`${where}: provider definition.needsApiKey must be a boolean`);
     }
     if (!def.baseUrl || !/^https:\/\//.test(def.baseUrl)) {
