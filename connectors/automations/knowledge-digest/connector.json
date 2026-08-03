@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["digest", "notes", "ideas", "synthesis"],
+  "blurb": "Weekly knowledge digest: themes from recent notes and the Idea Flow.",
+  "brandColor": "#10b981",
+  "definition": {
+    "name": "Knowledge digest",
+    "description": "Synthesises the week's notes and idea-flow nodes into a themes note.",
+    "instructions": "Scan the project's recent notes and Idea Flow nodes. Write a 'Knowledge digest — <date>' note with: Themes this week (2-4 bullets), Connections worth making (specific note-to-note or note-to-task links you would add, with the exact titles), and Open questions. Identify themes and propose connections — do NOT edit any notes.",
+    "schedule": { "kind": "cron", "expr": "0 18 * * 0" },
+    "approvalMode": "auto"
+  }
+}

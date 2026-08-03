@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["grooming", "board", "tasks", "hygiene"],
+  "blurb": "Weekly board hygiene: duplicates, split candidates, stale tasks.",
+  "brandColor": "#8b5cf6",
+  "definition": {
+    "name": "Board grooming",
+    "description": "Reviews open tasks and suggests dedup, splits, and archiving (no auto-edits).",
+    "instructions": "Review the project's open tasks. Identify: tasks with very similar titles or purposes (possible duplicates), large or vague tasks that could be split into smaller ones, and stale tasks (low priority, no recent activity) that could be archived. Write a 'Board grooming — <date>' note with concrete suggestions per task (task title → suggestion). Do NOT change any tasks — recommend only.",
+    "schedule": { "kind": "cron", "expr": "0 7 * * 1" },
+    "approvalMode": "auto"
+  }
+}

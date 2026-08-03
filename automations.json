@@ -1,7 +1,55 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-03T20:21:11Z",
+  "updatedAt": "2026-08-03T21:27:28Z",
   "automations": [
+    {
+      "id": "board-grooming",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "grooming",
+        "board",
+        "tasks",
+        "hygiene"
+      ],
+      "blurb": "Weekly board hygiene: duplicates, split candidates, stale tasks.",
+      "brandColor": "#8b5cf6",
+      "definition": {
+        "name": "Board grooming",
+        "description": "Reviews open tasks and suggests dedup, splits, and archiving (no auto-edits).",
+        "instructions": "Review the project's open tasks. Identify: tasks with very similar titles or purposes (possible duplicates), large or vague tasks that could be split into smaller ones, and stale tasks (low priority, no recent activity) that could be archived. Write a 'Board grooming — <date>' note with concrete suggestions per task (task title → suggestion). Do NOT change any tasks — recommend only.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 7 * * 1"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "knowledge-digest",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "digest",
+        "notes",
+        "ideas",
+        "synthesis"
+      ],
+      "blurb": "Weekly knowledge digest: themes from recent notes and the Idea Flow.",
+      "brandColor": "#10b981",
+      "definition": {
+        "name": "Knowledge digest",
+        "description": "Synthesises the week's notes and idea-flow nodes into a themes note.",
+        "instructions": "Scan the project's recent notes and Idea Flow nodes. Write a 'Knowledge digest — <date>' note with: Themes this week (2-4 bullets), Connections worth making (specific note-to-note or note-to-task links you would add, with the exact titles), and Open questions. Identify themes and propose connections — do NOT edit any notes.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 18 * * 0"
+        },
+        "approvalMode": "auto"
+      }
+    },
     {
       "id": "morning-brief",
       "author": "cairn",
@@ -28,6 +76,30 @@
       }
     },
     {
+      "id": "overdue-nudge",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "overdue",
+        "tasks",
+        "prioritisation",
+        "nudge"
+      ],
+      "blurb": "Surfaces overdue tasks with a suggested next step for each.",
+      "brandColor": "#ef4444",
+      "definition": {
+        "name": "Overdue nudge",
+        "description": "Lists overdue tasks and proposes a next step for each (no auto-edits).",
+        "instructions": "Find overdue tasks in the project. Write an 'Overdue — <date>' note listing them soonest-first with their priority, and for each add a one-line suggested next step (for example: reprioritise, split into smaller tasks, or drop). Do NOT modify any task — recommend only.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 8 * * *"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
       "id": "project-health",
       "author": "cairn",
       "version": "1.0.0",
@@ -47,6 +119,30 @@
         "schedule": {
           "kind": "every",
           "expr": "every 1 week"
+        },
+        "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "standup-brief",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "standup",
+        "daily",
+        "status",
+        "blocked"
+      ],
+      "blurb": "A daily standup brief: in progress, done, and blocked.",
+      "brandColor": "#06b6d4",
+      "definition": {
+        "name": "Standup brief",
+        "description": "Writes a short daily status note (in progress / done / blocked) for standup.",
+        "instructions": "Write a 'Standup — <date>' note for the project. Summarise three sections from the board: In progress (tasks currently in the in-progress column), Done (tasks completed since the previous run), and Blocked (blocked or overdue tasks). Keep each section to a few bullet lines with the task title. If a section is empty, write 'None'.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 9 * * 1-5"
         },
         "approvalMode": "auto"
       }

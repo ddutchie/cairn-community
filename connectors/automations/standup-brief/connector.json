@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["standup", "daily", "status", "blocked"],
+  "blurb": "A daily standup brief: in progress, done, and blocked.",
+  "brandColor": "#06b6d4",
+  "definition": {
+    "name": "Standup brief",
+    "description": "Writes a short daily status note (in progress / done / blocked) for standup.",
+    "instructions": "Write a 'Standup — <date>' note for the project. Summarise three sections from the board: In progress (tasks currently in the in-progress column), Done (tasks completed since the previous run), and Blocked (blocked or overdue tasks). Keep each section to a few bullet lines with the task title. If a section is empty, write 'None'.",
+    "schedule": { "kind": "cron", "expr": "0 9 * * 1-5" },
+    "approvalMode": "auto"
+  }
+}

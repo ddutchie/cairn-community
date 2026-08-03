@@ -1,0 +1,16 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["overdue", "tasks", "prioritisation", "nudge"],
+  "blurb": "Surfaces overdue tasks with a suggested next step for each.",
+  "brandColor": "#ef4444",
+  "definition": {
+    "name": "Overdue nudge",
+    "description": "Lists overdue tasks and proposes a next step for each (no auto-edits).",
+    "instructions": "Find overdue tasks in the project. Write an 'Overdue — <date>' note listing them soonest-first with their priority, and for each add a one-line suggested next step (for example: reprioritise, split into smaller tasks, or drop). Do NOT modify any task — recommend only.",
+    "schedule": { "kind": "cron", "expr": "0 8 * * *" },
+    "approvalMode": "auto"
+  }
+}
