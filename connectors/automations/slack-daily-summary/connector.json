@@ -1,0 +1,17 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["slack", "summary", "daily", "digest"],
+  "blurb": "A daily Slack summary of what happened in the project.",
+  "brandColor": "#4a154b",
+  "definition": {
+    "name": "Slack daily summary",
+    "description": "Fetches today's project Slack activity via the Slack connector and writes a summary note.",
+    "instructions": "Using the attached Slack connector, fetch the relevant channel's messages from the last 24 hours. Write a 'Slack summary — <date>' note with: Key discussions (2-5 bullets, quoting who said roughly what), Decisions made, and Open questions or action items. If the connector isn't attached or the channel has no messages, write a one-line note saying so. Do NOT post, react to, or delete any Slack messages — read and summarise only.",
+    "schedule": { "kind": "cron", "expr": "0 18 * * 1-5" },
+    "approvalMode": "ask",
+    "requires": [{ "kind": "mcp", "name": "Slack" }]
+  }
+}

@@ -89,6 +89,22 @@ function findConnectorDirs(baseDir) {
   return results;
 }
 
+// Pre-pass: collect the MCP + service catalogs so automation `requires` can
+// reference connectors by id (slug) or display name. Other kinds are excluded.
+const mcpCatalog = [];
+const serviceCatalog = [];
+for (const jsonPath of findConnectorDirs(connectorsDir)) {
+  let c;
+  try {
+    c = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  } catch {
+    continue;
+  }
+  if (!c.definition?.name) continue;
+  if (c.kind === "mcp") mcpCatalog.push({ id: path.basename(path.dirname(jsonPath)), name: c.definition.name });
+  else if (c.kind === "service") serviceCatalog.push({ id: path.basename(path.dirname(jsonPath)), name: c.definition.name });
+}
+
 // ── validate every connector folder ────────────────────────────────────────
 if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
@@ -168,6 +184,35 @@ for (const jsonPath of jsonPaths) {
     }
     if (def.maxRuns !== undefined && (typeof def.maxRuns !== "number" || def.maxRuns < 1)) {
       fail(`${where}: automation definition.maxRuns must be a positive number`);
+    }
+    // ── required connectors: shape + existence in the catalog ──
+    if (def.requires !== undefined) {
+      if (!Array.isArray(def.requires)) {
+        fail(`${where}: automation definition.requires must be an array of {kind, name}`);
+      } else {
+        for (const req of def.requires) {
+          if (!req || typeof req !== "object") {
+            fail(`${where}: automation definition.requires entries must be objects`);
+            continue;
+          }
+          const { kind, name } = req;
+          if (!["mcp", "service"].includes(kind)) {
+            fail(`${where}: automation requires.kind must be "mcp" or "service" (got ${JSON.stringify(kind)})`);
+            continue;
+          }
+          if (typeof name !== "string" || name.trim().length === 0) {
+            fail(`${where}: automation requires.name must be a non-empty string`);
+            continue;
+          }
+          // The referenced connector must exist in the catalog as a catalog id
+          // (folder slug) or a display definition.name of the matching kind.
+          const catalog = kind === "mcp" ? mcpCatalog : serviceCatalog;
+          const key = name.toLowerCase();
+          if (!catalog.some((c) => c.id.toLowerCase() === key || String(c.name || "").toLowerCase() === key)) {
+            fail(`${where}: automation requires "${name}" (${kind}) is not in the catalog — add the connector or fix the name`);
+          }
+        }
+      }
     }
     const autoKey = String(def.name || "").toLowerCase();
     if (names.automation.has(autoKey)) fail(`${where}: duplicate automation name "${def.name}" (also ${names.automation.get(autoKey)})`);

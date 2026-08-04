@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-03T21:27:28Z",
+  "updatedAt": "2026-08-04T03:03:45Z",
   "automations": [
     {
       "id": "board-grooming",
@@ -27,6 +27,36 @@
       }
     },
     {
+      "id": "github-pr-digest",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "github",
+        "prs",
+        "review",
+        "digest"
+      ],
+      "blurb": "A daily GitHub PR summary: open, reviewable, and stale pull requests.",
+      "brandColor": "#6e5494",
+      "definition": {
+        "name": "GitHub PR digest",
+        "description": "Summarises open pull requests via the GitHub connector and drafts a review note.",
+        "instructions": "Using the attached GitHub connector, list open pull requests in the project's repositories. Write a 'GitHub PR digest — <date>' note with sections: Needs review (PRs awaiting review, with title and author), Blocked or stale (PRs open 5+ days with no activity), and Ready to merge (PRs whose checks passed). Recommend at most the 3 most important PRs to review first. Do NOT merge, close, comment on, or change any PR — read and summarise only. If the connector isn't attached, write a one-line note saying so.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 17 * * 1-5"
+        },
+        "approvalMode": "ask",
+        "requires": [
+          {
+            "kind": "mcp",
+            "name": "GitHub"
+          }
+        ]
+      }
+    },
+    {
       "id": "knowledge-digest",
       "author": "cairn",
       "version": "1.0.0",
@@ -48,6 +78,36 @@
           "expr": "0 18 * * 0"
         },
         "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "linear-sprint-digest",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "linear",
+        "digest",
+        "issues",
+        "weekly"
+      ],
+      "blurb": "A weekly Linear digest: what shipped, what's at risk, what to tackle next.",
+      "brandColor": "#5e6ad2",
+      "definition": {
+        "name": "Linear sprint digest",
+        "description": "Summarises this week's Linear issues/cycles via the Linear connector and drafts a digest note.",
+        "instructions": "Using the attached Linear connector, fetch the project's recent issues (the current cycle and issues updated in the last 7 days). Write a 'Linear digest — <date>' note with three sections: Shipped (issues in Done), At risk (issues in Todo/In Progress with no update this week), and Suggested next (2-3 issues worth picking up, with titles). If the connector isn't attached or returns nothing, write a one-line note saying so. Do NOT create, move, or edit any Linear issues — read and summarise only.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 8 * * 1"
+        },
+        "approvalMode": "ask",
+        "requires": [
+          {
+            "kind": "mcp",
+            "name": "Linear"
+          }
+        ]
       }
     },
     {
@@ -121,6 +181,36 @@
           "expr": "every 1 week"
         },
         "approvalMode": "auto"
+      }
+    },
+    {
+      "id": "slack-daily-summary",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Automation",
+      "tags": [
+        "slack",
+        "summary",
+        "daily",
+        "digest"
+      ],
+      "blurb": "A daily Slack summary of what happened in the project.",
+      "brandColor": "#4a154b",
+      "definition": {
+        "name": "Slack daily summary",
+        "description": "Fetches today's project Slack activity via the Slack connector and writes a summary note.",
+        "instructions": "Using the attached Slack connector, fetch the relevant channel's messages from the last 24 hours. Write a 'Slack summary — <date>' note with: Key discussions (2-5 bullets, quoting who said roughly what), Decisions made, and Open questions or action items. If the connector isn't attached or the channel has no messages, write a one-line note saying so. Do NOT post, react to, or delete any Slack messages — read and summarise only.",
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 18 * * 1-5"
+        },
+        "approvalMode": "ask",
+        "requires": [
+          {
+            "kind": "mcp",
+            "name": "Slack"
+          }
+        ]
       }
     },
     {

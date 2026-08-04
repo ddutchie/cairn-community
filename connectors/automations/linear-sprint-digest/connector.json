@@ -1,0 +1,17 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["linear", "digest", "issues", "weekly"],
+  "blurb": "A weekly Linear digest: what shipped, what's at risk, what to tackle next.",
+  "brandColor": "#5e6ad2",
+  "definition": {
+    "name": "Linear sprint digest",
+    "description": "Summarises this week's Linear issues/cycles via the Linear connector and drafts a digest note.",
+    "instructions": "Using the attached Linear connector, fetch the project's recent issues (the current cycle and issues updated in the last 7 days). Write a 'Linear digest — <date>' note with three sections: Shipped (issues in Done), At risk (issues in Todo/In Progress with no update this week), and Suggested next (2-3 issues worth picking up, with titles). If the connector isn't attached or returns nothing, write a one-line note saying so. Do NOT create, move, or edit any Linear issues — read and summarise only.",
+    "schedule": { "kind": "cron", "expr": "0 8 * * 1" },
+    "approvalMode": "ask",
+    "requires": [{ "kind": "mcp", "name": "Linear" }]
+  }
+}

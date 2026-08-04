@@ -491,6 +491,33 @@
         "maxRuns": {
           "type": "integer",
           "minimum": 1
+        },
+        "requires": {
+          "type": "array",
+          "description": "External connectors (MCP servers / HTTP services) this recipe needs in scope. Each name matches a connector's catalog id (slug, e.g. 'linear') or its display definition.name ('Linear'), case-insensitively. Connector-aware recipes get the project's attached external tools and their external calls stay gated behind the approval inbox.",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "mcp",
+                  "service"
+                ],
+                "description": "'mcp' = MCP server, 'service' = custom HTTP service"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Connector id (slug) or display name"
+              }
+            }
+          }
         }
       },
       "additionalProperties": false

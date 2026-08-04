@@ -1,0 +1,17 @@
+{
+  "kind": "automation",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Automation",
+  "tags": ["github", "prs", "review", "digest"],
+  "blurb": "A daily GitHub PR summary: open, reviewable, and stale pull requests.",
+  "brandColor": "#6e5494",
+  "definition": {
+    "name": "GitHub PR digest",
+    "description": "Summarises open pull requests via the GitHub connector and drafts a review note.",
+    "instructions": "Using the attached GitHub connector, list open pull requests in the project's repositories. Write a 'GitHub PR digest — <date>' note with sections: Needs review (PRs awaiting review, with title and author), Blocked or stale (PRs open 5+ days with no activity), and Ready to merge (PRs whose checks passed). Recommend at most the 3 most important PRs to review first. Do NOT merge, close, comment on, or change any PR — read and summarise only. If the connector isn't attached, write a one-line note saying so.",
+    "schedule": { "kind": "cron", "expr": "0 17 * * 1-5" },
+    "approvalMode": "ask",
+    "requires": [{ "kind": "mcp", "name": "GitHub" }]
+  }
+}
