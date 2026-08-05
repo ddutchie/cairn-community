@@ -15,11 +15,12 @@
   "icon": {},
   "definition": {
     "name": "Slack",
-    "description": "Slack — messages, channels, and search.",
+    "description": "Slack — messages, channels, and search. Slack forbids dynamic client registration, so after installing: create a Slack app at api.slack.com/apps, enable PKCE, add a Redirect URL of the form http://127.0.0.1:<port>/callback, then paste the app's public Client ID + that Redirect URL into the server's OAuth fields before signing in.",
     "transport": "http",
     "baseUrl": "https://mcp.slack.com/mcp",
     "authMode": "oauth",
     "oauthScope": "",
+    "requiresClientId": true,
     "enabled": true
   }
 }
