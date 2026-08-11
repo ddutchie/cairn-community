@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://raw.githubusercontent.com/ddutchie/cairn-community/main/schema.json",
   "title": "Cairn Community Connector",
-  "description": "One connectors/<id>/connector.json \u2014 an installable MCP server, HTTP service, slash command, or AI provider preset. manifest.json (MCP + services + commands) and providers.json (AI providers) are COMPILED from these by scripts/build-manifest.mjs; never hand-edit the compiled manifests.",
+  "description": "One connectors/<id>/connector.json \u2014 an installable MCP server, HTTP service, slash command, AI provider preset, or chat personality. manifest.json (MCP + services + commands), providers.json (AI providers), automations.json (automation recipes), and personalities.json (chat personalities) are COMPILED from these by scripts/build-manifest.mjs; never hand-edit the compiled manifests.",
   "type": "object",
   "required": [
     "kind",
@@ -21,6 +21,7 @@
         "automation",
         "command",
         "mcp",
+        "personality",
         "provider",
         "service"
       ]
@@ -103,6 +104,9 @@
         },
         {
           "$ref": "#/definitions/ProviderDefinition"
+        },
+        {
+          "$ref": "#/definitions/PersonalityDefinition"
         }
       ]
     }
@@ -175,6 +179,31 @@
               "description": "Response-shape parser: \"openrouter\" = { data: { limit, limit_remaining, usage, is_free_tier } }; \"deepseek\" = { is_available, balance_infos: [{ currency, total_balance, ... }] }; \"openai-grants\" = { total_granted, total_used, total_available }; \"neuralwatt\" = { balance: { credits_remaining_usd, total_credits_usd, credits_used_usd } }."
             }
           }
+        }
+      }
+    },
+    "PersonalityDefinition": {
+      "type": "object",
+      "required": [
+        "name",
+        "prompt"
+      ],
+      "additionalProperties": false,
+      "description": "A chat personality \u2014 custom behavioral rules appended verbatim to Cairn's chat system prompt to shape tone and style. Compiled into personalities.json (a SEPARATE manifest from manifest.json). The prompt is untrusted community text shown in full before install; it is never executed.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name shown in the personality picker (e.g. \"Grug\", \"Red Team\")."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "One line shown in the browse card and picker list."
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Behavioral rules appended to the chat system prompt as a style layer on the existing Cairn assistant identity. Prefer specific rules over a one-line label; never start with a \"You are \u2026\" identity claim (it would contradict the base prompt). The prompt is shown in full before install."
         }
       }
     },

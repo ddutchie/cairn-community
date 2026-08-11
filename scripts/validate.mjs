@@ -41,6 +41,19 @@ const CATEGORIES = new Set([
   "AI Providers",
 ]);
 
+// Personalities use their OWN category set — a one-off fixed list of Browse
+// chips, distinct from the connector categories above.
+const PERSONALITY_CATEGORIES = new Set([
+  "Tone & Style",
+  "Planning & Strategy",
+  "Execution",
+  "Learning",
+  "Technical",
+  "Critique & Review",
+  "Assistant",
+  "Fun & Playful",
+]);
+
 function checkHeaders(where, headers) {
   if (!headers) return;
   for (const [k, v] of Object.entries(headers)) {
@@ -110,7 +123,7 @@ if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
-const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map(), automation: new Map() };
+const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map(), automation: new Map(), personality: new Map() };
 let count = 0;
 const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
   path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
@@ -129,9 +142,15 @@ for (const jsonPath of jsonPaths) {
   }
   count++;
 
-  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider" && c.kind !== "automation") fail(`${where}: kind must be "mcp", "service", "command", "provider", or "automation"`);
+  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider" && c.kind !== "automation" && c.kind !== "personality") fail(`${where}: kind must be "mcp", "service", "command", "provider", "automation", or "personality"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
-  if (!CATEGORIES.has(c.category)) fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
+  if (c.kind === "personality") {
+    if (!PERSONALITY_CATEGORIES.has(c.category)) {
+      fail(`${where}: personality category must be one of ${[...PERSONALITY_CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
+    }
+  } else if (!CATEGORIES.has(c.category)) {
+    fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
+  }
   if (!/^\d+\.\d+\.\d+$/.test(String(c.version || ""))) fail(`${where}: version must be semver`);
   const def = c.definition || {};
   if (!def.name) fail(`${where}: definition.name required`);
@@ -153,6 +172,34 @@ for (const jsonPath of jsonPaths) {
     for (const key of ["homepage"]) {
       if (c[key] && !/^https:\/\//.test(c[key])) fail(`${where}: ${key} must be https`);
     }
+    checkIcon(where, dir, c.icon);
+    continue;
+  }
+
+  // ── personality entries: custom chat system-prompt snippet ──
+  if (c.kind === "personality") {
+    if (typeof def.name !== "string" || def.name.trim().length === 0) {
+      fail(`${where}: personality definition.name must be a non-empty string`);
+    }
+    if (def.description !== undefined && typeof def.description !== "string") {
+      fail(`${where}: personality definition.description must be a string`);
+    }
+    // Behavioral RULES, not a one-line label — a personality is appended
+    // verbatim to the chat system prompt, so a thin prompt adds nothing.
+    if (typeof def.prompt !== "string" || def.prompt.trim().length === 0) {
+      fail(`${where}: personality definition.prompt must be a non-empty string`);
+    } else if (def.prompt.trim().length < 20) {
+      fail(`${where}: personality definition.prompt must be behavioral rules (20+ chars), not a one-liner`);
+    }
+    // A personality is a STYLE LAYER on the existing Cairn assistant identity —
+    // it must not open with its own "You are …" identity claim, which would
+    // contradict the base "You are the Cairn AI assistant" system prompt.
+    if (typeof def.prompt === "string" && /^you\s+are/i.test(def.prompt.trim())) {
+      fail(`${where}: personality definition.prompt must not start with a "You are …" identity claim — the base Cairn prompt already establishes the assistant identity. Write behavioral rules only.`);
+    }
+    const perKey = String(def.name || "").toLowerCase();
+    if (names.personality.has(perKey)) fail(`${where}: duplicate personality name "${def.name}" (also ${names.personality.get(perKey)})`);
+    else names.personality.set(perKey, id);
     checkIcon(where, dir, c.icon);
     continue;
   }
