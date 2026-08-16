@@ -54,6 +54,30 @@ const PERSONALITY_CATEGORIES = new Set([
   "Fun & Playful",
 ]);
 
+// Chat themes use their OWN category set (Appearance) and get an AA-contrast
+// gate on the user bubble fill vs its fg (WCAG 4.5:1 for normal text).
+const THEME_CATEGORIES = new Set(["Appearance"]);
+const THEME_FONTS = new Set(["sans", "serif", "mono"]);
+const THEME_BG_TYPES = new Set(["solid", "gradient", "pattern"]);
+const THEME_BUBBLE_STYLES = new Set(["filled", "glass", "outlined"]);
+
+function hexLuminance(hex) {
+  if (typeof hex !== "string") return 0;
+  const m = /^#([0-9a-f]{6})$/i.exec(hex.trim());
+  if (!m) return 0.9; // non-hex (e.g. rgba glass) — assume lightish, skip the gate
+  const n = parseInt(m[1], 16);
+  const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+
+function contrastRatio(a, b) {
+  const [l1, l2] = [hexLuminance(a), hexLuminance(b)].sort((x, y) => y - x);
+  return (l1 + 0.05) / (l2 + 0.05);
+}
+
 function checkHeaders(where, headers) {
   if (!headers) return;
   for (const [k, v] of Object.entries(headers)) {
@@ -123,7 +147,7 @@ if (!fs.existsSync(connectorsDir)) {
   console.error("✗ connectors/ directory missing");
   process.exit(1);
 }
-const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map(), automation: new Map(), personality: new Map() };
+const names = { mcp: new Map(), service: new Map(), command: new Map(), provider: new Map(), automation: new Map(), personality: new Map(), theme: new Map() };
 let count = 0;
 const jsonPaths = findConnectorDirs(connectorsDir).sort((a, b) =>
   path.basename(path.dirname(a)).localeCompare(path.basename(path.dirname(b)))
@@ -142,11 +166,15 @@ for (const jsonPath of jsonPaths) {
   }
   count++;
 
-  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider" && c.kind !== "automation" && c.kind !== "personality") fail(`${where}: kind must be "mcp", "service", "command", "provider", "automation", or "personality"`);
+  if (c.kind !== "mcp" && c.kind !== "service" && c.kind !== "command" && c.kind !== "provider" && c.kind !== "automation" && c.kind !== "personality" && c.kind !== "theme") fail(`${where}: kind must be "mcp", "service", "command", "provider", "automation", "personality", or "theme"`);
   if (!c.blurb) fail(`${where}: missing blurb`);
   if (c.kind === "personality") {
     if (!PERSONALITY_CATEGORIES.has(c.category)) {
       fail(`${where}: personality category must be one of ${[...PERSONALITY_CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
+    }
+  } else if (c.kind === "theme") {
+    if (!THEME_CATEGORIES.has(c.category)) {
+      fail(`${where}: theme category must be one of ${[...THEME_CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
     }
   } else if (!CATEGORIES.has(c.category)) {
     fail(`${where}: category must be one of ${[...CATEGORIES].join(" | ")} (got ${JSON.stringify(c.category)})`);
@@ -200,6 +228,60 @@ for (const jsonPath of jsonPaths) {
     const perKey = String(def.name || "").toLowerCase();
     if (names.personality.has(perKey)) fail(`${where}: duplicate personality name "${def.name}" (also ${names.personality.get(perKey)})`);
     else names.personality.set(perKey, id);
+    checkIcon(where, dir, c.icon);
+    continue;
+  }
+
+  // ── theme entries: chat surface look; validate shape + AA contrast ──
+  if (c.kind === "theme") {
+    if (typeof def.name !== "string" || def.name.trim().length === 0) {
+      fail(`${where}: theme definition.name must be a non-empty string`);
+    }
+    if (!THEME_FONTS.has(def.font)) {
+      fail(`${where}: theme definition.font must be one of ${[...THEME_FONTS].join(" | ")} (got ${JSON.stringify(def.font)})`);
+    }
+    if (!THEME_BG_TYPES.has(def.bgType)) {
+      fail(`${where}: theme definition.bgType must be one of ${[...THEME_BG_TYPES].join(" | ")} (got ${JSON.stringify(def.bgType)})`);
+    }
+    if (!THEME_BUBBLE_STYLES.has(def.bubbleStyle)) {
+      fail(`${where}: theme definition.bubbleStyle must be one of ${[...THEME_BUBBLE_STYLES].join(" | ")} (got ${JSON.stringify(def.bubbleStyle)})`);
+    }
+    // dark + light palettes, each with bg + bubbles; gradient requires both stops.
+    for (const mode of ["dark", "light"]) {
+      const m = def[mode];
+      if (!m || typeof m !== "object") {
+        fail(`${where}: theme definition.${mode} is required`);
+        continue;
+      }
+      if (typeof m.bg !== "string" || m.bg.trim().length === 0) {
+        fail(`${where}: theme definition.${mode}.bg must be a non-empty string`);
+      }
+      for (const key of ["userBubble", "userBubbleFg", "aiBubble"]) {
+        if (typeof m[key] !== "string" || m[key].trim().length === 0) {
+          fail(`${where}: theme definition.${mode}.${key} must be a non-empty string`);
+        }
+      }
+      if (def.bgType === "gradient") {
+        const g = m.gradient;
+        if (!Array.isArray(g) || g.length !== 2 || g.some((s) => typeof s !== "string" || !s.trim())) {
+          fail(`${where}: theme definition.${mode}.gradient must be [from, to] when bgType is "gradient"`);
+        }
+      }
+      // AA gate: user bubble fill vs its fg (4.5:1 for normal text). Only hex
+      // pairs are checked — translucent glass fills skip (the app tints over
+      // the bg). Both dark and light must pass.
+      const user = m.userBubble;
+      const fg = m.userBubbleFg;
+      if (/^#[0-9a-f]{6}$/i.test(user) && /^#[0-9a-f]{6}$/i.test(fg)) {
+        const r = contrastRatio(user, fg);
+        if (r < 4.5) {
+          fail(`${where}: theme definition.${mode} user bubble ${user} vs fg ${fg} is ${r.toFixed(2)}:1 — must be ≥4.5:1 (WCAG AA)`);
+        }
+      }
+    }
+    const themeKey = String(def.name || "").toLowerCase();
+    if (names.theme.has(themeKey)) fail(`${where}: duplicate theme name "${def.name}" (also ${names.theme.get(themeKey)})`);
+    else names.theme.set(themeKey, id);
     checkIcon(where, dir, c.icon);
     continue;
   }

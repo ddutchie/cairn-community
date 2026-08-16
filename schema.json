@@ -23,7 +23,8 @@
         "mcp",
         "personality",
         "provider",
-        "service"
+        "service",
+        "theme"
       ]
     },
     "author": {
@@ -107,6 +108,9 @@
         },
         {
           "$ref": "#/definitions/PersonalityDefinition"
+        },
+        {
+          "$ref": "#/definitions/ThemeDefinition"
         }
       ]
     }
@@ -204,6 +208,91 @@
           "type": "string",
           "minLength": 20,
           "description": "Behavioral rules appended to the chat system prompt as a style layer on the existing Cairn assistant identity. Prefer specific rules over a one-line label; never start with a \"You are \u2026\" identity claim (it would contradict the base prompt). The prompt is shown in full before install."
+        }
+      }
+    },
+    "ThemeDefinition": {
+      "type": "object",
+      "required": [
+        "name",
+        "font",
+        "bgType",
+        "bubbleStyle",
+        "dark",
+        "light"
+      ],
+      "additionalProperties": false,
+      "description": "A chat theme \u2014 a full distinct look for the chat surface: a bundled chat font (one of the app's system stacks), a background treatment (solid / gradient / scanline pattern), a bubble style (filled / glass / outlined), and dark/light palettes. Pure JSON \u2014 the app renders it data-driven (CSS vars on desktop, theme fields + LinearGradient on mobile), so themes ship without an app update. Compiled into themes.json (a SEPARATE manifest from manifest.json).",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name shown in the theme picker (e.g. \"Ocean\")."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "One line shown in the picker list."
+        },
+        "font": {
+          "type": "string",
+          "enum": ["sans", "serif", "mono"],
+          "description": "Bundled chat font \u2014 chat text only, independent of the app's note-font setting."
+        },
+        "bgType": {
+          "type": "string",
+          "enum": ["solid", "gradient", "pattern"],
+          "description": "Background treatment: a solid colour, a two-stop gradient, or a scanline pattern over a base colour."
+        },
+        "bubbleStyle": {
+          "type": "string",
+          "enum": ["filled", "glass", "outlined"],
+          "description": "Bubble treatment: solid fills, translucent glass, or outlined."
+        },
+        "dark": {
+          "$ref": "#/definitions/ThemeMode"
+        },
+        "light": {
+          "$ref": "#/definitions/ThemeMode"
+        }
+      }
+    },
+    "ThemeMode": {
+      "type": "object",
+      "required": [
+        "bg",
+        "userBubble",
+        "userBubbleFg",
+        "aiBubble"
+      ],
+      "additionalProperties": false,
+      "description": "One mode's palette. The validator also enforces WCAG AA (4.5:1) between userBubble and userBubbleFg for hex pairs.",
+      "properties": {
+        "bg": {
+          "type": "string",
+          "description": "Solid background colour, or the scanline pattern's base colour."
+        },
+        "gradient": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string" },
+          "description": "Gradient stops [from, to] \u2014 required when bgType is \"gradient\"."
+        },
+        "userBubble": {
+          "type": "string",
+          "description": "User-bubble fill colour."
+        },
+        "userBubbleFg": {
+          "type": "string",
+          "description": "Text colour on the user bubble (AA-chosen)."
+        },
+        "aiBubble": {
+          "type": "string",
+          "description": "AI-bubble fill (may be an rgba/translucent value for glass themes)."
+        },
+        "aiText": {
+          "type": "string",
+          "description": "Optional AI-bubble text colour (e.g. phosphor green for outlined/terminal themes)."
         }
       }
     },

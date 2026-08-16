@@ -1,0 +1,30 @@
+{
+  "kind": "theme",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Appearance",
+  "tags": ["chat", "theme", "ocean", "teal", "glass"],
+  "blurb": "Deep teal→blue gradient with glass bubbles.",
+  "brandColor": "#2dd4bf",
+  "definition": {
+    "name": "Ocean",
+    "description": "Teal→blue gradient with frosted glass bubbles.",
+    "font": "sans",
+    "bgType": "gradient",
+    "bubbleStyle": "glass",
+    "dark": {
+      "bg": "#071318",
+      "gradient": ["#071318", "#0a1f33"],
+      "userBubble": "#2dd4bf",
+      "userBubbleFg": "#04231f",
+      "aiBubble": "rgba(20,52,66,0.75)"
+    },
+    "light": {
+      "bg": "#eefaf9",
+      "gradient": ["#eefaf9", "#e6f1fc"],
+      "userBubble": "#0a7568",
+      "userBubbleFg": "#ffffff",
+      "aiBubble": "rgba(255,255,255,0.85)"
+    }
+  }
+}

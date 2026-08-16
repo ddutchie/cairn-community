@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T00:05:09Z",
+  "themes": [
+    {
+      "id": "ember",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Appearance",
+      "tags": [
+        "chat",
+        "theme",
+        "ember",
+        "warm",
+        "serif"
+      ],
+      "blurb": "Warm charcoal ember glow with serif text.",
+      "brandColor": "#e0702f",
+      "definition": {
+        "name": "Ember",
+        "description": "Warm charcoal with an ember-orange glow, serif chat text.",
+        "font": "serif",
+        "bgType": "pattern",
+        "bubbleStyle": "filled",
+        "dark": {
+          "bg": "#1a120d",
+          "userBubble": "#e0702f",
+          "userBubbleFg": "#1d0b02",
+          "aiBubble": "#261a12"
+        },
+        "light": {
+          "bg": "#faf3ea",
+          "userBubble": "#b84e30",
+          "userBubbleFg": "#ffffff",
+          "aiBubble": "#f3e5d6"
+        }
+      }
+    },
+    {
+      "id": "forest",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Appearance",
+      "tags": [
+        "chat",
+        "theme",
+        "forest",
+        "pine",
+        "mono",
+        "terminal"
+      ],
+      "blurb": "Deep pine green with monospace outlined chat.",
+      "brandColor": "#4fae82",
+      "definition": {
+        "name": "Forest",
+        "description": "Deep pine green, monospace chat, outlined bubbles.",
+        "font": "mono",
+        "bgType": "solid",
+        "bubbleStyle": "outlined",
+        "dark": {
+          "bg": "#0d1512",
+          "userBubble": "#4fae82",
+          "userBubbleFg": "#04140c",
+          "aiBubble": "#15241e",
+          "aiText": "#6cc39a"
+        },
+        "light": {
+          "bg": "#eef4f0",
+          "userBubble": "#217a53",
+          "userBubbleFg": "#ffffff",
+          "aiBubble": "#e2eae4",
+          "aiText": "#1b6746"
+        }
+      }
+    },
+    {
+      "id": "ocean",
+      "author": "cairn",
+      "version": "1.0.0",
+      "category": "Appearance",
+      "tags": [
+        "chat",
+        "theme",
+        "ocean",
+        "teal",
+        "glass"
+      ],
+      "blurb": "Deep teal→blue gradient with glass bubbles.",
+      "brandColor": "#2dd4bf",
+      "definition": {
+        "name": "Ocean",
+        "description": "Teal→blue gradient with frosted glass bubbles.",
+        "font": "sans",
+        "bgType": "gradient",
+        "bubbleStyle": "glass",
+        "dark": {
+          "bg": "#071318",
+          "gradient": [
+            "#071318",
+            "#0a1f33"
+          ],
+          "userBubble": "#2dd4bf",
+          "userBubbleFg": "#04231f",
+          "aiBubble": "rgba(20,52,66,0.75)"
+        },
+        "light": {
+          "bg": "#eefaf9",
+          "gradient": [
+            "#eefaf9",
+            "#e6f1fc"
+          ],
+          "userBubble": "#0a7568",
+          "userBubbleFg": "#ffffff",
+          "aiBubble": "rgba(255,255,255,0.85)"
+        }
+      }
+    }
+  ]
+}

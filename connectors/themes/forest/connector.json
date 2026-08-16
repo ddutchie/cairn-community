@@ -1,0 +1,30 @@
+{
+  "kind": "theme",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Appearance",
+  "tags": ["chat", "theme", "forest", "pine", "mono", "terminal"],
+  "blurb": "Deep pine green with monospace outlined chat.",
+  "brandColor": "#4fae82",
+  "definition": {
+    "name": "Forest",
+    "description": "Deep pine green, monospace chat, outlined bubbles.",
+    "font": "mono",
+    "bgType": "solid",
+    "bubbleStyle": "outlined",
+    "dark": {
+      "bg": "#0d1512",
+      "userBubble": "#4fae82",
+      "userBubbleFg": "#04140c",
+      "aiBubble": "#15241e",
+      "aiText": "#6cc39a"
+    },
+    "light": {
+      "bg": "#eef4f0",
+      "userBubble": "#217a53",
+      "userBubbleFg": "#ffffff",
+      "aiBubble": "#e2eae4",
+      "aiText": "#1b6746"
+    }
+  }
+}
