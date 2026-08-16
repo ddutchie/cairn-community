@@ -1,0 +1,32 @@
+{
+  "kind": "theme",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Appearance",
+  "tags": ["chat", "theme", "synthwave", "cyberpunk", "neon", "retro", "mono"],
+  "blurb": "Cyberpunk night with neon magenta accents and glass bubbles.",
+  "brandColor": "#f43f5e",
+  "definition": {
+    "name": "Synthwave",
+    "description": "Retro-futuristic violet gradient with neon magenta glass bubbles.",
+    "font": "mono",
+    "bgType": "gradient",
+    "bubbleStyle": "glass",
+    "dark": {
+      "bg": "#100826",
+      "gradient": ["#100826", "#2d0b3f"],
+      "userBubble": "#f43f5e",
+      "userBubbleFg": "#22030b",
+      "aiBubble": "rgba(45,11,63,0.7)",
+      "aiText": "#f0abfc"
+    },
+    "light": {
+      "bg": "#faf5ff",
+      "gradient": ["#faf5ff", "#fce7f3"],
+      "userBubble": "#be185d",
+      "userBubbleFg": "#ffffff",
+      "aiBubble": "rgba(255,255,255,0.85)",
+      "aiText": "#701a75"
+    }
+  }
+}

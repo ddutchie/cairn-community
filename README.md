@@ -19,6 +19,7 @@ repo at runtime, so merging a PR here makes a new integration available to every
 | **Slash command** | A reusable prompt/text snippet surfaced in Cairn's chat and/or coding-agent input palettes (invoked by typing `/name`). Installed workspace-globally; never executes code — it only inserts text for the user to send. | `/standup`, `/weekly-review`, `/commit-msg`, `/find-bugs` |
 | **AI provider** | A one-click preset for an OpenAI-compatible endpoint (base URL + optional default model). Installed into Cairn's shared provider list from **Settings → AI & Chat → Browse Community**; the user supplies their own API key at install. | OpenAI, Anthropic, Gemini, Groq, OpenRouter |
 | **Personality** | A custom set of behavioral rules appended verbatim to Cairn's chat system prompt to shape the assistant's tone and style. Installed from **Settings → AI & Chat → Browse Personalities** and picked next to the model selector in chat. | Grug (concise), Red Team (skeptic), The Professor (teaching) |
+| **Chat theme** | A full look for the chat surface — background, bubbles, and chat font — picked in **Settings → AI → Tuning**. Pure JSON, rendered data-driven, so new themes arrive without an app update. The five built-ins (Default, Paper, Terminal, Midnight, Aurora) live in the app; this catalog extends them. See [`connectors/themes/README.md`](./connectors/themes/README.md). | Ocean, Glacier, Synthwave |
 
 Skills (larger prompt templates) beyond single-line slash commands may follow in a later release.
 
@@ -47,13 +48,14 @@ manifest.json                  # COMPILED — do not edit by hand
 providers.json                 # COMPILED — AI providers (do not edit by hand)
 automations.json               # COMPILED — automation recipes (do not edit by hand)
 personalities.json             # COMPILED — chat personalities (do not edit by hand)
+themes.json                    # COMPILED — chat themes (do not edit by hand)
 schema.json                    # validates a single connector.json
 logos/                         # generated: <slug>.svg (Simple Icons, normalized)
 scripts/
   fetch-logos.mjs              # icon.slug -> logos/<slug>.svg
-  build-manifest.mjs           # connectors/* -> manifest.json + providers.json + automations.json + personalities.json (inlines sanitized icon)
+  build-manifest.mjs           # connectors/* -> manifest.json + providers.json + automations.json + personalities.json + themes.json (inlines sanitized icon)
   svg-sanitize.mjs             # SVG allowlist (build + CI gate)
-  validate.mjs                 # validates folders + drift-checks manifest.json + providers.json + automations.json + personalities.json
+  validate.mjs                 # validates folders + drift-checks the compiled manifests
 ```
 
 ## How install works in Cairn

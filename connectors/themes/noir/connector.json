@@ -1,0 +1,30 @@
+{
+  "kind": "theme",
+  "author": "cairn",
+  "version": "1.0.0",
+  "category": "Appearance",
+  "tags": ["chat", "theme", "noir", "monochrome", "editorial", "serif", "minimalist"],
+  "blurb": "Stark monochrome editorial look with outlined chat bubbles.",
+  "brandColor": "#18181b",
+  "definition": {
+    "name": "Noir",
+    "description": "High-contrast editorial monochrome, serif chat, outlined bubbles.",
+    "font": "serif",
+    "bgType": "solid",
+    "bubbleStyle": "outlined",
+    "dark": {
+      "bg": "#09090b",
+      "userBubble": "#27272a",
+      "userBubbleFg": "#fafafa",
+      "aiBubble": "#18181b",
+      "aiText": "#e4e4e7"
+    },
+    "light": {
+      "bg": "#fdfdfc",
+      "userBubble": "#18181b",
+      "userBubbleFg": "#ffffff",
+      "aiBubble": "#f4f4f5",
+      "aiText": "#18181b"
+    }
+  }
+}
