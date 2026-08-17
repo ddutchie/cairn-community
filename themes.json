@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-16T13:37:56Z",
+  "updatedAt": "2026-08-17T13:35:54Z",
   "themes": [
     {
       "id": "ember",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -20,26 +20,40 @@
         "name": "Ember",
         "description": "Warm charcoal with an ember-orange glow, serif chat text.",
         "font": "serif",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "pattern",
+        "pattern": "scanlines",
         "bubbleStyle": "filled",
+        "radius": "md",
+        "shadow": "subtle",
         "dark": {
           "bg": "#1a120d",
+          "stops": [
+            "#1a120d"
+          ],
           "userBubble": "#e0702f",
           "userBubbleFg": "#1d0b02",
-          "aiBubble": "#261a12"
+          "aiBubble": "#261a12",
+          "aiText": "#e8a06e"
         },
         "light": {
           "bg": "#faf3ea",
+          "stops": [
+            "#faf3ea"
+          ],
           "userBubble": "#b84e30",
           "userBubbleFg": "#ffffff",
-          "aiBubble": "#f3e5d6"
+          "aiBubble": "#f3e5d6",
+          "aiText": "#8a3a1e"
         }
       }
     },
     {
       "id": "forest",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -55,10 +69,19 @@
         "name": "Forest",
         "description": "Deep pine green, monospace chat, outlined bubbles.",
         "font": "mono",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "solid",
+        "pattern": "none",
         "bubbleStyle": "outlined",
+        "radius": "sm",
+        "shadow": "none",
         "dark": {
           "bg": "#0d1512",
+          "stops": [
+            "#0d1512"
+          ],
           "userBubble": "#4fae82",
           "userBubbleFg": "#04140c",
           "aiBubble": "#15241e",
@@ -66,6 +89,9 @@
         },
         "light": {
           "bg": "#eef4f0",
+          "stops": [
+            "#eef4f0"
+          ],
           "userBubble": "#217a53",
           "userBubbleFg": "#ffffff",
           "aiBubble": "#e2eae4",
@@ -76,7 +102,7 @@
     {
       "id": "glacier",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -93,34 +119,42 @@
         "name": "Glacier",
         "description": "Arctic frost gradient with crisp cyan and deep navy tones.",
         "font": "sans",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "gradient",
+        "pattern": "none",
         "bubbleStyle": "filled",
+        "radius": "md",
+        "shadow": "subtle",
         "dark": {
           "bg": "#07111e",
-          "gradient": [
+          "stops": [
             "#07111e",
             "#0d2137"
           ],
           "userBubble": "#38bdf8",
           "userBubbleFg": "#032030",
-          "aiBubble": "#0e2742"
+          "aiBubble": "#0e2742",
+          "aiText": "#9bcaf0"
         },
         "light": {
           "bg": "#f0f9ff",
-          "gradient": [
+          "stops": [
             "#f0f9ff",
             "#e0f2fe"
           ],
           "userBubble": "#0369a1",
           "userBubbleFg": "#ffffff",
-          "aiBubble": "#e0f2fe"
+          "aiBubble": "#e0f2fe",
+          "aiText": "#075985"
         }
       }
     },
     {
       "id": "matcha",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -137,10 +171,19 @@
         "name": "Matcha",
         "description": "Zen botanical matcha and sage green on a soothing canvas pattern.",
         "font": "serif",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "pattern",
+        "pattern": "scanlines",
         "bubbleStyle": "filled",
+        "radius": "md",
+        "shadow": "none",
         "dark": {
           "bg": "#121712",
+          "stops": [
+            "#121712"
+          ],
           "userBubble": "#84cc16",
           "userBubbleFg": "#142404",
           "aiBubble": "#1a231a",
@@ -148,6 +191,9 @@
         },
         "light": {
           "bg": "#f7f8f2",
+          "stops": [
+            "#f7f8f2"
+          ],
           "userBubble": "#4d7c0f",
           "userBubbleFg": "#ffffff",
           "aiBubble": "#e9ede0",
@@ -158,7 +204,7 @@
     {
       "id": "noir",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -175,10 +221,19 @@
         "name": "Noir",
         "description": "High-contrast editorial monochrome, serif chat, outlined bubbles.",
         "font": "serif",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "solid",
+        "pattern": "none",
         "bubbleStyle": "outlined",
+        "radius": "sm",
+        "shadow": "none",
         "dark": {
           "bg": "#09090b",
+          "stops": [
+            "#09090b"
+          ],
           "userBubble": "#27272a",
           "userBubbleFg": "#fafafa",
           "aiBubble": "#18181b",
@@ -186,6 +241,9 @@
         },
         "light": {
           "bg": "#fdfdfc",
+          "stops": [
+            "#fdfdfc"
+          ],
           "userBubble": "#18181b",
           "userBubbleFg": "#ffffff",
           "aiBubble": "#f4f4f5",
@@ -196,7 +254,7 @@
     {
       "id": "ocean",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -211,34 +269,42 @@
         "name": "Ocean",
         "description": "Teal→blue gradient with frosted glass bubbles.",
         "font": "sans",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "gradient",
+        "pattern": "none",
         "bubbleStyle": "glass",
+        "radius": "md",
+        "shadow": "subtle",
         "dark": {
           "bg": "#071318",
-          "gradient": [
+          "stops": [
             "#071318",
             "#0a1f33"
           ],
           "userBubble": "#2dd4bf",
           "userBubbleFg": "#04231f",
-          "aiBubble": "rgba(20,52,66,0.75)"
+          "aiBubble": "rgba(20,52,66,0.75)",
+          "aiText": "#9be8dc"
         },
         "light": {
           "bg": "#eefaf9",
-          "gradient": [
+          "stops": [
             "#eefaf9",
             "#e6f1fc"
           ],
           "userBubble": "#0a7568",
           "userBubbleFg": "#ffffff",
-          "aiBubble": "rgba(255,255,255,0.85)"
+          "aiBubble": "rgba(255,255,255,0.85)",
+          "aiText": "#0a3d36"
         }
       }
     },
     {
       "id": "synthwave",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -255,11 +321,17 @@
         "name": "Synthwave",
         "description": "Retro-futuristic violet gradient with neon magenta glass bubbles.",
         "font": "mono",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "gradient",
+        "pattern": "none",
         "bubbleStyle": "glass",
+        "radius": "md",
+        "shadow": "strong",
         "dark": {
           "bg": "#100826",
-          "gradient": [
+          "stops": [
             "#100826",
             "#2d0b3f"
           ],
@@ -270,7 +342,7 @@
         },
         "light": {
           "bg": "#faf5ff",
-          "gradient": [
+          "stops": [
             "#faf5ff",
             "#fce7f3"
           ],
@@ -284,7 +356,7 @@
     {
       "id": "twilight",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -301,11 +373,17 @@
         "name": "Twilight",
         "description": "Deep violet-to-indigo gradient with soft frosted glass bubbles.",
         "font": "sans",
+        "fontWeight": "regular",
+        "tracking": 0,
+        "lineHeight": 1,
         "bgType": "gradient",
+        "pattern": "none",
         "bubbleStyle": "glass",
+        "radius": "md",
+        "shadow": "subtle",
         "dark": {
           "bg": "#0b0c1b",
-          "gradient": [
+          "stops": [
             "#0b0c1b",
             "#1e1135"
           ],
@@ -316,7 +394,7 @@
         },
         "light": {
           "bg": "#f5f3ff",
-          "gradient": [
+          "stops": [
             "#f5f3ff",
             "#ede9fe"
           ],

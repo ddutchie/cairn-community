@@ -1,7 +1,7 @@
 {
   "kind": "theme",
   "author": "cairn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "category": "Appearance",
   "tags": ["chat", "theme", "glacier", "arctic", "frost", "cyan", "cool"],
   "blurb": "Arctic frost gradient with icy cyan chat bubbles.",
@@ -10,21 +10,29 @@
     "name": "Glacier",
     "description": "Arctic frost gradient with crisp cyan and deep navy tones.",
     "font": "sans",
+    "fontWeight": "regular",
+    "tracking": 0,
+    "lineHeight": 1,
     "bgType": "gradient",
+    "pattern": "none",
     "bubbleStyle": "filled",
+    "radius": "md",
+    "shadow": "subtle",
     "dark": {
       "bg": "#07111e",
-      "gradient": ["#07111e", "#0d2137"],
+      "stops": ["#07111e", "#0d2137"],
       "userBubble": "#38bdf8",
       "userBubbleFg": "#032030",
-      "aiBubble": "#0e2742"
+      "aiBubble": "#0e2742",
+      "aiText": "#9bcaf0"
     },
     "light": {
       "bg": "#f0f9ff",
-      "gradient": ["#f0f9ff", "#e0f2fe"],
+      "stops": ["#f0f9ff", "#e0f2fe"],
       "userBubble": "#0369a1",
       "userBubbleFg": "#ffffff",
-      "aiBubble": "#e0f2fe"
+      "aiBubble": "#e0f2fe",
+      "aiText": "#075985"
     }
   }
 }

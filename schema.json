@@ -216,13 +216,19 @@
       "required": [
         "name",
         "font",
+        "fontWeight",
+        "tracking",
+        "lineHeight",
         "bgType",
+        "pattern",
         "bubbleStyle",
+        "radius",
+        "shadow",
         "dark",
         "light"
       ],
       "additionalProperties": false,
-      "description": "A chat theme \u2014 a full distinct look for the chat surface: a bundled chat font (one of the app's system stacks), a background treatment (solid / gradient / scanline pattern), a bubble style (filled / glass / outlined), and dark/light palettes. Pure JSON \u2014 the app renders it data-driven (CSS vars on desktop, theme fields + LinearGradient on mobile), so themes ship without an app update. Compiled into themes.json (a SEPARATE manifest from manifest.json).",
+      "description": "A chat theme \u2014 a full distinct look for the chat surface: a bundled chat font (one of the app's system stacks) with typography knobs, a background treatment (solid / gradient / named pattern), a bubble style (filled / glass / outlined) with radius + shadow knobs, and dark/light palettes. The shape is REQUIRED in full (nothing optional) \u2014 every theme declares every knob. Pure JSON \u2014 the app renders it data-driven (CSS vars on desktop, theme fields + LinearGradient on mobile), so themes ship without an app update. Compiled into themes.json (a SEPARATE manifest from manifest.json).",
       "properties": {
         "name": {
           "type": "string",
@@ -238,15 +244,47 @@
           "enum": ["sans", "serif", "mono"],
           "description": "Bundled chat font \u2014 chat text only, independent of the app's note-font setting."
         },
+        "fontWeight": {
+          "type": "string",
+          "enum": ["regular", "medium"],
+          "description": "Chat-text weight: \"regular\" = 400, \"medium\" = 500."
+        },
+        "tracking": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 8,
+          "description": "Letter-spacing in px applied to chat text (0 = default tracking)."
+        },
+        "lineHeight": {
+          "type": "number",
+          "minimum": 0.8,
+          "maximum": 3,
+          "description": "Line-height multiplier applied to chat text (1 = platform default)."
+        },
         "bgType": {
           "type": "string",
           "enum": ["solid", "gradient", "pattern"],
-          "description": "Background treatment: a solid colour, a two-stop gradient, or a scanline pattern over a base colour."
+          "description": "Background treatment: a solid colour, a multi-stop gradient (stops 2+), or a named pattern over a base colour."
+        },
+        "pattern": {
+          "type": "string",
+          "enum": ["none", "scanlines", "dots", "grid", "crosshatch", "diagonal", "noise"],
+          "description": "Named background pattern \u2014 rendered only when bgType is \"pattern\". \"none\" for solid/gradient themes."
         },
         "bubbleStyle": {
           "type": "string",
           "enum": ["filled", "glass", "outlined"],
           "description": "Bubble treatment: solid fills, translucent glass, or outlined."
+        },
+        "radius": {
+          "type": "string",
+          "enum": ["sm", "md", "pill"],
+          "description": "Bubble corner-radius preset."
+        },
+        "shadow": {
+          "type": "string",
+          "enum": ["none", "subtle", "strong"],
+          "description": "Bubble shadow intensity."
         },
         "dark": {
           "$ref": "#/definitions/ThemeMode"
@@ -260,23 +298,25 @@
       "type": "object",
       "required": [
         "bg",
+        "stops",
         "userBubble",
         "userBubbleFg",
-        "aiBubble"
+        "aiBubble",
+        "aiText"
       ],
       "additionalProperties": false,
-      "description": "One mode's palette. The validator also enforces WCAG AA (4.5:1) between userBubble and userBubbleFg for hex pairs.",
+      "description": "One mode's palette. `stops` is the background: a single color for solid/pattern themes, or 2+ gradient stops for gradients (`bg` = stops[0]). The validator also enforces WCAG AA (4.5:1) between userBubble/userBubbleFg and aiBubble/aiText for hex pairs, and that a gradient theme declares 2+ stops in both modes while solid/pattern themes declare exactly 1.",
       "properties": {
         "bg": {
           "type": "string",
-          "description": "Solid background colour, or the scanline pattern's base colour."
+          "description": "Base background colour \u2014 solid fill, pattern base, or first gradient stop (must equal stops[0])."
         },
-        "gradient": {
+        "stops": {
           "type": "array",
-          "minItems": 2,
-          "maxItems": 2,
+          "minItems": 1,
+          "maxItems": 8,
           "items": { "type": "string" },
-          "description": "Gradient stops [from, to] \u2014 required when bgType is \"gradient\"."
+          "description": "Background stops: [color] for solid/pattern, or 2+ for gradients."
         },
         "userBubble": {
           "type": "string",
@@ -292,7 +332,7 @@
         },
         "aiText": {
           "type": "string",
-          "description": "Optional AI-bubble text colour (e.g. phosphor green for outlined/terminal themes)."
+          "description": "AI-bubble text colour (e.g. phosphor green for outlined/terminal themes)."
         }
       }
     },

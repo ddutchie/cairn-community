@@ -1,7 +1,7 @@
 {
   "kind": "theme",
   "author": "cairn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "category": "Appearance",
   "tags": ["chat", "theme", "ember", "warm", "serif"],
   "blurb": "Warm charcoal ember glow with serif text.",
@@ -10,19 +10,29 @@
     "name": "Ember",
     "description": "Warm charcoal with an ember-orange glow, serif chat text.",
     "font": "serif",
+    "fontWeight": "regular",
+    "tracking": 0,
+    "lineHeight": 1,
     "bgType": "pattern",
+    "pattern": "scanlines",
     "bubbleStyle": "filled",
+    "radius": "md",
+    "shadow": "subtle",
     "dark": {
       "bg": "#1a120d",
+      "stops": ["#1a120d"],
       "userBubble": "#e0702f",
       "userBubbleFg": "#1d0b02",
-      "aiBubble": "#261a12"
+      "aiBubble": "#261a12",
+      "aiText": "#e8a06e"
     },
     "light": {
       "bg": "#faf3ea",
+      "stops": ["#faf3ea"],
       "userBubble": "#b84e30",
       "userBubbleFg": "#ffffff",
-      "aiBubble": "#f3e5d6"
+      "aiBubble": "#f3e5d6",
+      "aiText": "#8a3a1e"
     }
   }
 }

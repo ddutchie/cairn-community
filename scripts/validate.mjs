@@ -60,6 +60,10 @@ const THEME_CATEGORIES = new Set(["Appearance"]);
 const THEME_FONTS = new Set(["sans", "serif", "mono"]);
 const THEME_BG_TYPES = new Set(["solid", "gradient", "pattern"]);
 const THEME_BUBBLE_STYLES = new Set(["filled", "glass", "outlined"]);
+const THEME_FONT_WEIGHTS = new Set(["regular", "medium"]);
+const THEME_PATTERNS = new Set(["none", "scanlines", "dots", "grid", "crosshatch", "diagonal", "noise"]);
+const THEME_RADII = new Set(["sm", "md", "pill"]);
+const THEME_SHADOWS = new Set(["none", "subtle", "strong"]);
 
 function hexLuminance(hex) {
   if (typeof hex !== "string") return 0;
@@ -246,7 +250,26 @@ for (const jsonPath of jsonPaths) {
     if (!THEME_BUBBLE_STYLES.has(def.bubbleStyle)) {
       fail(`${where}: theme definition.bubbleStyle must be one of ${[...THEME_BUBBLE_STYLES].join(" | ")} (got ${JSON.stringify(def.bubbleStyle)})`);
     }
-    // dark + light palettes, each with bg + bubbles; gradient requires both stops.
+    if (!THEME_FONT_WEIGHTS.has(def.fontWeight)) {
+      fail(`${where}: theme definition.fontWeight must be one of ${[...THEME_FONT_WEIGHTS].join(" | ")} (got ${JSON.stringify(def.fontWeight)})`);
+    }
+    if (typeof def.tracking !== "number" || def.tracking < 0 || def.tracking > 8) {
+      fail(`${where}: theme definition.tracking must be a number 0–8 (px letter-spacing)`);
+    }
+    if (typeof def.lineHeight !== "number" || def.lineHeight < 0.8 || def.lineHeight > 3) {
+      fail(`${where}: theme definition.lineHeight must be a number 0.8–3 (multiplier)`);
+    }
+    if (!THEME_PATTERNS.has(def.pattern)) {
+      fail(`${where}: theme definition.pattern must be one of ${[...THEME_PATTERNS].join(" | ")} (got ${JSON.stringify(def.pattern)})`);
+    }
+    if (!THEME_RADII.has(def.radius)) {
+      fail(`${where}: theme definition.radius must be one of ${[...THEME_RADII].join(" | ")} (got ${JSON.stringify(def.radius)})`);
+    }
+    if (!THEME_SHADOWS.has(def.shadow)) {
+      fail(`${where}: theme definition.shadow must be one of ${[...THEME_SHADOWS].join(" | ")} (got ${JSON.stringify(def.shadow)})`);
+    }
+    // dark + light palettes, each with bg + stops + bubbles; gradients need 2+
+    // stops, solid/pattern exactly 1 (stops[0] must equal bg).
     for (const mode of ["dark", "light"]) {
       const m = def[mode];
       if (!m || typeof m !== "object") {
@@ -256,26 +279,40 @@ for (const jsonPath of jsonPaths) {
       if (typeof m.bg !== "string" || m.bg.trim().length === 0) {
         fail(`${where}: theme definition.${mode}.bg must be a non-empty string`);
       }
-      for (const key of ["userBubble", "userBubbleFg", "aiBubble"]) {
+      if (!Array.isArray(m.stops) || m.stops.length < 1 || m.stops.some((s) => typeof s !== "string" || !s.trim())) {
+        fail(`${where}: theme definition.${mode}.stops must be a non-empty string array`);
+      }
+      if (def.bgType === "gradient" && (!Array.isArray(m.stops) || m.stops.length < 2)) {
+        fail(`${where}: theme definition.${mode}.stops needs 2+ stops when bgType is "gradient"`);
+      }
+      if (def.bgType !== "gradient" && Array.isArray(m.stops) && m.stops.length !== 1) {
+        fail(`${where}: theme definition.${mode}.stops must have exactly 1 stop when bgType is not "gradient"`);
+      }
+      if (m.stops && m.stops.length > 0 && m.stops[0] !== m.bg) {
+        fail(`${where}: theme definition.${mode}.stops[0] (${m.stops[0]}) must equal bg (${m.bg})`);
+      }
+      for (const key of ["userBubble", "userBubbleFg", "aiBubble", "aiText"]) {
         if (typeof m[key] !== "string" || m[key].trim().length === 0) {
           fail(`${where}: theme definition.${mode}.${key} must be a non-empty string`);
         }
       }
-      if (def.bgType === "gradient") {
-        const g = m.gradient;
-        if (!Array.isArray(g) || g.length !== 2 || g.some((s) => typeof s !== "string" || !s.trim())) {
-          fail(`${where}: theme definition.${mode}.gradient must be [from, to] when bgType is "gradient"`);
-        }
-      }
-      // AA gate: user bubble fill vs its fg (4.5:1 for normal text). Only hex
-      // pairs are checked — translucent glass fills skip (the app tints over
-      // the bg). Both dark and light must pass.
+      // AA gates: user bubble fill vs its fg, and aiBubble vs aiText (4.5:1 for
+      // normal text). Only hex pairs are checked — translucent glass fills skip
+      // (the app tints over the bg). Both dark and light must pass.
       const user = m.userBubble;
       const fg = m.userBubbleFg;
       if (/^#[0-9a-f]{6}$/i.test(user) && /^#[0-9a-f]{6}$/i.test(fg)) {
         const r = contrastRatio(user, fg);
         if (r < 4.5) {
           fail(`${where}: theme definition.${mode} user bubble ${user} vs fg ${fg} is ${r.toFixed(2)}:1 — must be ≥4.5:1 (WCAG AA)`);
+        }
+      }
+      const ai = m.aiBubble;
+      const aiText = m.aiText;
+      if (/^#[0-9a-f]{6}$/i.test(ai) && /^#[0-9a-f]{6}$/i.test(aiText)) {
+        const r = contrastRatio(ai, aiText);
+        if (r < 4.5) {
+          fail(`${where}: theme definition.${mode} ai bubble ${ai} vs aiText ${aiText} is ${r.toFixed(2)}:1 — must be ≥4.5:1 (WCAG AA)`);
         }
       }
     }
