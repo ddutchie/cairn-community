@@ -1,14 +1,14 @@
 {
   "kind": "theme",
   "author": "cairn",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "category": "Appearance",
-  "tags": ["chat", "theme", "ocean", "teal", "glass"],
-  "blurb": "Deep teal→blue gradient with glass bubbles.",
+  "tags": ["chat", "theme", "ocean", "teal", "glass", "multi-stop"],
+  "blurb": "Deep teal→blue→navy gradient with glass bubbles.",
   "brandColor": "#2dd4bf",
   "definition": {
     "name": "Ocean",
-    "description": "Teal→blue gradient with frosted glass bubbles.",
+    "description": "Three-stop teal→blue→navy gradient with frosted glass bubbles.",
     "font": "sans",
     "fontWeight": "regular",
     "tracking": 0,
@@ -20,7 +20,7 @@
     "shadow": "subtle",
     "dark": {
       "bg": "#071318",
-      "stops": ["#071318", "#0a1f33"],
+      "stops": ["#071318", "#0a1f33", "#12324f"],
       "userBubble": "#2dd4bf",
       "userBubbleFg": "#04231f",
       "aiBubble": "rgba(20,52,66,0.75)",
@@ -28,7 +28,7 @@
     },
     "light": {
       "bg": "#eefaf9",
-      "stops": ["#eefaf9", "#e6f1fc"],
+      "stops": ["#eefaf9", "#e6f1fc", "#d8eaf7"],
       "userBubble": "#0a7568",
       "userBubbleFg": "#ffffff",
       "aiBubble": "rgba(255,255,255,0.85)",

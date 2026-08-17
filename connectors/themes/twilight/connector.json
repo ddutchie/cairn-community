@@ -1,14 +1,14 @@
 {
   "kind": "theme",
   "author": "cairn",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "category": "Appearance",
-  "tags": ["chat", "theme", "twilight", "purple", "violet", "glass", "nebula"],
+  "tags": ["chat", "theme", "twilight", "purple", "violet", "glass", "nebula", "multi-stop"],
   "blurb": "Deep violet-to-indigo twilight gradient with frosted glass bubbles.",
   "brandColor": "#a855f7",
   "definition": {
     "name": "Twilight",
-    "description": "Deep violet-to-indigo gradient with soft frosted glass bubbles.",
+    "description": "Deep violet-to-indigo three-stop gradient with soft frosted glass bubbles.",
     "font": "sans",
     "fontWeight": "regular",
     "tracking": 0,
@@ -20,7 +20,7 @@
     "shadow": "subtle",
     "dark": {
       "bg": "#0b0c1b",
-      "stops": ["#0b0c1b", "#1e1135"],
+      "stops": ["#0b0c1b", "#1e1135", "#2c1a4a"],
       "userBubble": "#a855f7",
       "userBubbleFg": "#18042b",
       "aiBubble": "rgba(30,17,53,0.75)",
@@ -28,7 +28,7 @@
     },
     "light": {
       "bg": "#f5f3ff",
-      "stops": ["#f5f3ff", "#ede9fe"],
+      "stops": ["#f5f3ff", "#ede9fe", "#e3dcfa"],
       "userBubble": "#6d28d9",
       "userBubbleFg": "#ffffff",
       "aiBubble": "rgba(255,255,255,0.85)",

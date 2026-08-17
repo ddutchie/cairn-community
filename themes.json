@@ -1,30 +1,31 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T13:35:54Z",
+  "updatedAt": "2026-08-17T13:51:25Z",
   "themes": [
     {
       "id": "ember",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
         "theme",
         "ember",
         "warm",
-        "serif"
+        "serif",
+        "crosshatch"
       ],
       "blurb": "Warm charcoal ember glow with serif text.",
       "brandColor": "#e0702f",
       "definition": {
         "name": "Ember",
-        "description": "Warm charcoal with an ember-orange glow, serif chat text.",
+        "description": "Warm charcoal with an ember-orange glow on a crosshatch weave, serif chat text.",
         "font": "serif",
         "fontWeight": "regular",
         "tracking": 0,
         "lineHeight": 1,
         "bgType": "pattern",
-        "pattern": "scanlines",
+        "pattern": "crosshatch",
         "bubbleStyle": "filled",
         "radius": "md",
         "shadow": "subtle",
@@ -53,7 +54,7 @@
     {
       "id": "forest",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -61,19 +62,20 @@
         "forest",
         "pine",
         "mono",
-        "terminal"
+        "terminal",
+        "grid"
       ],
       "blurb": "Deep pine green with monospace outlined chat.",
       "brandColor": "#4fae82",
       "definition": {
         "name": "Forest",
-        "description": "Deep pine green, monospace chat, outlined bubbles.",
+        "description": "Deep pine green on a fine grid, monospace chat, outlined bubbles.",
         "font": "mono",
         "fontWeight": "regular",
         "tracking": 0,
         "lineHeight": 1,
-        "bgType": "solid",
-        "pattern": "none",
+        "bgType": "pattern",
+        "pattern": "grid",
         "bubbleStyle": "outlined",
         "radius": "sm",
         "shadow": "none",
@@ -102,7 +104,7 @@
     {
       "id": "glacier",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -111,13 +113,14 @@
         "arctic",
         "frost",
         "cyan",
-        "cool"
+        "cool",
+        "multi-stop"
       ],
       "blurb": "Arctic frost gradient with icy cyan chat bubbles.",
       "brandColor": "#38bdf8",
       "definition": {
         "name": "Glacier",
-        "description": "Arctic frost gradient with crisp cyan and deep navy tones.",
+        "description": "Three-stop arctic frost gradient with crisp cyan and deep navy tones.",
         "font": "sans",
         "fontWeight": "regular",
         "tracking": 0,
@@ -131,7 +134,8 @@
           "bg": "#07111e",
           "stops": [
             "#07111e",
-            "#0d2137"
+            "#0d2137",
+            "#14304e"
           ],
           "userBubble": "#38bdf8",
           "userBubbleFg": "#032030",
@@ -142,7 +146,8 @@
           "bg": "#f0f9ff",
           "stops": [
             "#f0f9ff",
-            "#e0f2fe"
+            "#e0f2fe",
+            "#d0e8fc"
           ],
           "userBubble": "#0369a1",
           "userBubbleFg": "#ffffff",
@@ -154,7 +159,7 @@
     {
       "id": "matcha",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -163,19 +168,20 @@
         "sage",
         "botanical",
         "zen",
-        "serif"
+        "serif",
+        "dots"
       ],
-      "blurb": "Zen matcha botanical palette with serif chat on pattern background.",
+      "blurb": "Zen matcha botanical palette with serif chat on a dotted background.",
       "brandColor": "#84cc16",
       "definition": {
         "name": "Matcha",
-        "description": "Zen botanical matcha and sage green on a soothing canvas pattern.",
+        "description": "Zen botanical matcha and sage green on a soothing dotted canvas.",
         "font": "serif",
         "fontWeight": "regular",
         "tracking": 0,
-        "lineHeight": 1,
+        "lineHeight": 1.1,
         "bgType": "pattern",
-        "pattern": "scanlines",
+        "pattern": "dots",
         "bubbleStyle": "filled",
         "radius": "md",
         "shadow": "none",
@@ -204,7 +210,7 @@
     {
       "id": "noir",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -219,11 +225,11 @@
       "brandColor": "#18181b",
       "definition": {
         "name": "Noir",
-        "description": "High-contrast editorial monochrome, serif chat, outlined bubbles.",
+        "description": "High-contrast editorial monochrome, medium-weight serif chat, outlined bubbles.",
         "font": "serif",
-        "fontWeight": "regular",
-        "tracking": 0,
-        "lineHeight": 1,
+        "fontWeight": "medium",
+        "tracking": 0.2,
+        "lineHeight": 1.2,
         "bgType": "solid",
         "pattern": "none",
         "bubbleStyle": "outlined",
@@ -254,20 +260,21 @@
     {
       "id": "ocean",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
         "theme",
         "ocean",
         "teal",
-        "glass"
+        "glass",
+        "multi-stop"
       ],
-      "blurb": "Deep teal→blue gradient with glass bubbles.",
+      "blurb": "Deep teal→blue→navy gradient with glass bubbles.",
       "brandColor": "#2dd4bf",
       "definition": {
         "name": "Ocean",
-        "description": "Teal→blue gradient with frosted glass bubbles.",
+        "description": "Three-stop teal→blue→navy gradient with frosted glass bubbles.",
         "font": "sans",
         "fontWeight": "regular",
         "tracking": 0,
@@ -281,7 +288,8 @@
           "bg": "#071318",
           "stops": [
             "#071318",
-            "#0a1f33"
+            "#0a1f33",
+            "#12324f"
           ],
           "userBubble": "#2dd4bf",
           "userBubbleFg": "#04231f",
@@ -292,7 +300,8 @@
           "bg": "#eefaf9",
           "stops": [
             "#eefaf9",
-            "#e6f1fc"
+            "#e6f1fc",
+            "#d8eaf7"
           ],
           "userBubble": "#0a7568",
           "userBubbleFg": "#ffffff",
@@ -304,7 +313,7 @@
     {
       "id": "synthwave",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -313,13 +322,14 @@
         "cyberpunk",
         "neon",
         "retro",
-        "mono"
+        "mono",
+        "pill"
       ],
-      "blurb": "Cyberpunk night with neon magenta accents and glass bubbles.",
+      "blurb": "Cyberpunk night with neon magenta accents and pill glass bubbles.",
       "brandColor": "#f43f5e",
       "definition": {
         "name": "Synthwave",
-        "description": "Retro-futuristic violet gradient with neon magenta glass bubbles.",
+        "description": "Retro-futuristic three-stop violet gradient with neon magenta pill glass bubbles.",
         "font": "mono",
         "fontWeight": "regular",
         "tracking": 0,
@@ -327,13 +337,14 @@
         "bgType": "gradient",
         "pattern": "none",
         "bubbleStyle": "glass",
-        "radius": "md",
+        "radius": "pill",
         "shadow": "strong",
         "dark": {
           "bg": "#100826",
           "stops": [
             "#100826",
-            "#2d0b3f"
+            "#2d0b3f",
+            "#4a1257"
           ],
           "userBubble": "#f43f5e",
           "userBubbleFg": "#22030b",
@@ -344,7 +355,8 @@
           "bg": "#faf5ff",
           "stops": [
             "#faf5ff",
-            "#fce7f3"
+            "#fce7f3",
+            "#f6d4f0"
           ],
           "userBubble": "#be185d",
           "userBubbleFg": "#ffffff",
@@ -356,7 +368,7 @@
     {
       "id": "twilight",
       "author": "cairn",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "category": "Appearance",
       "tags": [
         "chat",
@@ -365,13 +377,14 @@
         "purple",
         "violet",
         "glass",
-        "nebula"
+        "nebula",
+        "multi-stop"
       ],
       "blurb": "Deep violet-to-indigo twilight gradient with frosted glass bubbles.",
       "brandColor": "#a855f7",
       "definition": {
         "name": "Twilight",
-        "description": "Deep violet-to-indigo gradient with soft frosted glass bubbles.",
+        "description": "Deep violet-to-indigo three-stop gradient with soft frosted glass bubbles.",
         "font": "sans",
         "fontWeight": "regular",
         "tracking": 0,
@@ -385,7 +398,8 @@
           "bg": "#0b0c1b",
           "stops": [
             "#0b0c1b",
-            "#1e1135"
+            "#1e1135",
+            "#2c1a4a"
           ],
           "userBubble": "#a855f7",
           "userBubbleFg": "#18042b",
@@ -396,7 +410,8 @@
           "bg": "#f5f3ff",
           "stops": [
             "#f5f3ff",
-            "#ede9fe"
+            "#ede9fe",
+            "#e3dcfa"
           ],
           "userBubble": "#6d28d9",
           "userBubbleFg": "#ffffff",
