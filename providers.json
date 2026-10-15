@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-17T13:51:25Z",
+  "updatedAt": "2026-10-15T01:49:57Z",
   "providers": [
     {
       "id": "anthropic",
@@ -179,7 +179,7 @@
     {
       "id": "opencode-go",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "AI Providers",
       "tags": [
         "opencode",
@@ -192,7 +192,7 @@
       "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M22 24H2V0h20zM17 4.8H7v14.4h10z\"/></svg>",
       "definition": {
         "name": "OpenCode Go",
-        "baseUrl": "https://opencode.ai/zen/go/v1",
+        "baseUrl": "https://opencode.ai/inference/go/v1",
         "needsApiKey": true,
         "apiKeyUrl": "https://opencode.ai"
       }
@@ -200,7 +200,7 @@
     {
       "id": "opencode-zen",
       "author": "cairn",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "category": "AI Providers",
       "tags": [
         "opencode",
@@ -213,7 +213,7 @@
       "iconSvg": "<svg fill=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M22 24H2V0h20zM17 4.8H7v14.4h10z\"/></svg>",
       "definition": {
         "name": "OpenCode Zen",
-        "baseUrl": "https://opencode.ai/zen/v1",
+        "baseUrl": "https://opencode.ai/inference/v1",
         "needsApiKey": true,
         "apiKeyUrl": "https://opencode.ai"
       }

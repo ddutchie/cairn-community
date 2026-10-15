@@ -1,7 +1,7 @@
 {
   "kind": "provider",
   "author": "cairn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "category": "AI Providers",
   "tags": ["opencode", "zen", "cloud"],
   "blurb": "OpenCode Zen — Pay-as-you-go marketplace for premium models (OpenAI, Anthropic, etc.) with no monthly commitment.",
@@ -10,7 +10,7 @@
   "icon": { "slug": "opencode" },
   "definition": {
     "name": "OpenCode Zen",
-    "baseUrl": "https://opencode.ai/zen/v1",
+    "baseUrl": "https://opencode.ai/inference/v1",
     "needsApiKey": true,
     "apiKeyUrl": "https://opencode.ai"
   }
